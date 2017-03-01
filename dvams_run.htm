@@ -1,0 +1,778 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>DVAMS Assessment Run</title>
+</head>
+<body bgcolor="#5C555A">
+
+    <div>
+        
+    <link rel="stylesheet" href="Styles/jquery-ui.css">
+    <script src="Scripts/jquery-1.11.2.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-ui.js" type="text/javascript"></script>    
+    <script src="Scripts/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
+ 
+     <style type="text/css">
+    .ui-slider .ui-slider-handle { width: 120px; margin-left: -68px; height: 40px; margin-top: 0px; font-weight: bolder; }
+    .ui-slider .ui-slider-handle {border-radius: 16px 16px 16px 16px;}
+    </style>
+
+
+    <style type="text/css">
+        #slider
+        {
+            width: 20px;
+        }
+        .style1
+        {
+            height: 10px;
+            width: 325px;
+        }
+        .style2
+        {
+            height: 10px;
+            width: 400px;
+        }
+        .style3
+        {
+            width: 400px;
+            height: 480px;
+        }
+        .style4
+        {
+            width: 325px;
+            height: 480px;
+        }
+        .style5
+        {
+            height: 72px;
+        }
+        
+        .style6
+        {
+            height: 72px;
+            width: 400px;
+        }
+        
+        #ImageDn
+        {
+            height: 68px;
+        }
+        
+        #ImageUp
+        {
+            height: 68px;
+        }
+        
+    </style>
+    
+    <input type="hidden" name = "slider_val" id="slider_val" value="50" />
+    <input type="hidden" name = "id" id="id" value="sScaleID" />
+    <input type="hidden" name = "face" id="face" value="sFace" />
+    <input type="hidden" name = "append" id="append" value="sApp" />
+    <input type="hidden" name = "sres" id="sres" value="sRes" />
+
+    <table border="0" border="0" align="center" bgcolor="#bcb5ba" 
+            style="padding:6px; height: 1271px; width: 918px;">
+    <tr>
+    <td align="left" valign="top" class="style2">
+    
+    <div style="padding: 2px; height:18px; font-size: 20px; color: #DEDFE0; clip: rect(auto, auto, auto, auto); 
+    vertical-align: text-bottom; font-family: 'Times New Roman', Times, serif;" width: 
+            253px;" >
+
+    Dynamic Visual Analogue Mood Scales (D-VAMS)<br />
+    </div>  
+    <div style="padding: 2px; height:10px; font-size: 10px; color: #DEDFE0;" width: 
+            253px;" >
+        Copyright © 2013 Paul Barrows
+    </div> 
+
+    </td>
+    
+    <td class="style1" valign="top" align="right">
+
+        <img alt="" id="Image2" src="Images/UoN-UK-C-M.White.png" Width="102px" 
+            height="40px"/>
+        </td>
+    </tr>
+  
+    <tr>
+    <td align="center" valign="center" class="style3">
+
+            <input id="txtPos" Title="" type="text" style="border-style: none; text-align: center; 
+            font-family: 'Times New Roman', Times, serif; 
+            font-size: 60pt; background-color: #BCB5BA; color: #FFFFFF; width:702px" 
+                value="" disabled="disabled" />
+            <img alt="" id="ImageItem" src="" Height="900px" Width="675px"/><br />
+            <input id="txtNeg" Title="" type="text" style="border-style: none; text-align: center; 
+            font-family: 'Times New Roman', Times, serif; 
+            font-size: 60pt; background-color: #BCB5BA; color: #FFFFFF; width:702px" 
+                value="" disabled="disabled" />
+
+            </td>
+    
+    <td align="center" valign="bottom" class="style4">
+    
+    <div id="slider" style="border-width: 2px; border-style: outset; height:800px; width: 6px; right: -30px;">
+    
+        <img alt="" id="ImageScale" src="Images/rulervert50.gif" Width="60px" Height="800" style="margin-left: -54px" />
+        </div>
+        
+        <br />
+        
+        <input id="slider_val2" value="50" type="text" style="border-style: none; text-align: center; 
+            font-family: 'Times New Roman', Times, serif; 
+            font-size: 60pt; background-color: #BCB5BA; color: #C4C4C4; width:156px" onclick="return slider_val2_onclick()" />
+    </td>
+    </tr>
+    
+    <tr>
+    <td colspan="1" align="center" valign="center" align="left" class="style6">
+        
+        <img alt="" id="imgProgressBar" src="" Height="50px" Width="600px"/><br />
+        </td>
+
+    <td colspan="2" valign="top" align="right" class="style5">
+        
+        <button type="button" id="cmdSubmitVal" name ="submit" value="1" title="You must move the slider before continuing!"
+            style ="border-style: none; border-color: inherit; border-width: medium; background-color:transparent; width: 144px;" 
+            disabled="disabled" onclick="NextPage()" >
+            <img id= "buttonimg" align="top" src="Images/grey_button2.png" alt="" 
+                style="width: 112px; height: 112px; visibility: hidden"/></img>
+        </button><br />
+
+       </td></tr>
+
+    </table>
+
+    <input type="hidden" name = "submit" value = "1" style="font-family: Arial, Helvetica, sans-serif" />    
+    <input type="hidden" ID="speed" name = "submit" value = "0" style="font-family: Arial, Helvetica, sans-serif" />    
+      
+    </div>
+      <script type="text/javascript">
+
+          // ADD QUERYSTRING FUNCTION AND PHASE OUT ASP FOR THIS
+          // Do initialisation of image and querystring read in - ONLOAD doesn't go before READY
+          //window.onload = function() {
+          //};
+
+          function getRequests() {
+              var s1 = location.search.substring(1, location.search.length).split('&'),
+          r = {}, s2, i;
+              for (i = 0; i < s1.length; i += 1) {
+                  s2 = s1[i].split('=');
+                  r[decodeURIComponent(s2[0]).toLowerCase()] = decodeURIComponent(s2[1]);
+              }
+              return r;
+          };
+
+          function NextPage() {
+                //Version 1.2 - Multilanguage Support
+
+                var LangText = String;
+                var LangURLVAR = String;
+
+                var QueryString = getRequests();
+                var Scale = QueryString["scale"];
+                var sFace = QueryString["face"];
+                var sRes = QueryString["sres"];
+                var hvalue = $("#slider_val2").val();
+                var sURL='';
+                var sc = '';
+
+                if (Scale == undefined || sFace == undefined) {
+                    //alert('Scale undefined');
+                    return; 
+                };
+
+                if (sRes == undefined) {sRes='m'};
+                var PageNo = parseInt(Scale);
+
+                LangText = QueryString["lang"];
+
+                //Don't make language URL for default
+                if (typeof LangText === 'undefined') {
+                    LangURLVAR = '';
+                }
+                else {
+                    LangURLVAR = 'lang=' + QueryString["lang"] + '&';
+                };
+
+                //Save variables in URL
+                for (var i = 1; i <= PageNo; i++) {
+                    //alert(i);
+                    if (i == PageNo) {
+                        sURL = sURL + "sc" + i + "=" + hvalue + "&";
+
+                    } else {
+
+                        sc = QueryString["sc" + i];
+                        //alert(sc);
+                        sURL = sURL + "sc" + i + "=" + sc + "&";
+                    };
+                };
+
+                //Increment page number
+                PageNo += 1;
+                Scale = PageNo;
+
+                //TODO pass date as parameter to chart.htm
+                var now = new Date();
+                var strDateTime = [[AddZero(now.getFullYear()), AddZero(now.getMonth() + 1), now.getDate()].join("-"), [AddZero(now.getHours()), AddZero(now.getMinutes())].join(":")].join("%20");
+                
+                if (Scale > 7) {
+                    //alert('chart.htm?mode=1&face=1&' + sURL);
+                    window.location = 'chart.htm?mode=0&face=' + sFace + '&' + sURL + 'datetime=' + strDateTime;
+                } else {
+                    //alert('precache_run.htm?scale=' + Scale + "&face=" + sFace + "&" + sURL + "sres=" + sRes);
+                    window.location = 'precache_run.htm?scale=' + Scale + "&face=" + sFace + "&" + LangURLVAR + sURL + "sres=" + sRes;
+                };
+          };
+
+          //Pad given value to the left with "0"
+          function AddZero(num) {
+              return (num >= 0 && num < 10) ? "0" + num : num + "";
+          }
+          //initialise values her in jquery reather than in ASP
+          //FIRST PHASE OUT HIDDEN FIELD AND JUST USE SLIDER VALUE
+
+          $(document).ready(function () {
+
+              //Language module
+              var Scale1B = new Array();
+              var Scale1T = new Array();
+              var Scale2B = new Array();
+              var Scale2T = new Array();
+              var Scale3B = new Array();
+              var Scale3T = new Array();
+              var Scale4B = new Array();
+              var Scale4T = new Array();
+              var Scale5B = new Array();
+              var Scale5T = new Array();
+              var Scale6B = new Array();
+              var Scale6T = new Array();
+              var Scale7B = new Array();
+              var Scale7T = new Array();
+
+              var QueryString = getRequests();
+              var LangText = QueryString["lang"];
+              var Scale = QueryString["scale"];
+
+              //Don't make language URL for default
+              if (typeof LangText === 'undefined') {
+                  LangURL = ''; LangURLVAR = '';
+              }
+              else {
+                  LangURL = '?lang=' + QueryString["lang"];
+                  LangURLVAR = '&lang=' + QueryString["lang"];
+              };
+
+              switch (LangText) {
+                  case 'eng': LangID = 1;
+                      break;
+                  case 'fre': LangID = 2;
+                      break;
+                  case 'dut': LangID = 3;
+                      break;
+                  case 'ger': LangID = 4;
+                      break;
+                  case 'spa': LangID = 5;
+                      break;
+                  case 'ita': LangID = 6;
+                      break;
+                  case 'por': LangID = 7;
+                      break;
+                  case 'swe': LangID = 8;
+                      break;
+                  case 'nor': LangID = 9;
+                      break;
+                  case 'fin': LangID = 10;
+                      break;
+                  case 'ben': LangID = 11;
+                      break;
+                  case 'rus': LangID = 12;
+                      break;
+                  case 'hin': LangID = 13;
+                      break;
+                  case 'chi': LangID = 14;
+                      break;
+                  case 'ara': LangID = 15;
+                      break;
+                  case 'tha': LangID = 16;
+                      break;
+                  case 'jap': LangID = 17;
+                      break;
+                  case 'pol': LangID = 18;
+                      break;
+                  default: LangID = 1;
+              };
+
+              switch (LangID) {
+                  case 1: Scale1B[1] = "Miserable"; Scale1T[1] = "Satisfied";
+                      Scale2B[1] = "Sad"; Scale2T[1] = "Happy";
+                      Scale3B[1] = "Distressed"; Scale3T[1] = "Peaceful";
+                      Scale4B[1] = "Bored"; Scale4T[1] = "Excited";
+                      Scale5B[1] = "Afraid"; Scale5T[1] = "Calm";
+                      Scale6B[1] = "Angry"; Scale6T[1] = "Peaceful";
+                      Scale7B[1] = "Sleepy"; Scale7T[1] = "Alert";
+                      break;
+                  case 2: Scale1B[2] = "Misérable"; Scale1T[2] = "Satisfait";
+                      Scale2B[2] = "Triste"; Scale2T[2] = "Heureux";
+                      Scale3B[2] = "Affligé"; Scale3T[2] = "Pacifique";
+                      Scale4B[2] = "Ennuyer"; Scale4T[2] = "Excités";
+                      Scale5B[2] = "Peur"; Scale5T[2] = "Le calme";
+                      Scale6B[2] = "En colère"; Scale6T[2] = "Pacifique";
+                      Scale7B[2] = "Somnolent"; Scale7T[2] = "Alerte";
+                      break;
+                  case 3: Scale1B[3] = "Miserabele"; Scale1T[3] = "Tevreden";
+                      Scale2B[3] = "Triest"; Scale2T[3] = "Gelukkig";
+                      Scale3B[3] = "Overstuur"; Scale3T[3] = "Rustig";
+                      Scale4B[3] = "Vervelen"; Scale4T[3] = "Enthousiast";
+                      Scale5B[3] = "Bang"; Scale5T[3] = "Kalm";
+                      Scale6B[3] = "Boos"; Scale6T[3] = "Rustig";
+                      Scale7B[3] = "Slaperig"; Scale7T[3] = "Wakker";
+                      break;
+                  case 4: Scale1B[4] = "Miserabel"; Scale1T[4] = "Zufrieden";
+                      Scale2B[4] = "Traurig"; Scale2T[4] = "Glücklich";
+                      Scale3B[4] = "Bekümmert"; Scale3T[4] = "Friedlich";
+                      Scale4B[4] = "Gelangweilt"; Scale4T[4] = "Aufgeregt";
+                      Scale5B[4] = "Angst"; Scale5T[4] = "Ruhe";
+                      Scale6B[4] = "Wütend"; Scale6T[4] = "Friedlich";
+                      Scale7B[4] = "Schläfrig"; Scale7T[4] = "Wach";
+                      break;
+                  case 5: Scale1B[5] = "Miserable"; Scale1T[5] = "Satisfecho";
+                      Scale2B[5] = "Triste"; Scale2T[5] = "Feliz";
+                      Scale3B[5] = "Afligida"; Scale3T[5] = "Pacíficas";
+                      Scale4B[5] = "Aburrido"; Scale4T[5] = "Emocionada";
+                      Scale5B[5] = "Miedo"; Scale5T[5] = "La calma";
+                      Scale6B[5] = "Enfadado"; Scale6T[5] = "Pacíficas";
+                      Scale7B[5] = "Sleepy"; Scale7T[5] = "Alerta";
+                  case 6: Scale1B[6] = "Miserabile"; Scale1T[6] = "Soddisfatto";
+                      Scale2B[6] = "Triste"; Scale2T[6] = "Felice";
+                      Scale3B[6] = "Angustiati"; Scale3T[6] = "Pacifica";
+                      Scale4B[6] = "Annoiato"; Scale4T[6] = "Eccitato";
+                      Scale5B[6] = "Paura"; Scale5T[6] = "La calma";
+                      Scale6B[6] = "Arrabbiato"; Scale6T[6] = "Pacifica";
+                      Scale7B[6] = "Assonnato"; Scale7T[6] = "Avviso";
+                  case 7: Scale1B[7] = "Miserável"; Scale1T[7] = "Satisfeitos";
+                      Scale2B[7] = "Triste"; Scale2T[7] = "Feliz";
+                      Scale3B[7] = "Angustiado"; Scale3T[7] = "Pacífica";
+                      Scale4B[7] = "Entediado"; Scale4T[7] = "Animado";
+                      Scale5B[7] = "Medo"; Scale5T[7] = "A calma";
+                      Scale6B[7] = "Irritado"; Scale6T[7] = "Pacífica";
+                      Scale7B[7] = "Sonolento"; Scale7T[7] = "Alerta";
+                  case 8: Scale1B[8] = "Eländiga"; Scale1T[8] = "Nöjd";
+                      Scale2B[8] = "Sad"; Scale2T[8] = "Lyckligt";
+                      Scale3B[8] = "Upprörd"; Scale3T[8] = "Lugn";
+                      Scale4B[8] = "Uttråkad"; Scale4T[8] = "Förväntansfulla";
+                      Scale5B[8] = "Rädd"; Scale5T[8] = "Lugn.";
+                      Scale6B[8] = "Arg."; Scale6T[8] = "Lugn";
+                      Scale7B[8] = "Sömnig"; Scale7T[8] = "Varning";
+                  case 9: Scale1B[9] = "Elendig"; Scale1T[9] = "Fornøyd";
+                      Scale2B[9] = "Trist"; Scale2T[9] = "Fornøyd";
+                      Scale3B[9] = "Kriserammet"; Scale3T[9] = "Fredelig";
+                      Scale4B[9] = "Lei"; Scale4T[9] = "Spent";
+                      Scale5B[9] = "Redd"; Scale5T[9] = "Rolig";
+                      Scale6B[9] = "Sint"; Scale6T[9] = "Fredelig";
+                      Scale7B[9] = "Søvnig"; Scale7T[9] = "Varsel";
+                  case 10: Scale1B[10] = "Varsel"; Scale1T[10] = "Tyytyväisiä.";
+                      Scale2B[10] = "Surullinen."; Scale2T[10] = "Onnellinen";
+                      Scale3B[10] = "Hätääntynyt"; Scale3T[10] = "Rauhallinen";
+                      Scale4B[10] = "Tylsää."; Scale4T[10] = "Innoissaan";
+                      Scale5B[10] = "Peloissaan."; Scale5T[10] = "Rauhallinen";
+                      Scale6B[10] = "Vihainen."; Scale6T[10] = "Rauhallinen";
+                      Scale7B[10] = "Väsyttää."; Scale7T[10] = "Hälytys";
+                  case 11: Scale1B[11] = "দুঃসহ"; Scale1T[11] = "সন্তুষ্ট।";
+                      Scale2B[11] = "দুঃখজনক।"; Scale2T[11] = "খুশি।";
+                      Scale3B[11] = "বিপন্ন।"; Scale3T[11] = "শান্তিপূর্ণ।";
+                      Scale4B[11] = "মুহু।"; Scale4T[11] = "উত্তেজিত।";
+                      Scale5B[11] = "ভয়।"; Scale5T[11] = "শান্ত।";
+                      Scale6B[11] = "ক্ষুব্ধ।"; Scale6T[11] = "শান্তিপূর্ণ।";
+                      Scale7B[11] = "নিদ্রালু"; Scale7T[11] = "সতর্ক";
+                  case 12: Scale1B[12] = "жалких"; Scale1T[12] = "удовлетворены";
+                      Scale2B[12] = "грустно"; Scale2T[12] = "Рад";
+                      Scale3B[12] = "в бедственном"; Scale3T[12] = "Мирными";
+                      Scale4B[12] = "скучно"; Scale4T[12] = "Взволнованный";
+                      Scale5B[12] = "боюсь"; Scale5T[12] = "спокойствие";
+                      Scale6B[12] = "рассердятся"; Scale6T[12] = "Мирными";
+                      Scale7B[12] = "спится"; Scale7T[12] = "проснулся";
+                  case 13: Scale1B[13] = "निरानंद"; Scale1T[13] = "तुष्ट";
+                      Scale2B[13] = "उदास"; Scale2T[13] = "खुश";
+                      Scale3B[13] = "व्यथित"; Scale3T[13] = "शांतिपूर्ण";
+                      Scale4B[13] = "ऊब"; Scale4T[13] = "उत्तेजित";
+                      Scale5B[13] = "भयभीत"; Scale5T[13] = "शांत";
+                      Scale6B[13] = "नाराज"; Scale6T[13] = "उत्तेजित";
+                      Scale7B[13] = "निद्रालु"; Scale7T[13] = "फुरतीला";
+                  case 14: Scale1B[14] = "悒"; Scale1T[14] = "满意";
+                      Scale2B[14] = "伤心"; Scale2T[14] = "快乐";
+                      Scale3B[14] = "苦恼"; Scale3T[14] = "宁静";
+                      Scale4B[14] = "腻烦"; Scale4T[14] = "兴奋";
+                      Scale5B[14] = "怕"; Scale5T[14] = "冷静";
+                      Scale6B[14] = "愤怒"; Scale6T[14] = "宁静";
+                      Scale7B[14] = "困倦"; Scale7T[14] = "惊醒";
+                  case 15: Scale1B[15] = "بائس"; Scale1T[15] = "راض";
+                      Scale2B[15] = "حزين"; Scale2T[15] = "سعيد";
+                      Scale3B[15] = "مكروب"; Scale3T[15] = "سلمي";
+                      Scale4B[15] = "ضجر"; Scale4T[15] = "متحمس";
+                      Scale5B[15] = "خائف"; Scale5T[15] = "بارد الاعصاب";
+                      Scale6B[15] = "غاضب"; Scale6T[15] = "سلمي";
+                      Scale7B[15] = "نعسان"; Scale7T[15] = "متنبه";
+                  case 16: Scale1B[16] = "อนาถ"; Scale1T[16] = "จที่น่าสังเวช";
+                      Scale2B[16] = "รันทด"; Scale2T[16] = "มีความสุข";
+                      Scale3B[16] = "เป็นทุกข์"; Scale3T[16] = "สงบ";
+                      Scale4B[16] = "เบื่อ"; Scale4T[16] = "ตื่นเต้น";
+                      Scale5B[16] = "กลัว"; Scale5T[16] = "ใจเย็น";
+                      Scale6B[16] = "โกรธ"; Scale6T[16] = "สงบ";
+                      Scale7B[16] = "ปรือ"; Scale7T[16] = "ตื่นตัว";
+                  case 17: Scale1B[17] = "悲惨な"; Scale1T[17] = "満足";
+                      Scale2B[17] = "悲しい"; Scale2T[17] = "嬉しい";
+                      Scale3B[17] = "遣る瀬無い"; Scale3T[17] = "平穏";
+                      Scale4B[17] = "退屈"; Scale4T[17] = "励起";
+                      Scale5B[17] = "恐れ"; Scale5T[17] = "穏やかな";
+                      Scale6B[17] = "怒って"; Scale6T[17] = "平穏";
+                      Scale7B[17] = "疲れました"; Scale7T[17] = "アラート";
+                  case 18: Scale1B[18] = "Nędzny"; Scale1T[18] = "Zadowolona";
+                      Scale2B[18] = "Smutny"; Scale2T[18] = "Szczęśliwy";
+                      Scale3B[18] = "Strapiony"; Scale3T[18] = "Pokojowy";
+                      Scale4B[18] = "Znudzony"; Scale4T[18] = "Podekscytowany";
+                      Scale5B[18] = "Zlękniony"; Scale5T[18] = "Uspokojenie";
+                      Scale6B[18] = "Gniewny"; Scale6T[18] = "Pokojowy";
+                      Scale7B[18] = "Senny"; Scale7T[18] = "Alarm";
+                      break;  
+
+              };
+
+              if (Scale == 1) { document.getElementById("txtPos").value = Scale1T[LangID] };
+              if (Scale == 1) { document.getElementById("txtNeg").value = Scale1B[LangID] };
+              if (Scale == 2) { document.getElementById("txtPos").value = Scale2T[LangID] };
+              if (Scale == 2) { document.getElementById("txtNeg").value = Scale2B[LangID] };
+              if (Scale == 3) { document.getElementById("txtPos").value = Scale3T[LangID] };
+              if (Scale == 3) { document.getElementById("txtNeg").value = Scale3B[LangID] };
+              if (Scale == 4) { document.getElementById("txtPos").value = Scale4T[LangID] };
+              if (Scale == 4) { document.getElementById("txtNeg").value = Scale4B[LangID] };
+              if (Scale == 5) { document.getElementById("txtPos").value = Scale5T[LangID] };
+              if (Scale == 5) { document.getElementById("txtNeg").value = Scale5B[LangID] };
+              if (Scale == 6) { document.getElementById("txtPos").value = Scale6T[LangID] };
+              if (Scale == 6) { document.getElementById("txtNeg").value = Scale6B[LangID] };
+              if (Scale == 7) { document.getElementById("txtPos").value = Scale7T[LangID] };
+              if (Scale == 7) { document.getElementById("txtNeg").value = Scale7B[LangID] };
+
+              /// - END OF LANGUAGE MODULE
+
+
+              //FIRST GET SCALE ENDPOINT WORDS
+              //val = 'Miserable';
+              //$("#txtNeg").val(val);
+
+              //If full run mode then enable buttons respectively
+              if (Scale == undefined) {
+
+              } else {
+
+                  $("#cmdSubmitVal").attr("disabled", "disabled");
+                  $("#buttonimg").css("visibility", "visible");
+                  //$("#txtScaleID").css("visibility", "visible");
+              };
+
+              //First show progress bar
+              $("#imgProgressBar").attr("src", "images/chevrons" + Scale + ".jpg");
+
+              $('#slider').slider({ value: 50 });
+              update_img();
+
+              //set up/down arrow opacity to 0
+              var element = document.getElementById('txtPos');
+              var element2 = document.getElementById('txtNeg');
+              //element.style.opacity = 0;
+              //element2.style.opacity = 0;
+
+              //Swipe & Touch detection
+              window.addEventListener('load', function () {
+
+                  var box1 = document.getElementById('ImageItem')
+                  //var statusdiv = document.getElementById('statusdiv')
+                  var starty = 0
+                  var dist = 0
+
+                  box1.addEventListener('touchstart', function (e) {
+                      var touchobj = e.changedTouches[0] // reference first touch point (ie: first finger)
+                      starty = parseInt(touchobj.clientY) // get x position of touch point relative to left edge of browser
+                      //statusdiv.innerHTML = 'Status: touchstart - ClientY: ' + starty + 'px'
+                      e.preventDefault()
+                  }, false)
+
+                  box1.addEventListener('touchmove', function (e) {
+                      var touchobj = e.changedTouches[0] // reference first touch point for this event
+                      var dist = parseInt(touchobj.clientY) - starty
+                      //statusdiv.innerHTML = 'Status: touchmove - Vertical distance traveled: ' + dist + 'px'
+                      e.preventDefault()
+
+                      //get slider position and modify it by sldelta (px/100)
+                      var val = $('#slider').slider('value');
+
+                      //Default sensitivity (value to divide swipe length by: Greater equals less sensitivity)
+                      var QueryString = getRequests();
+                      sens = QueryString["sens"];
+                      //if (sens == undefined) { sens = 0 };
+                      if (sens == undefined) { sens = 200 };
+
+                      //alert(sens)
+                      var sldelta = dist / sens
+                      $('#slider').slider({ value: val - sldelta })
+
+                      //Set transparency to reflect size of movement
+                      var imgtransp = dist
+                      var element = document.getElementById('txtNeg');
+                      var element2 = document.getElementById('txtPos');
+
+                      //TEST to make endpoint text brighter when moved
+                      if (imgtransp > 0) { element.style.color = "#FFDDDD" };
+                      if (imgtransp < 0) { element2.style.color = "#FFDDDD" };
+
+                      // Set image according to slider position
+                      //Make sure button enabled and green
+                      $("#cmdSubmitVal").removeAttr("disabled");
+                      $("#buttonimg").attr("src", "images/green_button.png");
+                      update_img()
+
+                  }, false)
+
+                  box1.addEventListener('touchend', function (e) {
+                      var touchobj = e.changedTouches[0] // reference first touch point for this event
+                      //statusdiv.innerHTML = 'Status: touchend - Resting x coordinate: ' + touchobj.clientY + 'px'
+                      e.preventDefault()
+
+                      var element = document.getElementById('txtNeg');
+                      var element2 = document.getElementById('txtPos');
+                      element.style.color = "#FFFFFF";
+                      element2.style.color = "#FFFFFF";
+
+                      //Make sure button enabled and green
+                      $("#cmdSubmitVal").removeAttr("disabled");
+                      $("#buttonimg").attr("src", "images/green_button.png");
+
+                  }, false)
+
+              }, false)
+
+              //alert("Slider hidden form value at " + $("#slider_val").val());
+              var hvalue = $("#slider_val").val();
+              //alert("hvalue = " + hvalue);
+
+              //Round corners
+              $("#slider").css({
+                  "border-radius": "12px"
+              });
+          });
+
+
+          //This updates the image based on slider value
+          function update_img() {
+
+              ///MOVED URL READ FROM HERE
+              var QueryString = getRequests();
+              var sFocus = QueryString["append"];
+              var Scale = QueryString["scale"];
+              var sFace = QueryString["face"];
+              var sOffline = QueryString["offline"];
+              var sRes = QueryString["sres"];
+
+              var val = $('#slider').slider('value');
+              $("#slider_val2").val(val);
+
+              //Increment value to align with 1-101 index
+              val = val + 1
+
+              //Turn number into string
+              var sNum = '' + val
+
+              // Get "000" formatted slider number for filename
+              sNum = "00" + sNum;
+              sNum = (sNum).slice(-3);
+
+              if (sRes == undefined) { sRes = "m" };
+              //alert("sres:" + sRes);
+
+              if (sRes == "s") {
+                  var sResSuffix = "320x240";
+              }
+
+              if (sRes == "m") {
+                  var sResSuffix = "640x480";
+
+              }
+              //alert("sface:" + sface);
+
+              if (sFace == "") {
+                  sFace = "1";
+              }
+
+              //Experiment with relative pathing - seemed to force re-cacheing
+
+              if (sOffline == '1') {
+
+                  var sLocalDir = 'file://h|'
+              }
+              else {
+                  var sLocalDir = ''
+              };
+
+              if (Scale == 1) {
+                  $("#ImageItem").attr("src", sLocalDir + "images/dvams/1_MS" + sFace + "/" + sResSuffix + "/" + sFace + "MSF" + sNum + ".jpg");
+              }
+
+              if (Scale == 2) {
+                  $("#ImageItem").attr("src", sLocalDir + "images/dvams/2_SH" + sFace + "/" + sResSuffix + "/" + sFace + "SHF" + sNum + ".jpg");
+              }
+
+              if (Scale == 3) {
+                  $("#ImageItem").attr("src", sLocalDir + "images/dvams/3_DP" + sFace + "/" + sResSuffix + "/" + sFace + "DPF" + sNum + ".jpg");
+              }
+
+              if (Scale == 4) {
+                  $("#ImageItem").attr("src", sLocalDir + "images/dvams/4_BE" + sFace + "/" + sResSuffix + "/" + sFace + "BEF" + sNum + ".jpg");
+              }
+
+              if (Scale == 5) {
+                  $("#ImageItem").attr("src", sLocalDir + "images/dvams/5_AFC" + sFace + "/" + sResSuffix + "/" + sFace + "AFCF" + sNum + ".jpg");
+              }
+
+              if (Scale == 6) {
+                  $("#ImageItem").attr("src", sLocalDir + "images/dvams/6_AGP" + sFace + "/" + sResSuffix + "/" + sFace + "AGPF" + sNum + ".jpg");
+              }
+
+              if (Scale == 7) {
+                  $("#ImageItem").attr("src", sLocalDir + "images/dvams/7_SA" + sFace + "/" + sResSuffix + "/" + sFace + "SAF" + sNum + ".jpg");
+              }
+
+          }
+
+          $(function () {
+
+              $("#slider").slider({
+
+                  //Load hidden form field if it's set                
+                  //TEST
+                  value: $('#slider_val').val(),
+                  //value:50,
+                  min: 0,
+                  max: 100,
+                  step: 1,
+                  orientation: "vertical",
+
+                  // Slide function
+                  slide: function (event, ui) {
+
+                      //Get slider value
+                      //var val = $('#slider').slider('value');
+
+                      //Enable button
+                      $("#cmdSubmitVal").removeAttr("disabled");
+                      $("#buttonimg").attr("src", "images/green_button.png");
+
+                      // Set image according to slider position
+                      update_img()
+                  }
+
+              });
+
+              /// START
+              $("#slider").slider({
+
+                  // Slide function
+                  stop: function (event, ui) {
+
+                      $("#cmdSubmitVal").removeAttr("disabled");
+                      $("#buttonimg").attr("src", "images/green_button.png");
+
+                      // Set image according to slider position
+                      update_img()
+                  }
+
+              });
+
+          });
+          //END
+
+          //Enable mouse scroll to work and update slider
+
+          var img = document.getElementById("ImageItem");
+          var nextslideindex = 0;
+
+          function detectBrowser() {
+              var N = navigator.appName;
+              var UA = navigator.userAgent;
+              var temp;
+              var browserVersion = UA.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
+              if (browserVersion && (temp = UA.match(/version\/([\.\d]+)/i)) != null)
+                  browserVersion[2] = temp[1];
+              browserVersion = browserVersion ? [browserVersion[1], browserVersion[2]] : [N, navigator.appVersion, '-?'];
+              return browserVersion;
+          };
+
+          function rotateimage(e) {
+              var evt = window.event || e //equalize event object
+              var delta = evt.detail ? evt.detail * (-1) : evt.wheelDelta //delta returns +1 when wheel is scrolled up, -1 when scrolled down
+              var val = $('#slider').slider('value');
+
+              var brows = detectBrowser();
+              //alert("Delta639:" + brows);
+
+              var blah = brows + '';
+              //alert(blah.substring(0, 6));
+
+              //Let mws override default mousewheel settings
+
+              if (blah.substring(0, 6) == 'Chrome') {
+                  //alert("CHROME");
+                  var mws = 120;
+              } else {
+                  //alert("NOT CHROME");
+                  var mws = 3;
+              }
+
+              //alert("Steps:" + mws)
+
+              var delta_scaled = delta / mws
+              //alert("Delta scaled:" + delta_scaled)
+
+              //Enable Submit button
+              $("#cmdSubmitVal").removeAttr("disabled");
+              $("#buttonimg").attr("src", "images/green_button.png");
+
+              //Problem is slider does not respond as if slid, image not set (try alternative touchscreen swipe event?)
+              $("#slider").slider({ value: val + delta_scaled });
+              update_img()
+
+              if (evt.preventDefault) //disable default wheel action of scrolling page
+                  evt.preventDefault()
+              else
+                  return false
+
+          }
+
+          var mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel" //FF doesn't recognize mousewheel as of FF3.x
+
+          if (img.attachEvent) //if IE (and Opera depending on user setting)
+              img.attachEvent("on" + mousewheelevt, rotateimage)
+          else if (img.addEventListener) //WC3 browsers
+              img.addEventListener(mousewheelevt, rotateimage, false)
+
+
+          //Get mouse coordinates for touch screen drag function - Next try dragdrop.
+          $("img").click(function (e) {
+
+              var offset = $(this).offset();
+              var relativeX = (e.pageX - offset.left);
+              var relativeY = (e.pageY - offset.top);
+              //alert("X: " + relativeX + "  Y: " + relativeY);
+
+              //$("#Coord").val("X: " + parseInt(relativeX) + "  Y: " + parseInt(relativeY));
+
+          });
+          
+    </script>  
+
+</body>
+</html>

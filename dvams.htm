@@ -1,0 +1,517 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Untitled Page</title>
+</head>
+<body bgcolor="#5C555A" style="height: 1311px">
+
+
+    <div>
+        
+    <link rel="stylesheet" href="Styles/jquery-ui.css">
+    <script src="Scripts/jquery-1.11.2.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-ui.js" type="text/javascript"></script>    
+    <script src="Scripts/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
+ 
+     <style type="text/css">
+    .ui-slider .ui-slider-handle { width: 120px; margin-left: -68px; height: 40px; margin-top: 0px; font-weight: bolder; }
+    .ui-slider .ui-slider-handle {border-radius: 16px 16px 16px 16px;}
+    </style>
+
+
+    <style type="text/css">
+        #slider
+        {
+            width: 20px;
+        }
+        .style1
+        {
+            height: 40px;
+            width: 325px;
+        }
+        .style2
+        {
+            height: 40px;
+            width: 400px;
+        }
+        .style3
+        {
+            width: 400px;
+            height: 819px;
+        }
+        .style4
+        {
+            width: 325px;
+            height: 819px;
+        }
+        .style5
+        {
+            height: 54px;
+        }
+        
+    </style>
+
+
+    <input type="hidden" name = "slider_val" id="slider_val" value="50" />
+    <input type="hidden" name = "id" id="id" value="sScaleID" />
+    <input type="hidden" name = "face" id="face" value="sFace" />
+    <input type="hidden" name = "append" id="append" value="sApp" />
+    <input type="hidden" name = "sres" id="sres" value="sRes" />
+
+    <table border="0" border="0" align="center" bgcolor="#bcb5ba" 
+            style="padding:6px; height: 1296px; width: 918px;">
+    <tr>
+    <td align="left" valign="top" class="style2">
+    
+    <div style="padding: 8px; height:16px; font-size: 28px; color: #DEDFE0; clip: rect(auto, auto, auto, auto); 
+    vertical-align: text-bottom; font-family: 'Times New Roman', Times, serif;" width: 253px;" >
+
+    Dynamic Visual Analogue Mood Scales (D-VAMS)<br />
+    </div>  
+    <div style="padding: 8px; height:10px; font-size: 12px; color: #DEDFE0;" width: 
+            253px;" >
+        Copyright © 2013 Paul Barrows
+    </div>        
+
+    <div style="padding: 8px; height:8px; font-size: 26px; color: #EEEEEE; clip: rect(auto, auto, auto, auto); vertical-align: text-bottom; font-family: 'Times New Roman', Times, serif;" width: 
+            253px;" >
+    <i>        
+    <input id="txtScaleID" value="" type="text" 
+            style="border-style: none; text-align: left; 
+            font-family: 'Times New Roman', Times, serif; 
+            font-size: 26px; background-color: #BCB5BA; color: #EEE; width:480px; font-style: italic;" />
+
+    <input id="txtScaleName" value="" type="text" style="border-style: none; text-align: left; 
+            font-family: 'Times New Roman', Times, serif; 
+            font-size: 26px; background-color: #BCB5BA; color: #EEE; width:156px; font-style: italic;" />
+            </i>
+    </div>  
+
+    </td>
+    
+    <td class="style1" valign="top" align="right">
+
+        <img alt="" id="Image2" src="Images/UoN-UK-C-M.White.png" Width="154px" height="62px"/>
+        </td>
+    </tr>
+  
+    <tr>
+    <td align="center" valign="center" class="style3">
+
+            <img alt="" id="ImageUp" src="Images/uparrow3.png" width="256px" height="72px"/>
+            <img alt="" id="ImageItem" src="" Height="960px" Width="720px"/><br />
+            <img alt="" id="ImageDn" src="Images/dnarrow3.png" width="256px" height="72px"/>
+
+            </td>
+    
+    <td align="center" valign="bottom" class="style4">
+    
+    <div id="slider" style="border-width: 2px; border-style: outset; height:800px; width: 6px; right: -30px;">
+    
+        <img alt="" id="ImageScale" src="Images/rulervert50.gif" Width="60px" Height="800" style="margin-left: -54px" />
+        </div>
+        
+        <br />
+        
+        <input id="slider_val2" value="50" type="text" style="border-style: none; text-align: center; 
+            font-family: 'Times New Roman', Times, serif; 
+            font-size: 60pt; background-color: #BCB5BA; color: #C4C4C4; width:156px" onclick="return slider_val2_onclick()" />
+    </td>
+    </tr>
+    
+    <tr >
+    <td colspan="2" align="left" class="style5">
+        <form action="menu_dvams.htm" method="get">
+            <button type="submit" id="cmdSubmit" name ="return" value="1"
+            style ="border-style: none; border-color: inherit; border-width: medium; background-color:transparent; width: 134px;"
+            title="Scale Browser Menu">
+            <img src="Images/menu_icon_gy.jpg" alt="Main Menu" 
+            style="width: 128px; height: 72px;">
+            </button>
+        </form>
+        </td>
+
+    </tr>
+
+    </table>
+
+    <input type="hidden" name = "submit" value = "1" style="font-family: Arial, Helvetica, sans-serif" />    
+    <input type="hidden" ID="speed" name = "submit" value = "0" style="font-family: Arial, Helvetica, sans-serif" />    
+
+    </div>
+      <script type="text/javascript">
+
+          // ADD QUERYSTRING FUNCTION AND PHASE OUT ASP FOR THIS
+          // Do initialisation of image and querystring read in - ONLOAD doesn't go before READY
+          //window.onload = function() {
+          //};
+
+          function getRequests() {
+              var s1 = location.search.substring(1, location.search.length).split('&'),
+          r = {}, s2, i;
+              for (i = 0; i < s1.length; i += 1) {
+                  s2 = s1[i].split('=');
+                  r[decodeURIComponent(s2[0]).toLowerCase()] = decodeURIComponent(s2[1]);
+              }
+              return r;
+          };
+
+          function myTimer() {
+              var x = parseInt(document.getElementById("Speed").value);
+              alert(x);
+              if (x > 0) {
+                  document.getElementById("Speed").value = x - 1;
+                  $('#slider').slider({ value: val - (x - 1) });
+              }
+          };
+
+          //initialise values her in jquery reather than in ASP
+          //FIRST PHASE OUT HIDDEN FIELD AND JUST USE SLIDER VALUE
+          $(document).ready(function () {
+
+              //THIS PART WORKS AND INITIALISES IMAGE IN JAVASCRIPT, BUT WOULD BE NICE 
+              //FOR IT TO DO THIS BEFORE PAGE HAS LOADED LIKE ASP CODE - OTHER EVENT? (*NOT* 'ONLOAD')
+              var QueryString = getRequests();
+              var Scale = QueryString["scale"];
+              var ScaleName = '';
+
+              switch (Scale) {
+                  case '1': ScaleName = "Miserable-Satisfied";
+                      break;
+                  case '2': ScaleName = "Sad-Happy";
+                      break;
+                  case '3': ScaleName = "Distressed-Peaceful";
+                      break;
+                  case '4': ScaleName = "Bored-Excited";
+                      break;
+                  case '5': ScaleName = "Afraid-Calm";
+                      break;
+                  case '6': ScaleName = "Angry-Peaceful";
+                      break;
+                  case '7': ScaleName = "Sleepy-Alert";
+                      break;
+                  default: ScaleName = "Invalid Scale ID";
+              }
+
+              $("#txtScaleID").val('Scale ' + Scale + ' - \"' + ScaleName + '\"');
+
+
+              $('#slider').slider({ value: 50 });
+              update_img();
+              //END TEST
+
+              //set up/down arrow opacity to 0
+              var element = document.getElementById('ImageDn');
+              var element2 = document.getElementById('ImageUp');
+              element.style.opacity = 0;
+              element2.style.opacity = 0;
+
+              //Swipe & Touch detection
+
+              window.addEventListener('load', function () {
+
+                  var box1 = document.getElementById('ImageItem')
+                  //var statusdiv = document.getElementById('statusdiv')
+                  var starty = 0
+                  var dist = 0
+
+                  box1.addEventListener('touchstart', function (e) {
+                      var touchobj = e.changedTouches[0] // reference first touch point (ie: first finger)
+                      starty = parseInt(touchobj.clientY) // get x position of touch point relative to left edge of browser
+                      //alert('Status: touchstart - ClientY: ' + starty + 'px');
+
+                      //New slider movement code
+                      //var slval = (1040 - starty) / 10;
+                      //alert(starty + ': ->' + slval);
+                      //if (slval < 0) { slval = 0 };
+                      //if (slval > 100) { slval = 100 };
+                      //$('#slider').slider({ value: slval })
+                      //update_img()
+                      //End new code
+
+                      e.preventDefault()
+                  }, false)
+
+                  box1.addEventListener('touchmove', function (e) {
+                      var touchobj = e.changedTouches[0] // reference first touch point for this event
+                      var dist = parseInt(touchobj.clientY) - starty
+                      //alert('Status: touchstart - ClientY: ' + starty + 'px');
+                      e.preventDefault()
+
+                      //get slider position and modify it by sldelta (px/100)
+                      var val = $('#slider').slider('value');
+
+                      //Default sensitivity (value to divide swipe length by: Greater equals less sensitivity)
+                      var QueryString = getRequests();
+                      sens = QueryString["sens"];
+                      if (sens == undefined) { sens = 200 };
+
+                      //alert(sens)
+                      var sldelta = dist / sens
+                      //TEMORARILY DEACTIVATE
+                      $('#slider').slider({ value: val - sldelta })
+
+                      //New slider movement code
+                      //var slval = val - (dist / 100);
+                      //var slval = (1040 - starty) / 10;
+                      //if (slval < 0) { slval = 0 };
+                      //if (slval > 100) { slval = 100 };
+                      //$('#slider').slider({ value: slval })
+                      //End new code
+
+                      //Set transparency to reflect size of movement
+                      var imgtransp = dist / 500
+
+                      var element = document.getElementById('ImageDn');
+                      var element2 = document.getElementById('ImageUp');
+
+                      element.style.opacity = imgtransp;
+                      if (imgtransp < 0) { element2.style.opacity = -imgtransp; }
+
+                      // Set image according to slider position
+                      update_img()
+
+                  }, false)
+
+                  box1.addEventListener('touchend', function (e) {
+                      var touchobj = e.changedTouches[0] // reference first touch point for this event
+                      //statusdiv.innerHTML = 'Status: touchend - Resting x coordinate: ' + touchobj.clientY + 'px'
+                      e.preventDefault()
+
+                      var element = document.getElementById('ImageDn');
+                      var element2 = document.getElementById('ImageUp');
+                      element.style.opacity = 0;
+                      element2.style.opacity = 0;
+
+                  }, false)
+
+              }, false)
+              
+              //alert("Slider hidden form value at " + $("#slider_val").val());
+              var hvalue = $("#slider_val").val();
+              //alert("hvalue = " + hvalue);
+
+              //Round corners
+              $("#slider").css({
+                  "border-radius": "12px"
+              });
+          });
+
+
+          //This updates the image based on slider value
+          function update_img() {
+
+              ///MOVED URL READ FROM HERE
+              var QueryString = getRequests();
+              var sFocus = QueryString["append"];
+              var Scale = QueryString["scale"];
+              var sFace = QueryString["face"];
+              var sOffline = QueryString["offline"];
+              var sRes = QueryString["sres"];
+
+              //alert( 'sRes' + sRes );
+
+              var val = $('#slider').slider('value');
+              $("#slider_val2").val(val);
+
+              //Take resolution value from hidden field 'res'
+              //var sRes = $("#res").val();
+
+              //Increment value to align with 1-101 index
+              val = val + 1
+
+              //Turn number into string
+              var sNum = '' + val
+
+              // Get "000" formatted slider number for filename
+              sNum = "00" + sNum;
+              sNum = (sNum).slice(-3);
+
+              if (sRes == undefined) { sRes = "m" };
+              //alert("sres:" + sRes);
+
+              if (sRes == "s") {
+                  var sResSuffix = "320x240";
+              }
+
+              if (sRes == "m") {
+                  var sResSuffix = "640x480";
+
+              }
+              //alert("sface:" + sface);
+
+              if (sFace == "") {
+                  sFace = "1";
+              }
+
+              //alert("sface:" + sface);
+
+              //Experiment with relative pathing - seemed to force re-cacheing
+
+              if (sOffline == '1') {
+
+                  var sLocalDir = 'file://h|'
+              }
+              else {
+                  var sLocalDir = ''
+              };
+
+              if (Scale == 1) {
+                  $("#ImageItem").attr("src", sLocalDir + "images/dvams/1_MS" + sFace + "/" + sResSuffix + "/" + sFace + "MSF" + sNum + ".jpg");
+              }
+
+              if (Scale == 2) {
+                  $("#ImageItem").attr("src", sLocalDir + "images/dvams/2_SH" + sFace + "/" + sResSuffix + "/" + sFace + "SHF" + sNum + ".jpg");
+              }
+
+              if (Scale == 3) {
+                  $("#ImageItem").attr("src", sLocalDir + "images/dvams/3_DP" + sFace + "/" + sResSuffix + "/" + sFace + "DPF" + sNum + ".jpg");
+              }
+
+              if (Scale == 4) {
+                  $("#ImageItem").attr("src", sLocalDir + "images/dvams/4_BE" + sFace + "/" + sResSuffix + "/" + sFace + "BEF" + sNum + ".jpg");
+              }
+
+              if (Scale == 5) {
+                  $("#ImageItem").attr("src", sLocalDir + "images/dvams/5_AFC" + sFace + "/" + sResSuffix + "/" + sFace + "AFCF" + sNum + ".jpg");
+              }
+
+              if (Scale == 6) {
+                  $("#ImageItem").attr("src", sLocalDir + "images/dvams/6_AGP" + sFace + "/" + sResSuffix + "/" + sFace + "AGPF" + sNum + ".jpg");
+              }
+
+              if (Scale == 7) {
+                  $("#ImageItem").attr("src", sLocalDir + "images/dvams/7_SA" + sFace + "/" + sResSuffix + "/" + sFace + "SAF" + sNum + ".jpg");
+              }
+
+          }
+
+          $(function () {
+
+              $("#slider").slider({
+
+                  //Load hidden form field if it's set                
+                  //TEST
+                  value: $('#slider_val').val(),
+                  //value:50,
+                  min: 0,
+                  max: 100,
+                  step: 1,
+                  orientation: "vertical",
+
+                  // Slide function
+                  slide: function (event, ui) {
+
+                      //Get slider value
+                      //var val = $('#slider').slider('value');
+                      //alert(val)
+
+                      //Enable button
+                      //$("#slider_val2").val(val);
+                      $("#cmdSubmitVal").removeAttr("disabled");
+
+                      // Set image according to slider position
+                      update_img()
+
+                  }
+
+              });
+
+              /// START
+              $("#slider").slider({
+
+                  // Slide function
+                  stop: function (event, ui) {
+
+                      $("#cmdSubmitVal").removeAttr("disabled");
+
+                      // Set image according to slider position
+                      update_img()
+                  }
+
+              });
+
+          });
+          //END
+
+          //Enable mouse scroll to work and update slider
+
+          var img = document.getElementById("ImageItem");
+          var nextslideindex = 0;
+
+          function detectBrowser() {
+              var N = navigator.appName;
+              var UA = navigator.userAgent;
+              var temp;
+              var browserVersion = UA.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
+              if (browserVersion && (temp = UA.match(/version\/([\.\d]+)/i)) != null)
+                  browserVersion[2] = temp[1];
+              browserVersion = browserVersion ? [browserVersion[1], browserVersion[2]] : [N, navigator.appVersion, '-?'];
+              return browserVersion;
+          };
+
+          function rotateimage(e) {
+              var evt = window.event || e //equalize event object
+              var delta = evt.detail ? evt.detail * (-1) : evt.wheelDelta //delta returns +1 when wheel is scrolled up, -1 when scrolled down
+              var val = $('#slider').slider('value');
+
+              var brows = detectBrowser();
+              //alert("Delta639:" + brows);
+
+              var blah = brows + '';
+              //alert(blah.substring(0, 6));
+
+              //Let mws override default mousewheel settings
+
+              if (blah.substring(0, 6) == 'Chrome') {
+                  //alert("CHROME");
+                  var mws = 120;
+              } else {
+                  //alert("NOT CHROME");
+                  var mws = 3;
+              }
+
+              //alert("Steps:" + mws)
+
+              var delta_scaled = delta / mws
+              //alert("Delta scaled:" + delta_scaled)
+
+              //Enable Submit button
+              //$("#cmdSubmitVal").removeAttr("disabled");
+
+              //Problem is slider does not respond as if slid, image not set (try alternative touchscreen swipe event?)
+              $("#slider").slider({ value: val + delta_scaled });
+              update_img()
+
+              if (evt.preventDefault) //disable default wheel action of scrolling page
+                  evt.preventDefault()
+              else
+                  return false
+
+          }
+
+          var mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel" //FF doesn't recognize mousewheel as of FF3.x
+
+          if (img.attachEvent) //if IE (and Opera depending on user setting)
+              img.attachEvent("on" + mousewheelevt, rotateimage)
+          else if (img.addEventListener) //WC3 browsers
+              img.addEventListener(mousewheelevt, rotateimage, false)
+
+
+          //Get mouse coordinates for touch screen drag function - Next try dragdrop.
+          $("img").click(function (e) {
+
+              var offset = $(this).offset();
+              var relativeX = (e.pageX - offset.left);
+              var relativeY = (e.pageY - offset.top);
+              //alert("X: " + relativeX + "  Y: " + relativeY);
+
+              //$("#Coord").val("X: " + parseInt(relativeX) + "  Y: " + parseInt(relativeY));
+
+          });
+
+
+    </script>  
+
+</body>
+</html>

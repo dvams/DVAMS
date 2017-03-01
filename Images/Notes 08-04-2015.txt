@@ -1,0 +1,15 @@
+Release 1.01.
+
+Files to update:
+chart.htm (new button and functions)
+menu_dvams.htm (Home page icon with popup)
+dvams.htm (title popup)
+
+Files to add:
+home_icon_gy.jpg (home page icon for menu_dvams)
+home_icon_gy2.jpg (chart home page icon)
+bipolar_on.jpg (bipolar icon)
+bipolar_off.jpg (unipolar icon)
+face_on.jpg (face display icon)
+chart_on.jpg (chart display icon)
+colour_bar.jpg
