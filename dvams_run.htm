@@ -152,11 +152,6 @@
     </div>
       <script type="text/javascript">
 
-          // ADD QUERYSTRING FUNCTION AND PHASE OUT ASP FOR THIS
-          // Do initialisation of image and querystring read in - ONLOAD doesn't go before READY
-          //window.onload = function() {
-          //};
-
           function getRequests() {
               var s1 = location.search.substring(1, location.search.length).split('&'),
           r = {}, s2, i;
@@ -476,7 +471,7 @@
               };
 
               //First show progress bar
-              $("#imgProgressBar").attr("src", "images/chevrons" + Scale + ".jpg");
+              $("#imgProgressBar").attr("src", "Images/chevrons" + Scale + ".jpg");
 
               $('#slider').slider({ value: 50 });
               update_img();
@@ -533,7 +528,7 @@
                       // Set image according to slider position
                       //Make sure button enabled and green
                       $("#cmdSubmitVal").removeAttr("disabled");
-                      $("#buttonimg").attr("src", "images/green_button.png");
+                      $("#buttonimg").attr("src", "Images/green_button.png");
                       update_img()
 
                   }, false)
@@ -550,7 +545,7 @@
 
                       //Make sure button enabled and green
                       $("#cmdSubmitVal").removeAttr("disabled");
-                      $("#buttonimg").attr("src", "images/green_button.png");
+                      $("#buttonimg").attr("src", "Images/green_button.png");
 
                   }, false)
 
@@ -684,7 +679,7 @@
                   stop: function (event, ui) {
 
                       $("#cmdSubmitVal").removeAttr("disabled");
-                      $("#buttonimg").attr("src", "images/green_button.png");
+                      $("#buttonimg").attr("src", "Images/green_button.png");
 
                       // Set image according to slider position
                       update_img()
