@@ -11,7 +11,7 @@ Any redistribution or reproduction of part or all of the contents in any form is
 - You may copy the content to individual third parties for their personal use, but you must acknowledge the Copyright holder as the source of the material
 
 You may not, except with express written permission of the copyright holder, distribute or commercially exploit the content. Nor may you transmit it or store it in any other website or other form of electronic retrieval system.
-_____________________________________________________________________________________________________________________________________________
+___________________________________________________________________________________________________________
 
 RELEASES
 1.2  - Multi-language support added
@@ -20,11 +20,22 @@ RELEASES
 3.0 - Seven item version, including Sleepy-Alert scale (validation study suggests slightly better performance).
 
 Language support: Arabic, Bengali, Chinese (simplified), English, Dutch, French, German, Japanese, Finnish, Hindi, Italian, Norwegian, Polish, Portuguese, Russian, Spanish, Swedish, Thai
-_____________________________________________________________________________________________________________________________________________
+___________________________________________________________________________________________________________
 
 
 D-VAMS v3.0 Install Instructions
-________________________________
+================================
+
+AS ANDROID APP FROM "DVAMS.apk"
+_____________________________________________
+1) Download the file DVAMS.apk using your Android device
+
+2) Select the option to run the file. It will automatically install as prompted.
+
+
+
+AS LOCAL WEBSITE FROM "DVAMS_install_v3.00.zip"
+_____________________________________________
 
 D-VAMS software has been written in HTML/Javascript/JQuery. It should be capable of running on any device with a web browser. To install:
 
