@@ -471,8 +471,11 @@
             var distribution = gaussian(dist_mean, dist_sd * dist_sd);
             var perc = distribution.cdf(sc_mean_7)*100;
 
-            //Loop to draw distribution
-            for (i = 0; i <= 100; i += 0.25) {
+            //Loop to draw distribution  intervals of 0.25
+	    //TEST interval +=4
+	    alert('bell_filled' + bell_filled);
+	    alert('bell_unfilled' + bell_unfilled);
+            for (i = 0; i <= 100; i += 4) {
 
                 context.strokeStyle = bell_filled;
                 context.lineWidth = 2;
@@ -487,6 +490,8 @@
                 var prob = distribution.pdf(i);
                 context.moveTo(bcx + (i * (xlen / 100)), bcy);
                 context.lineTo(bcx + (i * (xlen / 100)), bcy - (prob * 7000));
+		//TEST
+		alert(prob * 7000);
                 context.stroke();
             }
             //End of bell curve code
