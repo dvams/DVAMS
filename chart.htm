@@ -436,16 +436,16 @@
                 context.stroke();
             };
             
-            context.beginPath();
-            context.fillStyle = "white";
-            context.lineWidth = 1;
-            context.fill();
-            context.strokeStyle = '#222222';
-            context.stroke();
+            //context.beginPath();
+            //context.fillStyle = "white";
+            //context.lineWidth = 1;
+            //context.fill();
+            //context.strokeStyle = '#222222';
+            //context.stroke();
 
             //Top of page
             var text = ("D-VAMS = " + sc_mean_7.toFixed(1));
-            context.fillStyle = "#FFFFFF";
+            context.fillStyle = "#ffffff";
             context.font = "bold 38px Arial";
             context.fillText(text, 616, 74);
             context.stroke();
@@ -473,17 +473,18 @@
 
             //Loop to draw distribution  intervals of 0.25
 	    //TEST interval +=4
-	    alert('bell_filled' + bell_filled);
-	    alert('bell_unfilled' + bell_unfilled);
-            for (i = 0; i <= 100; i += 4) {
+	    //alert('bell_filled' + bell_filled);
+	    //alert('bell_unfilled' + bell_unfilled);
+            for (i = 0; i <= 100; i += 0.25) {
 
-                context.strokeStyle = bell_filled;
+                context.fillStyle = bell_filled;
+		context.strokeStyle = bell_filled;
                 context.lineWidth = 2;
                 context.setLineDash([0]);
                 context.beginPath();
 
                 if (i >= sc_mean_7) {
-                    context.stroke();
+                    //context.stroke();
                     context.strokeStyle = bell_unfilled;
                 }
 
@@ -491,7 +492,7 @@
                 context.moveTo(bcx + (i * (xlen / 100)), bcy);
                 context.lineTo(bcx + (i * (xlen / 100)), bcy - (prob * 7000));
 		//TEST
-		alert(prob * 7000);
+		//alert(prob * 7000);
                 context.stroke();
             }
             //End of bell curve code
