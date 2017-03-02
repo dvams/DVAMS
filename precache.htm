@@ -222,8 +222,6 @@
             });
 
             $(window).load (function () {
-                //alert("It's finished loading!" )
-
                 $("#txtStatus").val("Cacheing complete."); 
 
                 var QueryString = getRequests();
@@ -237,7 +235,7 @@
                     //window.location = "menu_dvams.aspx";
                     //alert("BLANK");
                 } else {
-                    window.location = "dvams.htm?scale=" + Scale + "&face=" + Face +"&sres=" + sRes;
+                    window.location = "dvams.htm?scale=" + Scale + "&amp;face=" + Face +"&amp;sres=" + sRes;
                     //alert("Scale=" + Scale);
                 }
 

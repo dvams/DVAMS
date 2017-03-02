@@ -233,7 +233,7 @@
                     LangURLVAR = '';
                 }
                 else {
-                    LangURLVAR = 'lang=' + QueryString["lang"] + '&';
+                    LangURLVAR = 'lang=' + QueryString["lang"] + '&amp;';
                 };
                 //alert(LangURLVAR);
 
@@ -251,11 +251,10 @@
                     //alert(i);
                     sc = QueryString["sc" + i];
                     //alert(sc);
-                    sURL = sURL + "sc" + i + "=" + sc + "&";
+                    sURL = sURL + "sc" + i + "=" + sc + "&amp;";
                 }
 
-                //alert('dvams_run.htm?scale=' + Scale + '&face=' + sFace + '&' + LangURLVAR + sURL + 'sres=' + sRes);
-                window.location = 'dvams_run.htm?scale=' + Scale + '&face=' + sFace + '&' + LangURLVAR + sURL + "sres=" + sRes;
+                window.location = 'dvams_run.htm?scale=' + Scale + '&amp;face=' + sFace + '&amp;' + LangURLVAR + sURL + "sres=" + sRes;
             });
 
     </script>
