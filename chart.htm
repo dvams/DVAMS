@@ -484,12 +484,12 @@
                 context.moveTo(bcx + (i * (xlen / 100)), bcy);
                 context.lineTo(bcx + (i * (xlen / 100)), bcy - (prob * 7000));
 		
-		var fx = bcx + (i * (xlen / 100));
-		var fy = bcy;
+		var fx = Math.round(bcx + (i * (xlen / 100)));
+		var fy = Math.round(bcy);
 
-		var tx = bcx + (i * (xlen / 100));
-		var ty = bcy - (prob * 7000);
-		alert ('FROM: ' + fx + ',' + fy + ' TO: ' + tx + ',' + ty);
+		var tx = Math.round(bcx + (i * (xlen / 100)));
+		var ty = Math.round(bcy - (prob * 7000));
+		//alert ('FROM: ' + fx + ',' + fy + ' TO: ' + tx + ',' + ty);
 
                 context.strokeStyle = '#ffffff';
                 context.moveTo(fx + 200, fy);
@@ -503,14 +503,14 @@
 
             //Display percentage on bell curve
             var text = (perc.toFixed(1) + '%');
-            context.fillText(text, bcx, 1060); //VERT
+            context.fillText(text, bcx, 1060);
 
-            var text = ("Percentile"); //PERCENTILE
-            context.fillText(text, bcx, 1148); //VERT
+            var text = ("Percentile");
+            context.fillText(text, bcx, 1148); 
             
             context.font = "bold 20px Arial";
-            var text = ("(x̅:" + dist_mean + "; σ:" + dist_sd + ")"); //PERCENTILE
-            context.fillText(text, bcx+120, 1148); //VERT
+            var text = ("(x̅:" + dist_mean + "; σ:" + dist_sd + ")"); 
+            context.fillText(text, bcx+120, 1148); 
             context.stroke();
         };
 
@@ -521,7 +521,7 @@
 
             //switch value and image of button for redraw as required
             if (butnFval == '0') { document.getElementById('btnFace').value = '1'; } else { document.getElementById('btnFace').value = '0'; };
-            if (butnFval == '0') { document.getElementById('btnFace').title = 'Statistics'; } else { document.getElementById('btnFace').title = 'Face Mode'; };
+            if (butnFval == '0') { document.getElementById('btnFace').title = 'Statistics'; } else { document.getElementById('btnFace').title = 'Face Mode';         };
 
             //Get values
             var butnFval = document.getElementById('btnFace').value;
