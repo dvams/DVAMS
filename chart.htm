@@ -409,25 +409,25 @@
 
                 //Display scale label
                 var text = (scn + ": " + scr);
-                context.fillText(scn, lx, 984 + (i * 24)); //VERT
+                context.fillText(scn, lx, 984 + (i * 24)); 
                 context.stroke();
 
                 //Display score
                 var text = (scr);
-                context.fillText(text, lx + 140, 984 + (i * 24)); //VERT
+                context.fillText(text, lx + 140, 984 + (i * 24));
                 context.stroke();
 
                 context.beginPath();
                 context.setLineDash([0]);
 
                 //Draw bars for scores
-                context.rect(lx2, 974 + (i * 24), scr * 2, 10); //VERT
+                context.rect(lx2, 974 + (i * 24), scr * 2, 10); 
                 context.fillStyle = style[i];
                 context.lineWidth = 1;
                 context.fill();
 
                 context.beginPath();
-                context.rect(lx2 + (scr * 2), 974 + (i * 24), 200 - (scr * 2), 10); //VERT
+                context.rect(lx2 + (scr * 2), 974 + (i * 24), 200 - (scr * 2), 10);
                 context.fillStyle = "#222222";
                 context.lineWidth = 1;
                 context.fill();
@@ -468,25 +468,19 @@
             for (i = 0; i <= 100; i += 0.25) {
 
 		//context.beginPath();
-		context.strokeStyle = bell_filled;
-                context.lineWidth = 2;
+		context.lineWidth = 2;
                 context.setLineDash([]);
 
                 if (i >= sc_mean_7) {
-                    //context.stroke();
-                    context.strokeStyle = bell_unfilled;
+                       context.strokeStyle = bell_unfilled
+                }  else  {
+                       context.strokeStyle = bell_filled;
                 }
 
                 var prob = distribution.pdf(i);
                 context.beginPath();
                 context.moveTo(bcx + (i * (xlen / 100)), bcy);
                 context.lineTo(bcx + (i * (xlen / 100)), bcy - (prob * 7000));
-		
-		var fx = Math.round(bcx + (i * (xlen / 100)));
-		var fy = Math.round(bcy);
-
-		var tx = Math.round(bcx + (i * (xlen / 100)));
-		var ty = Math.round(bcy - (prob * 7000));
                 context.stroke();
             }
 
