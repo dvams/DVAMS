@@ -449,7 +449,7 @@
             //Set coordinates and length of curve display
             var bcx = 110
             var xlen = 280
-            var bcy = 1120 //VERT
+            var bcy = 1120
 
             //Display vertical marker for score
             context.strokeStyle = '#cccccc';
@@ -487,14 +487,9 @@
 
 		var tx = Math.round(bcx + (i * (xlen / 100)));
 		var ty = Math.round(bcy - (prob * 7000));
-		//alert ('FROM: ' + fx + ',' + fy + ' TO: ' + tx + ',' + ty);
-
-                context.strokeStyle = '#ffffff';
-                context.moveTo(fx + 200, fy);
-                context.lineTo(tx + 200, ty);
-
                 context.stroke();
             }
+
             //End of bell curve code
             context.fillStyle = "white";
             context.font = "bold 22px Arial";
