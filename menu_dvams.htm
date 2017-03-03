@@ -1,8 +1,9 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+     <meta name="viewport" content="width=896, user-scalable=1" />
      <title>DVAMS Scale Browser</title>
-    <style type="text/css">
+     <style type="text/css">
         .style1
         {
             height: 114px;
@@ -65,18 +66,12 @@
     <script src="Scripts/jquery-ui.js" type="text/javascript"></script>    
 
     <script type="text/javascript">
-        //Version 1.2 - Multilanguage Support. Some translations need proof-reading.
-        //Version 2.0 - Buttons for Scale 7 removed (code retained in case Scale I bring it back as an option)
-        //Version 2.0 - ***TODO  NEXT*** Parameterise dvams with language options for and add language code for dvams.htm,
-        //              Add checkbox to ake dvams.htm show words (of whatever language) as well as images, like with dvams_run.htm
-        //              Write new home page blurb in light of single factor findings. Then translate. Add Japanese and Polish.
 
         var LangText = String;
         var LangURL = String;
         var LangURLVAR = String;
 
         function getRequests() {
-
             var s1 = location.search.substring(1, location.search.length).split('&'),
             r = {}, s2, i;
             for (i = 0; i < s1.length; i += 1) {
