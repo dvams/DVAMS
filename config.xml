@@ -14,5 +14,6 @@
   <preference name="fullscreen" value="false" />
   <preference name="EnableViewportScale" value="true" />
   <icon src="icon.png" />
+  <preference name="Splashscreen" value="splash" />
   <splash src="splash.png" />
 </widget>
