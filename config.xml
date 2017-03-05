@@ -6,8 +6,9 @@
         version   = "3.0 beta">
   <name>D-VAMS</name>
   <description>Dynamic Visual Analogue Mood Scales (D-VAMS) - A nonverbal mood assessment instrument to help assess people with communication problems due to aphasia.</description>
-  <author email="dvams@zenid.com" href="http://www.dvams.com">Dr Paul Barrows</author>
+  <author email="dvams@zenid.com" href="http://www.dvams.com">Paul D. Barrows, Ph.D.</author>
   <preference name="phonegap-version" value="cli-6.5.0" />
+  <preference name="D-VAMS" value="PhonegapBuild.PGBDeveloper" />
   <preference name="permissions" value="none" />
   <preference name="orientation" value="portrait" />
   <preference name="target-device" value="universal" />
