@@ -21,21 +21,17 @@
             width: 447px;
             height: 60px;
         }
-
         a:link {
             color: #E9EEF5;
         }
-
         /* visited link */
         a:visited {
             color: #CAD4E0;
         }
-
         /* mouse over link */
         a:hover {
             color: #E9EEF5;
         }
-
         /* selected link */
         a:active {
             color: #F0F4FA;
@@ -66,11 +62,9 @@
     <script src="Scripts/jquery-ui.js" type="text/javascript"></script>    
 
     <script type="text/javascript">
-
         var LangText = String;
         var LangURL = String;
         var LangURLVAR = String;
-
         function getRequests() {
             var s1 = location.search.substring(1, location.search.length).split('&'),
             r = {}, s2, i;
@@ -80,8 +74,6 @@
             }
             return r;
         };
-
-
         $(document).ready(function () {
             var Scale1B = new Array();
             var Scale1T = new Array();
@@ -97,10 +89,8 @@
             var Scale6T = new Array();
             var Scale7B = new Array();
             var Scale7T = new Array();
-
             var QueryString = getRequests();
             LangText = QueryString["lang"];
-
             //Don't make language URL for default
             if (typeof LangText === 'undefined') {
                 LangURL = ''; LangURLVAR = '';
@@ -109,7 +99,6 @@
                 LangURL = '?lang=' + QueryString["lang"];
                 LangURLVAR = '&lang=' + QueryString["lang"];
             };
-
             switch (LangText) {
                 case 'eng': LangID = 1;
                     break;
@@ -149,7 +138,6 @@
                     break;
                 default: LangID = 1;
             };
-
             switch (LangID) {
                 case 1: Scale1B[1] = "Miserable"; Scale1T[1] = "Satisfied";
                     Scale2B[1] = "Sad"; Scale2T[1] = "Happy";
@@ -283,7 +271,6 @@
                     Scale7B[18] = "Senny"; Scale7T[18] = "Alarm";
                     break;                                      
             };
-
             document.getElementById("Scale1_F").value = Scale1B[LangID] + "-" + Scale1T[LangID];
             document.getElementById("Scale1_M").value = Scale1B[LangID] + "-" + Scale1T[LangID];
             document.getElementById("Scale2_F").value = Scale2B[LangID] + "-" + Scale2T[LangID];
@@ -298,9 +285,7 @@
             document.getElementById("Scale6_M").value = Scale6B[LangID] + "-" + Scale6T[LangID];
             document.getElementById("Scale7_F").value = Scale7B[LangID] + "-" + Scale7T[LangID];
             document.getElementById("Scale7_M").value = Scale7B[LangID] + "-" + Scale7T[LangID];
-
         });
-
      </script>
 
     <div data-role="page" data-theme='a'>
@@ -314,18 +299,12 @@
         
         <tr>
         <td  valign="top" class="style1">
-    
-        <div style="padding: 0px; height:32px; font-size: 28px; color: #FDFDFD;  vertical-align:
-        text-bottom; font-family: 'Times New Roman', Times, serif; width: 690px;" width: 
-        253px;" >
+        <br />
+        <div style="padding: 0px; height:34px; font-family: Arial, Helvetica, sans-serif; font-size: 28px; color: #FDFDFD;  vertical-align:
+        text-bottom; width: 690px;" width: 253px;" >
         Dynamic Visual Analogue Mood Scales (D-VAMS)<br />
         </div>
-                            
-        <div style="padding: 0px; height:30px; font-size: 18px; color: #FFFFFF; width: 630px;" width: 
-        253px;" >
-        <i>"Emotiscope"</i><br />
-        </div> 
-            
+           
         <div style="padding: 0px; height:30px; font-size: 12px; color: #FFFFFF; width: 690px;" width: 
         253px;" >
         Copyright © 2013 Paul Barrows<br />
@@ -335,33 +314,27 @@
         <td  width="270" valign="top" align="right" class="style10">
         <img alt="" id="Image2" src="Images/UoN-UK-C-M.White.png" Width="154px" height="62px"/>
         <br /><br />
-        <font size = 2 ><a href="about.aspx">D-VAMS Project Portal</a></font>
+
         </td>
         </tr>
         </table>        
-
         </td></tr>
-
         <tr>
-        <td align="center" class="style7">
+        <td align="center" class="style7"><br />
             <img src="Images/DVAMS/1_MS1/640x480/1MSF050.jpg" height="180" width="135"/>
         </td>
         
-        <td align="center" class="style6">
+        <td align="center" class="style6"><br />
             <img src="Images/DVAMS/1_MS2/640x480/2MSF050.jpg" height="180" width="135"/>
         </td>
         </tr>
-
-        <tr>
+        <tr height ="40">
         <td align="center" class="style13">
-
         </td>
         
         <td align="center" class="style12">
-
         </td>
         </tr>
-
         <tr>
         <td align="center" class="style7">
             <input id="Scale1_F" type="button" value="Miserable-Satisfied" 
@@ -388,7 +361,6 @@
                 style="height: 104px; width: 400px; font-size: 28px;">
         </td>
         </tr>
-
                 <tr>
         <td align="center" class="style7">
             <input id="Scale3_F" type="button" value="Distressed-Peaceful" 
@@ -402,7 +374,6 @@
                 style="height: 104px; width: 400px; font-size: 28px;">
         </td>
         </tr>
-
         <tr>
         <td align="center" class="style7">
             <input id="Scale4_F" type="button" value="Bored-Excited" 
@@ -416,7 +387,6 @@
                 style="height: 104px; width: 400px; font-size: 28px;">
         </td>
         </tr>
-
         <tr>
         <td align="center" class="style7">
             <input id="Scale5_F" type="button" value="Afraid-Calm" 
@@ -444,7 +414,6 @@
                 style="height: 104px; width: 400px; font-size: 28px;" >
         </td>
         </tr>
-
         <tr>
         <td align="center" class="style7">
             <input id="Scale7_F" type="button" value="Sleepy-Alert" 
@@ -458,30 +427,23 @@
                 style="height: 104px; width: 400px; font-size: 28px; color: #000000;" >
         </td>
         </tr>
-
         
         <tr>
         <td align="left" class="style10">
-        <br /> <br />     
+        <br /><br /><br /><br />  
       
-        <img src="Images/home_icon_gy.jpg" style="width: 128px; height: 80px; padding-left: 30px; padding-top: 0px;padding-bottom: 16px;"
-         onclick="window.location = 'menu_home_dvams.htm' + LangURL";>
+        <img src="Images/home_icon_gy.jpg" style="width: 128px; height: 80px; padding-left: 30px; padding-top: 0px;padding-bottom:          16px;" onclick="window.location = 'menu_home_dvams.htm' + LangURL";>
         </td>
         
         <td align="center" class="style14">
         </td>
         </tr>
         </table>
-
     </div>
-
     <script type="text/javascript">
-
             window.onload = function () {
             //alert("It's finished loading!" 
         }
-
     </script>
-
 </body>
 </html>
