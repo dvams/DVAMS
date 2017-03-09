@@ -116,7 +116,6 @@
             </div>
         
             <br />
-        
             <input id="slider_val2" value="50" type="text" style="border-style: none; text-align: center; 
                 font-family: 'Times New Roman', Times, serif; 
                 font-size: 60pt; background-color: #BCB5BA; color: #C4C4C4; width:156px" onclick="return slider_val2_onclick()" />
@@ -173,7 +172,6 @@
                 var sc = '';
 
                 if (Scale == undefined || sFace == undefined) {
-                    //alert('Scale undefined');
                     return; 
                 };
 
@@ -192,14 +190,11 @@
 
                 //Save variables in URL
                 for (var i = 1; i <= PageNo; i++) {
-                    //alert(i);
                     if (i == PageNo) {
                         sURL = sURL + "sc" + i + "=" + hvalue + "&";
 
                     } else {
-
                         sc = QueryString["sc" + i];
-                        //alert(sc);
                         sURL = sURL + "sc" + i + "=" + sc + "&";
                     };
                 };
@@ -213,10 +208,8 @@
                 var strDateTime = [[AddZero(now.getFullYear()), AddZero(now.getMonth() + 1), now.getDate()].join("-"), [AddZero(now.getHours()), AddZero(now.getMinutes())].join(":")].join("%20");
                 
                 if (Scale > 7) {
-                    //alert('chart.htm?mode=1&face=1&' + sURL);
                     window.location = 'chart.htm?mode=0&face=' + sFace + '&' + sURL + 'datetime=' + strDateTime;
                 } else {
-                    //alert('precache_run.htm?scale=' + Scale + "&face=" + sFace + "&" + sURL + "sres=" + sRes);
                     window.location = 'precache_run.htm?scale=' + Scale + "&face=" + sFace + "&" + LangURLVAR + sURL + "sres=" + sRes;
                 };
           };
@@ -225,8 +218,7 @@
           function AddZero(num) {
               return (num >= 0 && num < 10) ? "0" + num : num + "";
           }
-          //initialise values her in jquery reather than in ASP
-          //FIRST PHASE OUT HIDDEN FIELD AND JUST USE SLIDER VALUE
+
 
           $(document).ready(function () {
 
@@ -451,11 +443,7 @@
 
               /// - END OF LANGUAGE MODULE
 
-
               //FIRST GET SCALE ENDPOINT WORDS
-              //val = 'Miserable';
-              //$("#txtNeg").val(val);
-
               //If full run mode then enable buttons respectively
               if (Scale == undefined) {
 
@@ -505,10 +493,8 @@
                       //Default sensitivity (value to divide swipe length by: Greater equals less sensitivity)
                       var QueryString = getRequests();
                       sens = QueryString["sens"];
-                      //if (sens == undefined) { sens = 0 };
                       if (sens == undefined) { sens = 200 };
 
-                      //alert(sens)
                       var sldelta = dist / sens
                       $('#slider').slider({ value: val - sldelta })
 
@@ -547,9 +533,7 @@
 
               }, false)
 
-              //alert("Slider hidden form value at " + $("#slider_val").val());
               var hvalue = $("#slider_val").val();
-              //alert("hvalue = " + hvalue);
 
               //Round corners
               $("#slider").css({
@@ -583,23 +567,19 @@
               sNum = (sNum).slice(-3);
 
               if (sRes == undefined) { sRes = "m" };
-              //alert("sres:" + sRes);
-
+ 
               if (sRes == "s") {
                   var sResSuffix = "320x240";
               }
 
               if (sRes == "m") {
                   var sResSuffix = "640x480";
-
               }
-              //alert("sface:" + sface);
-
+ 
               if (sFace == "") {
                   sFace = "1";
               }
 
-              //Experiment with relative pathing - seemed to force re-cacheing
 
               if (sOffline == '1') {
 
@@ -644,9 +624,7 @@
               $("#slider").slider({
 
                   //Load hidden form field if it's set                
-                  //TEST
                   value: $('#slider_val').val(),
-                  //value:50,
                   min: 0,
                   max: 100,
                   step: 1,
@@ -654,9 +632,6 @@
 
                   // Slide function
                   slide: function (event, ui) {
-
-                      //Get slider value
-                      //var val = $('#slider').slider('value');
 
                       //Enable button
                       $("#cmdSubmitVal").removeAttr("disabled");
@@ -687,7 +662,6 @@
           //END
 
           //Enable mouse scroll to work and update slider
-
           var img = document.getElementById("ImageItem");
           var nextslideindex = 0;
 
@@ -708,13 +682,8 @@
               var val = $('#slider').slider('value');
 
               var brows = detectBrowser();
-              //alert("Delta639:" + brows);
 
               var blah = brows + '';
-              //alert(blah.substring(0, 6));
-
-              //Let mws override default mousewheel settings
-
               if (blah.substring(0, 6) == 'Chrome') {
                   //alert("CHROME");
                   var mws = 120;
@@ -723,10 +692,7 @@
                   var mws = 3;
               }
 
-              //alert("Steps:" + mws)
-
               var delta_scaled = delta / mws
-              //alert("Delta scaled:" + delta_scaled)
 
               //Enable Submit button
               $("#cmdSubmitVal").removeAttr("disabled");
@@ -750,16 +716,12 @@
           else if (img.addEventListener) //WC3 browsers
               img.addEventListener(mousewheelevt, rotateimage, false)
 
-
           //Get mouse coordinates for touch screen drag function - Next try dragdrop.
           $("img").click(function (e) {
 
               var offset = $(this).offset();
               var relativeX = (e.pageX - offset.left);
               var relativeY = (e.pageY - offset.top);
-              //alert("X: " + relativeX + "  Y: " + relativeY);
-
-              //$("#Coord").val("X: " + parseInt(relativeX) + "  Y: " + parseInt(relativeY));
 
           });
           

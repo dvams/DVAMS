@@ -220,15 +220,6 @@
                       starty = parseInt(touchobj.clientY) // get x position of touch point relative to left edge of browser
                       //alert('Status: touchstart - ClientY: ' + starty + 'px');
 
-                      //New slider movement code
-                      //var slval = (1040 - starty) / 10;
-                      //alert(starty + ': ->' + slval);
-                      //if (slval < 0) { slval = 0 };
-                      //if (slval > 100) { slval = 100 };
-                      //$('#slider').slider({ value: slval })
-                      //update_img()
-                      //End new code
-
                       e.preventDefault()
                   }, false)
 
@@ -246,18 +237,8 @@
                       sens = QueryString["sens"];
                       if (sens == undefined) { sens = 200 };
 
-                      //alert(sens)
                       var sldelta = dist / sens
-                      //TEMORARILY DEACTIVATE
                       $('#slider').slider({ value: val - sldelta })
-
-                      //New slider movement code
-                      //var slval = val - (dist / 100);
-                      //var slval = (1040 - starty) / 10;
-                      //if (slval < 0) { slval = 0 };
-                      //if (slval > 100) { slval = 100 };
-                      //$('#slider').slider({ value: slval })
-                      //End new code
 
                       //Set transparency to reflect size of movement
                       var imgtransp = dist / 500
@@ -289,8 +270,7 @@
               
               //alert("Slider hidden form value at " + $("#slider_val").val());
               var hvalue = $("#slider_val").val();
-              //alert("hvalue = " + hvalue);
-
+ 
               //Round corners
               $("#slider").css({
                   "border-radius": "12px"
@@ -313,11 +293,6 @@
 
               var val = $('#slider').slider('value');
               $("#slider_val2").val(val);
-
-              //Take resolution value from hidden field 'res'
-              //var sRes = $("#res").val();
-
-              //Increment value to align with 1-101 index
               val = val + 1
 
               //Turn number into string
@@ -328,7 +303,6 @@
               sNum = (sNum).slice(-3);
 
               if (sRes == undefined) { sRes = "m" };
-              //alert("sres:" + sRes);
 
               if (sRes == "s") {
                   var sResSuffix = "320x240";
@@ -338,15 +312,10 @@
                   var sResSuffix = "640x480";
 
               }
-              //alert("sface:" + sface);
 
               if (sFace == "") {
                   sFace = "1";
               }
-
-              //alert("sface:" + sface);
-
-              //Experiment with relative pathing - seemed to force re-cacheing
 
               if (sOffline == '1') {
 
@@ -391,7 +360,6 @@
               $("#slider").slider({
 
                   //Load hidden form field if it's set                
-                  //TEST
                   value: $('#slider_val').val(),
                   //value:50,
                   min: 0,
@@ -402,12 +370,6 @@
                   // Slide function
                   slide: function (event, ui) {
 
-                      //Get slider value
-                      //var val = $('#slider').slider('value');
-                      //alert(val)
-
-                      //Enable button
-                      //$("#slider_val2").val(val);
                       $("#cmdSubmitVal").removeAttr("disabled");
 
                       // Set image according to slider position
@@ -435,7 +397,6 @@
           //END
 
           //Enable mouse scroll to work and update slider
-
           var img = document.getElementById("ImageItem");
           var nextslideindex = 0;
 
@@ -456,12 +417,7 @@
               var val = $('#slider').slider('value');
 
               var brows = detectBrowser();
-              //alert("Delta639:" + brows);
-
               var blah = brows + '';
-              //alert(blah.substring(0, 6));
-
-              //Let mws override default mousewheel settings
 
               if (blah.substring(0, 6) == 'Chrome') {
                   //alert("CHROME");
@@ -471,15 +427,7 @@
                   var mws = 3;
               }
 
-              //alert("Steps:" + mws)
-
               var delta_scaled = delta / mws
-              //alert("Delta scaled:" + delta_scaled)
-
-              //Enable Submit button
-              //$("#cmdSubmitVal").removeAttr("disabled");
-
-              //Problem is slider does not respond as if slid, image not set (try alternative touchscreen swipe event?)
               $("#slider").slider({ value: val + delta_scaled });
               update_img()
 
@@ -504,9 +452,6 @@
               var offset = $(this).offset();
               var relativeX = (e.pageX - offset.left);
               var relativeY = (e.pageY - offset.top);
-              //alert("X: " + relativeX + "  Y: " + relativeY);
-
-              //$("#Coord").val("X: " + parseInt(relativeX) + "  Y: " + parseInt(relativeY));
 
           });
 
