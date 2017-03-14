@@ -14,9 +14,9 @@
    
     <script src="Scripts/gaussian.js" type="text/javascript"></script>
 
-    <table align="center" style="padding: 0px; height: 1360px; border-spacing: 0px; background-color: #000000;">
+    <table align="center" style="padding: 0px; height: 1368px; border-spacing: 0px; background-color: #000000;">
     <tr><td colspan="2" class="style3">
-    <canvas id="myCanvas" width="900" height="1112" style="background-color: #000000"></canvas>
+    <canvas id="myCanvas" width="900" height="1172" style="background-color: #000000"></canvas>
     <br />
     </td></tr>
 
@@ -239,7 +239,7 @@
                 if (facemode == 1) {
 
                     //Traffic light bars
-                    var x = 210; var y = 584 + (i * 40); //### Placement of traffic light bars // VERT 
+                    var x = 210; var y = 604 + (i * 40); //### Placement of traffic light bars // VERT 
                     var x_centre = x + 250;
                     
                     //Draw bar scores as vectors from centre-point using red/yellow/green scale image
@@ -269,7 +269,7 @@
                     //Offsets for text alignment
                     var xoffset = 6;
                     var xoffset2 = 738;
-                    var yoffset = 604 + (i * 40) //### Placement of traffic light bars - text - //VERT
+                    var yoffset = 624 + (i * 40) //### Placement of traffic light bars - text - //VERT
 
                     //Draw faces and labels for traffic light bars
                     switch (i) {
@@ -341,8 +341,8 @@
                 context.setLineDash([3, 5]);
 
                 context.beginPath();
-                context.moveTo(x_centre, 614);
-                context.lineTo(x_centre, 904);
+                context.moveTo(x_centre, 634);
+                context.lineTo(x_centre, 924);
                 context.stroke();
                 // END of bar scores
             };
@@ -357,7 +357,7 @@
             
             var now = new Date();
             var text = caption + ': #' + gender + '/' + strDateTime; 
-            context.fillText(text, 39, 64);
+            context.fillText(text, 39, 60);
             
             //Display Results 
             var lx = 460;
@@ -370,7 +370,7 @@
             context.font = "bold 24px Arial";
 
             var text = ("Scale Scores");
-            context.fillText(text, lx, 978); //VERT
+            context.fillText(text, lx, 998); //VERT
 
             //Draw Scale Scores with coloured bars
             for (i = 1; i < 8; i++) {
@@ -406,25 +406,25 @@
 
                 //Display scale label
                 var text = (scn + ": " + scr);
-                context.fillText(scn, lx, 984 + (i * 24)); 
+                context.fillText(scn, lx, 1004 + (i * 24)); 
                 context.stroke();
 
                 //Display score
                 var text = (scr);
-                context.fillText(text, lx + 140, 984 + (i * 24));
+                context.fillText(text, lx + 140, 1004 + (i * 24));
                 context.stroke();
 
                 context.beginPath();
                 context.setLineDash([0]);
 
                 //Draw bars for scores
-                context.rect(lx2, 974 + (i * 24), scr * 2, 10); 
+                context.rect(lx2, 994 + (i * 24), scr * 2, 10); 
                 context.fillStyle = style[i];
                 context.lineWidth = 1;
                 context.fill();
 
                 context.beginPath();
-                context.rect(lx2 + (scr * 2), 974 + (i * 24), 200 - (scr * 2), 10);
+                context.rect(lx2 + (scr * 2), 994 + (i * 24), 200 - (scr * 2), 10);
                 context.fillStyle = "#222222";
                 context.lineWidth = 1;
                 context.fill();
@@ -437,7 +437,7 @@
             var text = ("D-VAMS = " + sc_mean_7.toFixed(1));
             context.fillStyle = "#ffffff";
             context.font = "bold 38px Arial";
-            context.fillText(text, 616, 74);
+            context.fillText(text, 616, 72);
             context.stroke();
 
             //Draw bell curve chart
@@ -446,7 +446,7 @@
             //Set coordinates and length of curve display
             var bcx = 110
             var xlen = 280
-            var bcy = 1120
+            var bcy = 1132
 
             //Display vertical marker for score
             context.strokeStyle = '#cccccc';
@@ -487,14 +487,14 @@
 
             //Display percentage on bell curve
             var text = (perc.toFixed(1) + '%');
-            context.fillText(text, bcx, 1060);
+            context.fillText(text, bcx, 1072);
 
             var text = ("Percentile");
-            context.fillText(text, bcx, 1148); 
+            context.fillText(text, bcx, 1160); 
             
             context.font = "bold 20px Arial";
             var text = ("(x̅:" + dist_mean + "; σ:" + dist_sd + ")"); 
-            context.fillText(text, bcx+120, 1148); 
+            context.fillText(text, bcx+120, 1160); 
             context.stroke();
         };
 
@@ -548,7 +548,7 @@
 
     </script>
     
-    <td style="color: #CCCCCC; font-family: Arial, Helvetica, sans-serif; font-size: x-small; vertical-align: bottom; text-align: right; padding-bottom: 20px; padding-right: 32px;">    
+    <td style="color: #CCCCCC; font-family: Arial, Helvetica, sans-serif; font-size: small; vertical-align: bottom; text-align: right; padding-bottom: 20px; padding-right: 32px;">    
     Dynamic Visual Analogue Mood Scales (D-VAMS)/'Emotiscope' Copyright © 2013 Paul Barrows
     </td>
     </tr>
