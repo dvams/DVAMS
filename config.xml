@@ -9,7 +9,7 @@
   <author email="dvams@zenid.com" href="http://www.dvams.com">Paul D. Barrows, Ph.D.</author>
   <preference name="phonegap-version" value="cli-6.5.0" />
   <preference name="D-VAMS" value="PhonegapBuild.PGBDeveloper" />
-  <preference name="WindowsStoreIdentityName"value="D-VAMS"/>
+  <preference name="WindowsStoreIdentityName" value="D-VAMS"/>
   <preference name="permissions" value="none" />
   <preference name="orientation" value="portrait" />
   <preference name="target-device" value="universal" />
