@@ -3,9 +3,9 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
         xmlns:android = "http://schemas.android.com/apk/res/android"
         id        = "com.phonegap.dvams"
-        version   = "3.0 beta">
+        version   = "3.0.1 beta">
   <name>D-VAMS</name>
-  <description>Dynamic Visual Analogue Mood Scales (D-VAMS) - A nonverbal mood assessment instrument to help assess people with communication problems due to aphasia.</description>
+  <description>Dynamic Visual Analogue Mood Scales (D-VAMS) - A nonverbal mood assessment instrument to help assess people with communication problems due to aphasia. A display resolution of at least 1920x1200 is strongly recommended.</description>
   <author email="dvams@zenid.com" href="http://www.dvams.com">Paul D. Barrows, Ph.D.</author>
   <preference name="phonegap-version" value="cli-6.5.0" />
   <preference name="D-VAMS" value="PhonegapBuild.PGBDeveloper" />
