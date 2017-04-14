@@ -207,35 +207,37 @@
                         var fname = "Images/DVAMS/7_SA2/" + sResSuffix + "/2SAF" + ("00" + i).slice(-3) + ".jpg";
                     }
 
-
-                    //var fname = "Images/DVAMS/1_MS1/" + sResSuffix + "/1MSF" + ("00" + i).slice(-3) + ".jpg";
-                    //alert("fname: " + fname);
-
                     $("#Img" + i).attr("src", fname);
                     
-                    //$("#Img1").attr("src", fname);
-                    //$("#txtStatus").attr("value", fname);
-                    
+                   
                 }
-                //$("#Img" + i).attr("src", fname);
 
-                //alert("doc ready");
             });
 
-            $(window).load (function () {
-                $("#txtStatus").val("Cacheing complete."); 
+            $(window).load(function () {
+                $("#txtStatus").val("Cacheing complete.");
 
                 var QueryString = getRequests();
                 var Scale = QueryString["scale"];
                 var Face = QueryString["face"];
                 var sRes = QueryString["sres"];
-                
+                var LangText = QueryString["lang"];
+
+                //Don't make language URL for default
+                if (typeof LangText === 'undefined') {
+                    LangURLVAR = '';
+                }
+                else {
+                    LangURLVAR = '&lang=' + QueryString["lang"];
+                };
+                //alert(LangURLVAR);
+
                 if (sRes == undefined) { sRes = "m" };
 
                 if (Scale == '0') {
                     //window.location = "menu_dvams.aspx";
                 } else {
-                    window.location = "dvams.htm?scale=" + Scale + "&face=" + Face +"&sres=" + sRes;
+                    window.location = "dvams.htm?scale=" + Scale + "&face=" + Face + "&sres=" + sRes + LangURLVAR;
                     //alert("Scale=" + Scale);
                 }
 

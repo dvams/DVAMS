@@ -6,7 +6,6 @@
 </head>
 <body bgcolor="#bcb5ba" style="height: 1311px">
 
-
     <div>
         
     <link rel="stylesheet" href="Styles/jquery-ui.css">
@@ -58,61 +57,50 @@
     <input type="hidden" name = "append" id="append" value="sApp" />
     <input type="hidden" name = "sres" id="sres" value="sRes" />
 
-    <table border="0" border="0" align="center" bgcolor="#bcb5ba" 
+    <table id="MainView" border="0" border="0" align="center" bgcolor="#bcb5ba" 
             style="padding:6px; height: 1296px; width: 918px; margin-top: 24px;">
         <tr>
         <td align="left" valign="top" class="style2">
     
-        <div style="padding: 0px; height:34px; font-family: Arial, Helvetica, sans-serif; font-size: 28px; color: #DEDFE0;  vertical-align:
+        <div id="DVAMS_heading" style="padding: 0px; height:34px; font-family: Arial, Helvetica, sans-serif; font-size: 28px; color: #DEDFE0;  vertical-align:
                     text-bottom; width: 690px;" width: 253px;" >
         Dynamic Visual Analogue Mood Scales (D-VAMS)<br />
         </div>  
-        <div style="padding: 2px; height:10px; font-size: 12px; color: #DEDFE0; font-family: Arial, Helvetica, sans-serif;" width: 
+        <div id="Copyright" style="padding: 2px; height:10px; font-size: 12px; color: #DEDFE0; font-family: Arial, Helvetica, sans-serif;" width: 
                 253px;" >
             Copyright © 2013 Paul Barrows
         </div>        
 
         <div style="padding: 8px; height:8px; font-size: 26px; color: #EEEEEE; clip: rect(auto, auto, auto, auto); vertical-align: text-bottom; font-family: 'Times New Roman', Times, serif;" width: 
                 253px;" >
-        <i>        
+              
         <input id="txtScaleID" value="" type="text" 
                 
                 style="border-style: none; text-align: left; 
                 font-family: 'Times New Roman', Times, serif; 
-                font-size: 32px; background-color: #BCB5BA; color: #EEE; width:480px; font-style: italic; margin-top: 12px;" />
-
-        <input id="txtScaleName" value="" type="text" style="border-style: none; text-align: left; 
-                font-family: 'Times New Roman', Times, serif; 
-                font-size: 26px; background-color: #BCB5BA; color: #EEE; width:156px; font-style: italic;" />
-                </i>
+                font-size: 54px; background-color: #BCB5BA; color: #EEE; width:700px; margin-top: 12px;" 
+                disabled="disabled" />
         </div>  
-
         </td>
     
         <td class="style1" valign="top" align="right">
-
             <img alt="" id="Image2" src="Images/UoN-UK-C-M.White.png" Width="154px" height="62px"/>
             </td>
         </tr>
   
         <tr>
         <td align="center" valign="center" class="style3">
-
                 <img alt="" id="ImageUp" src="Images/uparrow3.png" width="256px" height="72px"/>
                 <img alt="" id="ImageItem" src="" Height="960px" Width="720px"/><br />
                 <img alt="" id="ImageDn" src="Images/dnarrow3.png" width="256px" height="72px"/>
-
                 </td>
     
         <td align="center" valign="bottom" class="style4">
     
         <div id="slider" style="border-width: 2px; border-style: outset; height:800px; width: 6px; right: -30px;">
-    
             <img alt="" id="ImageScale" src="Images/rulervert50.gif" Width="60px" Height="800" style="margin-left: -54px" />
             </div>
-        
             <br />
-        
             <input id="slider_val2" value="50" type="text" style="border-style: none; text-align: center; 
                 font-family: 'Times New Roman', Times, serif; 
                 font-size: 60pt; background-color: #BCB5BA; color: #C4C4C4; width:156px" onclick="return slider_val2_onclick()" />
@@ -121,12 +109,12 @@
     
         <tr >
         <td colspan="2" align="left" class="style5">
-            <form action="menu_dvams.htm" method="get">
-                <button type="submit" id="cmdSubmit" name ="return" value="1"
+            <form id="Menu_DVAMS" action="menu_dvams.htm" method="get">
+                <button type="submit" id="cmdSubmit" name ="lang" value=""
                 style ="border-style: none; border-color: inherit; border-width: medium; background-color:transparent; width: 134px;"
                 title="Scale Browser Menu">
-                <img src="Images/menu_icon_gy.jpg" alt="Main Menu" 
-                style="width: 128px; height: 72px;">
+                <img id="BrowserMenu" src="Images/menu_icon_gy.jpg" alt="Main Menu" 
+                style="width: 128px; height: 88px;">
                 </button>
             </form>
             </td>
@@ -140,11 +128,6 @@
 
     </div>
       <script type="text/javascript">
-
-          // ADD QUERYSTRING FUNCTION AND PHASE OUT ASP FOR THIS
-          // Do initialisation of image and querystring read in - ONLOAD doesn't go before READY
-          //window.onload = function() {
-          //};
 
           function getRequests() {
               var s1 = location.search.substring(1, location.search.length).split('&'),
@@ -165,38 +148,289 @@
               }
           };
 
-          //initialise values her in jquery reather than in ASP
-          //FIRST PHASE OUT HIDDEN FIELD AND JUST USE SLIDER VALUE
+
           $(document).ready(function () {
 
-              //THIS PART WORKS AND INITIALISES IMAGE IN JAVASCRIPT, BUT WOULD BE NICE 
-              //FOR IT TO DO THIS BEFORE PAGE HAS LOADED LIKE ASP CODE - OTHER EVENT? (*NOT* 'ONLOAD')
+              //TEST FOR DIMENSIONS AND USE LARGER FONTS/BUTTONS/LABELS AND PHONE ASPECT RATIO (1.777 AND ABOVE) 
+
+              //TODO for 3.02 support scaling and larger fonts on phones
+
+              //First calculate aspect ratio
+              var width = window.innerWidth;
+              var height = window.innerHeight;
+              var aspect_ratio = height / width;
+
+              //Set aspect ratio range
+              if (aspect_ratio <= 1.5) { aspect_ratio = 1.5 };
+              if (aspect_ratio >= 1.7778) { aspect_ratio = 1.7778 };
+
+              // Modify table dimensions and font size for typical phone aspect ratio (> 1.7)
+              if (aspect_ratio >= 1.7) {
+
+                  //Change table height to phone aspect ratio [? for 1.777 aspect ratio (e.g: 2560x1440)]
+                  var table_height = (aspect_ratio * 880) - 4;
+                  window.document.getElementById("MainView").style.height = table_height + 'px';
+
+                  //Increase font size for caption, copyright, mood labels and score 
+                  $('#DVAMS_heading').css('font-size', '30px');
+                  $('#DVAMS_heading').css('height', '38px');
+                  $('#Copyright').css('font-size', '14px');
+                  $('#Copyright').css('height', '20px');
+                  $('#txtScaleID').css('font-size', '60px');
+                  $('#txtScaleID').css('height', '64px');
+
+                  $('#slider_val2').css('font-size', '100px');
+                  $('#slider_val2').css('height', '160px');
+
+                  //TODO change menu button and resize it - test on tablet
+                  window.document.getElementById("BrowserMenu").style.height = '104px';
+                  window.document.getElementById("BrowserMenu").style.width = '152px';
+
+              } else {
+
+                  //Change table height for tablet aspect ratio [1272 for 1.6 aspect ratio (e.g: 1920x1200)]
+                  var table_height = (aspect_ratio * 880) - 136;
+                  window.document.getElementById("MainView").style.height = table_height + 'px';
+
+                  //Set button font to regular size
+                  //$('#ScaleBrowser').css('font-size', '28px');
+
+              };
+
+              //Language module
               var QueryString = getRequests();
               var Scale = QueryString["scale"];
               var ScaleName = '';
+              var LangText = QueryString["lang"];
 
+              var Scale1B = new Array();
+              var Scale1T = new Array();
+              var Scale2B = new Array();
+              var Scale2T = new Array();
+              var Scale3B = new Array();
+              var Scale3T = new Array();
+              var Scale4B = new Array();
+              var Scale4T = new Array();
+              var Scale5B = new Array();
+              var Scale5T = new Array();
+              var Scale6B = new Array();
+              var Scale6T = new Array();
+              var Scale7B = new Array();
+              var Scale7T = new Array();
+
+               //window.document.getElementById("Menu_DVAMS").action = 'menu_dvams.htm' + LangURL
+              window.document.getElementById("cmdSubmit").value =  LangText
+              
+              switch (LangText) {
+                  case 'eng': LangID = 1;
+                      break;
+                  case 'fre': LangID = 2;
+                      break;
+                  case 'dut': LangID = 3;
+                      break;
+                  case 'ger': LangID = 4;
+                      break;
+                  case 'spa': LangID = 5;
+                      break;
+                  case 'ita': LangID = 6;
+                      break;
+                  case 'por': LangID = 7;
+                      break;
+                  case 'swe': LangID = 8;
+                      break;
+                  case 'nor': LangID = 9;
+                      break;
+                  case 'fin': LangID = 10;
+                      break;
+                  case 'ben': LangID = 11;
+                      break;
+                  case 'rus': LangID = 12;
+                      break;
+                  case 'hin': LangID = 13;
+                      break;
+                  case 'chi': LangID = 14;
+                      break;
+                  case 'ara': LangID = 15;
+                      break;
+                  case 'tha': LangID = 16;
+                      break;
+                  case 'jap': LangID = 17;
+                      break;
+                  case 'pol': LangID = 18;
+                      break;
+                  default: LangID = 1;
+              };
+
+              switch (LangID) {
+                  case 1: Scale1B[1] = "Miserable"; Scale1T[1] = "Satisfied";
+                      Scale2B[1] = "Sad"; Scale2T[1] = "Happy";
+                      Scale3B[1] = "Distressed"; Scale3T[1] = "Peaceful";
+                      Scale4B[1] = "Bored"; Scale4T[1] = "Excited";
+                      Scale5B[1] = "Afraid"; Scale5T[1] = "Calm";
+                      Scale6B[1] = "Angry"; Scale6T[1] = "Peaceful";
+                      Scale7B[1] = "Sleepy"; Scale7T[1] = "Alert";
+                      break;
+                  case 2: Scale1B[2] = "Misérable"; Scale1T[2] = "Satisfait";
+                      Scale2B[2] = "Triste"; Scale2T[2] = "Heureux";
+                      Scale3B[2] = "Affligé"; Scale3T[2] = "Pacifique";
+                      Scale4B[2] = "Ennuyer"; Scale4T[2] = "Excités";
+                      Scale5B[2] = "Peur"; Scale5T[2] = "Le calme";
+                      Scale6B[2] = "En colère"; Scale6T[2] = "Pacifique";
+                      Scale7B[2] = "Somnolent"; Scale7T[2] = "Alerte";
+                      break;
+                  case 3: Scale1B[3] = "Miserabele"; Scale1T[3] = "Tevreden";
+                      Scale2B[3] = "Triest"; Scale2T[3] = "Gelukkig";
+                      Scale3B[3] = "Overstuur"; Scale3T[3] = "Rustig";
+                      Scale4B[3] = "Vervelen"; Scale4T[3] = "Enthousiast";
+                      Scale5B[3] = "Bang"; Scale5T[3] = "Kalm";
+                      Scale6B[3] = "Boos"; Scale6T[3] = "Rustig";
+                      Scale7B[3] = "Slaperig"; Scale7T[3] = "Wakker";
+                      break;
+                  case 4: Scale1B[4] = "Miserabel"; Scale1T[4] = "Zufrieden";
+                      Scale2B[4] = "Traurig"; Scale2T[4] = "Glücklich";
+                      Scale3B[4] = "Bekümmert"; Scale3T[4] = "Friedlich";
+                      Scale4B[4] = "Gelangweilt"; Scale4T[4] = "Aufgeregt";
+                      Scale5B[4] = "Angst"; Scale5T[4] = "Ruhe";
+                      Scale6B[4] = "Wütend"; Scale6T[4] = "Friedlich";
+                      Scale7B[4] = "Schläfrig"; Scale7T[4] = "Wach";
+                      break;
+                  case 5: Scale1B[5] = "Miserable"; Scale1T[5] = "Satisfecho";
+                      Scale2B[5] = "Triste"; Scale2T[5] = "Feliz";
+                      Scale3B[5] = "Afligida"; Scale3T[5] = "Pacíficas";
+                      Scale4B[5] = "Aburrido"; Scale4T[5] = "Emocionada";
+                      Scale5B[5] = "Miedo"; Scale5T[5] = "La calma";
+                      Scale6B[5] = "Enfadado"; Scale6T[5] = "Pacíficas";
+                      Scale7B[5] = "Sleepy"; Scale7T[5] = "Alerta";
+                      break;
+                  case 6: Scale1B[6] = "Miserabile"; Scale1T[6] = "Soddisfatto";
+                      Scale2B[6] = "Triste"; Scale2T[6] = "Felice";
+                      Scale3B[6] = "Angustiati"; Scale3T[6] = "Pacifica";
+                      Scale4B[6] = "Annoiato"; Scale4T[6] = "Eccitato";
+                      Scale5B[6] = "Paura"; Scale5T[6] = "La calma";
+                      Scale6B[6] = "Arrabbiato"; Scale6T[6] = "Pacifica";
+                      Scale7B[6] = "Assonnato"; Scale7T[6] = "Avviso";
+                      break;
+                  case 7: Scale1B[7] = "Miserável"; Scale1T[7] = "Satisfeitos";
+                      Scale2B[7] = "Triste"; Scale2T[7] = "Feliz";
+                      Scale3B[7] = "Angustiado"; Scale3T[7] = "Pacífica";
+                      Scale4B[7] = "Entediado"; Scale4T[7] = "Animado";
+                      Scale5B[7] = "Medo"; Scale5T[7] = "A calma";
+                      Scale6B[7] = "Irritado"; Scale6T[7] = "Pacífica";
+                      Scale7B[7] = "Sonolento"; Scale7T[7] = "Alerta";
+                      break;
+                  case 8: Scale1B[8] = "Eländiga"; Scale1T[8] = "Nöjd";
+                      Scale2B[8] = "Sad"; Scale2T[8] = "Lyckligt";
+                      Scale3B[8] = "Upprörd"; Scale3T[8] = "Lugn";
+                      Scale4B[8] = "Uttråkad"; Scale4T[8] = "Förväntansfulla";
+                      Scale5B[8] = "Rädd"; Scale5T[8] = "Lugn.";
+                      Scale6B[8] = "Arg."; Scale6T[8] = "Lugn";
+                      Scale7B[8] = "Sömnig"; Scale7T[8] = "Varning";
+                      break;
+                  case 9: Scale1B[9] = "Elendig"; Scale1T[9] = "Fornøyd";
+                      Scale2B[9] = "Trist"; Scale2T[9] = "Fornøyd";
+                      Scale3B[9] = "Kriserammet"; Scale3T[9] = "Fredelig";
+                      Scale4B[9] = "Lei"; Scale4T[9] = "Spent";
+                      Scale5B[9] = "Redd"; Scale5T[9] = "Rolig";
+                      Scale6B[9] = "Sint"; Scale6T[9] = "Fredelig";
+                      Scale7B[9] = "Søvnig"; Scale7T[9] = "Varsel";
+                      break;
+                  case 10: Scale1B[10] = "Varsel"; Scale1T[10] = "Tyytyväisiä.";
+                      Scale2B[10] = "Surullinen."; Scale2T[10] = "Onnellinen";
+                      Scale3B[10] = "Hätääntynyt"; Scale3T[10] = "Rauhallinen";
+                      Scale4B[10] = "Tylsää."; Scale4T[10] = "Innoissaan";
+                      Scale5B[10] = "Peloissaan."; Scale5T[10] = "Rauhallinen";
+                      Scale6B[10] = "Vihainen."; Scale6T[10] = "Rauhallinen";
+                      Scale7B[10] = "Väsyttää."; Scale7T[10] = "Hälytys";
+                      break;
+                  case 11: Scale1B[11] = "দুঃসহ"; Scale1T[11] = "সন্তুষ্ট।";
+                      Scale2B[11] = "দুঃখজনক।"; Scale2T[11] = "খুশি।";
+                      Scale3B[11] = "বিপন্ন।"; Scale3T[11] = "শান্তিপূর্ণ।";
+                      Scale4B[11] = "মুহু।"; Scale4T[11] = "উত্তেজিত।";
+                      Scale5B[11] = "ভয়।"; Scale5T[11] = "শান্ত।";
+                      Scale6B[11] = "ক্ষুব্ধ।"; Scale6T[11] = "শান্তিপূর্ণ।";
+                      Scale7B[11] = "নিদ্রালু"; Scale7T[11] = "সতর্ক";
+                      break;
+                  case 12: Scale1B[12] = "жалких"; Scale1T[12] = "удовлетворены";
+                      Scale2B[12] = "грустно"; Scale2T[12] = "Рад";
+                      Scale3B[12] = "в бедственном"; Scale3T[12] = "Мирными";
+                      Scale4B[12] = "скучно"; Scale4T[12] = "Взволнованный";
+                      Scale5B[12] = "боюсь"; Scale5T[12] = "спокойствие";
+                      Scale6B[12] = "рассердятся"; Scale6T[12] = "Мирными";
+                      Scale7B[12] = "спится"; Scale7T[12] = "проснулся";
+                      break;
+                  case 13: Scale1B[13] = "निरानंद"; Scale1T[13] = "तुष्ट";
+                      Scale2B[13] = "उदास"; Scale2T[13] = "खुश";
+                      Scale3B[13] = "व्यथित"; Scale3T[13] = "शांतिपूर्ण";
+                      Scale4B[13] = "ऊब"; Scale4T[13] = "उत्तेजित";
+                      Scale5B[13] = "भयभीत"; Scale5T[13] = "शांत";
+                      Scale6B[13] = "नाराज"; Scale6T[13] = "उत्तेजित";
+                      Scale7B[13] = "निद्रालु"; Scale7T[13] = "फुरतीला";
+                      break;
+                  case 14: Scale1B[14] = "悒"; Scale1T[14] = "满意";
+                      Scale2B[14] = "伤心"; Scale2T[14] = "快乐";
+                      Scale3B[14] = "苦恼"; Scale3T[14] = "宁静";
+                      Scale4B[14] = "腻烦"; Scale4T[14] = "兴奋";
+                      Scale5B[14] = "怕"; Scale5T[14] = "冷静";
+                      Scale6B[14] = "愤怒"; Scale6T[14] = "宁静";
+                      Scale7B[14] = "困倦"; Scale7T[14] = "惊醒";
+                      break;
+                  case 15: Scale1B[15] = "بائس"; Scale1T[15] = "راض";
+                      Scale2B[15] = "حزين"; Scale2T[15] = "سعيد";
+                      Scale3B[15] = "مكروب"; Scale3T[15] = "سلمي";
+                      Scale4B[15] = "ضجر"; Scale4T[15] = "متحمس";
+                      Scale5B[15] = "خائف"; Scale5T[15] = "بارد الاعصاب";
+                      Scale6B[15] = "غاضب"; Scale6T[15] = "سلمي";
+                      Scale7B[15] = "نعسان"; Scale7T[15] = "متنبه";
+                      break;
+                  case 16: Scale1B[16] = "อนาถ"; Scale1T[16] = "จที่น่าสังเวช";
+                      Scale2B[16] = "รันทด"; Scale2T[16] = "มีความสุข";
+                      Scale3B[16] = "เป็นทุกข์"; Scale3T[16] = "สงบ";
+                      Scale4B[16] = "เบื่อ"; Scale4T[16] = "ตื่นเต้น";
+                      Scale5B[16] = "กลัว"; Scale5T[16] = "ใจเย็น";
+                      Scale6B[16] = "โกรธ"; Scale6T[16] = "สงบ";
+                      Scale7B[16] = "ปรือ"; Scale7T[16] = "ตื่นตัว";
+                      break;
+                  case 17: Scale1B[17] = "悲惨な"; Scale1T[17] = "満足";
+                      Scale2B[17] = "悲しい"; Scale2T[17] = "嬉しい";
+                      Scale3B[17] = "遣る瀬無い"; Scale3T[17] = "平穏";
+                      Scale4B[17] = "退屈"; Scale4T[17] = "励起";
+                      Scale5B[17] = "恐れ"; Scale5T[17] = "穏やかな";
+                      Scale6B[17] = "怒って"; Scale6T[17] = "平穏";
+                      Scale7B[17] = "疲れました"; Scale7T[17] = "アラート";
+                      break;
+                  case 18: Scale1B[18] = "Nędzny"; Scale1T[18] = "Zadowolona";
+                      Scale2B[18] = "Smutny"; Scale2T[18] = "Szczęśliwy";
+                      Scale3B[18] = "Strapiony"; Scale3T[18] = "Pokojowy";
+                      Scale4B[18] = "Znudzony"; Scale4T[18] = "Podekscytowany";
+                      Scale5B[18] = "Zlękniony"; Scale5T[18] = "Uspokojenie";
+                      Scale6B[18] = "Gniewny"; Scale6T[18] = "Pokojowy";
+                      Scale7B[18] = "Senny"; Scale7T[18] = "Alarm";
+                      break;
+              };
+
+              //Scale label
               switch (Scale) {
-                  case '1': ScaleName = "Miserable-Satisfied";
+                  case '1': ScaleName = Scale1B[LangID] + '-' + Scale1T[LangID];
                       break;
-                  case '2': ScaleName = "Sad-Happy";
+                  case '2': ScaleName = Scale2B[LangID] + '-' + Scale2T[LangID];
                       break;
-                  case '3': ScaleName = "Distressed-Peaceful";
+                  case '3': ScaleName = Scale3B[LangID] + '-' + Scale3T[LangID];
                       break;
-                  case '4': ScaleName = "Bored-Excited";
+                  case '4': ScaleName = Scale4B[LangID] + '-' + Scale4T[LangID];
                       break;
-                  case '5': ScaleName = "Afraid-Calm";
+                  case '5': ScaleName = Scale5B[LangID] + '-' + Scale5T[LangID];
                       break;
-                  case '6': ScaleName = "Angry-Peaceful";
+                  case '6': ScaleName = Scale6B[LangID] + '-' + Scale6T[LangID]; ;
                       break;
-                  case '7': ScaleName = "Sleepy-Alert";
+                  case '7': ScaleName = Scale7B[LangID] + '-' + Scale7T[LangID];
                       break;
-                  default: ScaleName = "Invalid Scale ID";
+                  default: ScaleName = Scale1B[LangID] + '-' + Scale1T[LangID];
               }
 
-              $("#txtScaleID").val('Scale ' + Scale + ' - \"' + ScaleName + '\"');
-
-
+              //Set label for scale name
+              $("#txtScaleID").val('[' + Scale + '] ' + ScaleName);
               $('#slider').slider({ value: 50 });
+
               update_img();
               //END TEST
 
@@ -211,22 +445,18 @@
               window.addEventListener('load', function () {
 
                   var box1 = document.getElementById('ImageItem')
-                  //var statusdiv = document.getElementById('statusdiv')
                   var starty = 0
                   var dist = 0
 
                   box1.addEventListener('touchstart', function (e) {
                       var touchobj = e.changedTouches[0] // reference first touch point (ie: first finger)
                       starty = parseInt(touchobj.clientY) // get x position of touch point relative to left edge of browser
-                      //alert('Status: touchstart - ClientY: ' + starty + 'px');
-
                       e.preventDefault()
                   }, false)
 
                   box1.addEventListener('touchmove', function (e) {
                       var touchobj = e.changedTouches[0] // reference first touch point for this event
                       var dist = parseInt(touchobj.clientY) - starty
-                      //alert('Status: touchstart - ClientY: ' + starty + 'px');
                       e.preventDefault()
 
                       //get slider position and modify it by sldelta (px/100)
@@ -267,10 +497,10 @@
                   }, false)
 
               }, false)
-              
+
               //alert("Slider hidden form value at " + $("#slider_val").val());
               var hvalue = $("#slider_val").val();
- 
+
               //Round corners
               $("#slider").css({
                   "border-radius": "12px"
@@ -288,8 +518,6 @@
               var sFace = QueryString["face"];
               var sOffline = QueryString["offline"];
               var sRes = QueryString["sres"];
-
-              //alert( 'sRes' + sRes );
 
               var val = $('#slider').slider('value');
               $("#slider_val2").val(val);
@@ -310,20 +538,13 @@
 
               if (sRes == "m") {
                   var sResSuffix = "640x480";
-
               }
 
               if (sFace == "") {
                   sFace = "1";
               }
 
-              if (sOffline == '1') {
-
-                  var sLocalDir = 'file://h|'
-              }
-              else {
-                  var sLocalDir = ''
-              };
+              var sLocalDir = ''
 
               if (Scale == 1) {
                   $("#ImageItem").attr("src", sLocalDir + "Images/DVAMS/1_MS" + sFace + "/" + sResSuffix + "/" + sFace + "MSF" + sNum + ".jpg");
@@ -374,9 +595,7 @@
 
                       // Set image according to slider position
                       update_img()
-
                   }
-
               });
 
               /// START
@@ -390,7 +609,6 @@
                       // Set image according to slider position
                       update_img()
                   }
-
               });
 
           });
@@ -420,10 +638,8 @@
               var blah = brows + '';
 
               if (blah.substring(0, 6) == 'Chrome') {
-                  //alert("CHROME");
                   var mws = 120;
               } else {
-                  //alert("NOT CHROME");
                   var mws = 3;
               }
 
@@ -454,7 +670,6 @@
               var relativeY = (e.pageY - offset.top);
 
           });
-
 
     </script>  
 

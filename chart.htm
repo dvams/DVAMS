@@ -14,17 +14,20 @@
    
     <script src="Scripts/gaussian.js" type="text/javascript"></script>
 
-    <table align="center" style="padding: 0px; height: 1358px; border-spacing: 0px; background-color: #000000;">
+    <table id="MainView" align="center" style="padding: 0px; height: 1320px; border-spacing: 0px; background-color: #000000;">
     <tr><td colspan="2" class="style3">
-    <canvas id="myCanvas" width="900" height="1172" style="background-color: #000000"></canvas>
+    <canvas id="myCanvas" width="900" height="1184" style="background-color: #000000"></canvas>
     <br />
     </td></tr>
 
     <tr><td >
-        <form action="menu_home_dvams.htm" method="get" style="margin-top: 32px">
+        <form id="home_button" action="menu_home_dvams.htm" method="post" 
+        style="margin-top: 32px; vertical-align: bottom;">
             <button type="submit" id="cmdSubmit" name ="return" value="1"
+                
                 style ="border-style: none; border-color: inherit; border-width: medium; 
-                background-color:transparent; width: 114px; height: 96px;" title="Home Menu">
+                background-color:transparent; width: 114px; height: 96px; vertical-align: bottom;" 
+                title="Home Menu">
             <img src="Images/home_icon_gy2.jpg" alt="Main Menu"
             style="width: 128px; height: 94px;">
             </button>
@@ -35,48 +38,304 @@
         <img id="btnImageFace" src="Images/chart_on.jpg" alt="Main Menu"
             style="width: 112px; height: 94px;">
             </button>
-
-             &nbsp;&nbsp;
                       
         </form>
                 
     </td>
+    <td style="color: #CCCCCC; font-family: Arial, Helvetica, sans-serif; font-size: small; vertical-align: bottom; text-align: right; padding-bottom: 20px; padding-right: 32px;">    
+    Dynamic Visual Analogue Mood Scales (D-VAMS)/'Emotiscope' Copyright © 2013 Paul Barrows
+    </td>
+    </tr>
+    </table>     
+    
+</body>
 
-    <script type="text/javascript">
+<script type="text/javascript">
+    
+    // MEAN AND S.D. SETTINGS FOR DISTRIBUTION. CURRENTLY BASED ON VALIDATION STUDY SAMPLE
+    // USERS CAN CONFIGURE THIS MANUALLY
+    var dist_mean = 60.5; // Mean for distribution of bell curve display
+    var dist_sd = 20.5; // Standard deviation for distribution of display
+    var bell_filled = '#ffffff'; //Colour for filled part of bell curve
+    var bell_unfilled = '#888888'; //Colour for unfilled part of bell curve
 
-        // MEAN AND S.D. SETTINGS FOR DISTRIBUTION. CURRENTLY BASED ON VALIDATION STUDY SAMPLE
-        // USERS CAN CONFIGURE THIS MANUALLY
-        var dist_mean = 60.5; // Mean for distribution of bell curve display
-        var dist_sd = 20.5; // Standard deviation for distribution of display
-        var bell_filled = '#ffffff'; //Colour for filled part of bell curve
-        var bell_unfilled = '#888888'; //Colour for unfilled part of bell curve
+    //BAR CHART COLOURS
+    var style = new Array();
+    style[1] = '#33cccc'// Colour for Scale 1
+    style[2] = '#5880ff'// Colour for Scale 2
+    style[3] = '#FFFF99'// Colour for Scale 3
+    style[4] = '#00cc66'// Colour for Scale 4
+    style[5] = '#ff8d87'// Colour for Scale 5
+    style[6] = '#ff346d'// Colour for Scale 6
+    style[7] = '#CC99FF'// Colour for Scale 7
 
-        //BAR CHART COLOURS
-        var style = new Array();
-        style[1] = '#33cccc'// Colour for Scale 1
-        style[2] = '#5880ff'// Colour for Scale 2
-        style[3] = '#FFFF99'// Colour for Scale 3
-        style[4] = '#00cc66'// Colour for Scale 4
-        style[5] = '#ff8d87'// Colour for Scale 5
-        style[6] = '#ff346d'// Colour for Scale 6
-        style[7] = '#CC99FF'// Colour for Scale 7
+    var image1 = new Image();
+    var image2 = new Image();
+    var image3 = new Image();
+    var image4 = new Image();
+    var image5 = new Image();
+    var image6 = new Image();
+    var image7 = new Image();
+    var colour_bar = new Image();
 
-        var image1 = new Image();
-        var image2 = new Image();
-        var image3 = new Image();
-        var image4 = new Image();
-        var image5 = new Image();
-        var image6 = new Image();
-        var image7 = new Image();
-        var colour_bar = new Image();
+    //Preload images            
+    colour_bar.src = "Images/colour_bar.jpg";
+    var QueryString = getRequests();
+    var sc = new Array();
+    sc[1] = QueryString["sc1"];
+    sc[2] = QueryString["sc2"];
+    sc[3] = QueryString["sc3"];
+    sc[4] = QueryString["sc4"];
+    sc[5] = QueryString["sc5"];
+    sc[6] = QueryString["sc6"];
+    sc[7] = QueryString["sc7"];
+    
+    //Language module
+    var Scale1B = '';
+    var Scale1T = '';
+    var Scale2B = '';
+    var Scale2T = '';
+    var Scale3B = '';
+    var Scale3T = '';
+    var Scale4B = '';
+    var Scale4T = '';
+    var Scale5B = '';
+    var Scale5T = '';
+    var Scale6B = '';
+    var Scale6T = '';
+    var Scale7B = '';
+    var Scale7T = '';
 
-        window.onload = function () { 
-            modebutton_click();
+    var face = QueryString["face"];
+    var sResSuffix = "640x480";
+    var strDateTime = QueryString["datetime"];
+    var LangURL = '';
+
+        
+    //#1
+    var iNum = parseInt(sc[1]);
+    iNum += 1;
+
+    var sNum = iNum.toString();
+    sNum = "00" + sNum;
+    sNum = (sNum).slice(-3);
+    sDir = "1_MS"; prefix = "MSF";
+    var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
+    image1.src = fname;
+
+    //#2
+    var iNum = parseInt(sc[2]);
+    iNum += 1;
+
+    var sNum = iNum.toString();
+    sNum = "00" + sNum;
+    sNum = (sNum).slice(-3);
+    sDir = "2_SH"; prefix = "SHF";
+    //var x = 376; var y = 80; imratio = 0.7;
+    var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
+    image2.src = fname;
+
+    //#3
+    var iNum = parseInt(sc[3]);
+    iNum += 1;
+
+    var sNum = iNum.toString();
+    sNum = "00" + sNum;
+    sNum = (sNum).slice(-3);
+    sDir = "3_DP"; prefix = "DPF";
+    //var x = 376; var y = 80; imratio = 0.7;
+    var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
+    image3.src = fname;
+
+    //#4
+    var iNum = parseInt(sc[4]);
+    iNum += 1;
+
+    var sNum = iNum.toString();
+    sNum = "00" + sNum;
+    sNum = (sNum).slice(-3);
+    sDir = "4_BE"; prefix = "BEF";
+    //var x = 376; var y = 80; imratio = 0.7;
+    var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
+    image4.src = fname;
+
+    //#5
+    var iNum = parseInt(sc[5]);
+    iNum += 1;
+
+    var sNum = iNum.toString();
+    sNum = "00" + sNum;
+    sNum = (sNum).slice(-3);
+    sDir = "5_AFC"; prefix = "AFCF";
+    //var x = 376; var y = 80; imratio = 0.7;
+    var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
+    image5.src = fname;
+
+    //#6
+    var iNum = parseInt(sc[6]);
+    iNum += 1;
+
+    var sNum = iNum.toString();
+    sNum = "00" + sNum;
+    sNum = (sNum).slice(-3);
+    sDir = "6_AGP"; prefix = "AGPF";
+    //var x = 376; var y = 80; imratio = 0.7;
+    var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
+    image6.src = fname;
+
+    //#7
+    var iNum = parseInt(sc[7]);
+    iNum = 101 - iNum;
+
+    var sNum = iNum.toString();
+    sNum = "00" + sNum;
+    sNum = (sNum).slice(-3);
+    sDir = "7_SA"; prefix = "SAF";
+    //var x = 376; var y = 80; imratio = 0.7;
+    var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
+    image7.src = fname;
+
+    // *** Onload - Call Draw_page routine
+    window.onload = function () {
+        draw_page(1, 0);
+        //home_button
+        home_button.action = "menu_home_dvams.htm" + LangURL;
+    }
+
+    //Retrieve values from URL string
+    function getRequests() {
+        var s1 = location.search.substring(1, location.search.length).split('&'),
+        r = {}, s2, i;
+        for (i = 0; i < s1.length; i += 1) {
+            s2 = s1[i].split('=');
+            r[decodeURIComponent(s2[0]).toLowerCase()] = decodeURIComponent(s2[1]);
+        }
+        return r;
+    };
+
+    //Draw page - plotmode now deprecated
+    function draw_page(facemode, plotmode) {
+    
+        //Convert from radians to degrees
+        function toDegrees(angle) {
+            return angle * (180 / Math.PI);
         }
 
-        //Preload images            
-        colour_bar.src = "Images/colour_bar.jpg";
+        //Convert from degrees to radians
+        function toRadians(angle) {
+            return angle * (Math.PI / 180);
+        }
+
+        //*** TEST FOR DIMENSIONS AND USE LARGER FONTS/BUTTONS/LABELS AND PHONE ASPECT RATIO (1.777 AND ABOVE) 
+
+        //First calculate aspect ratio
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        var aspect_ratio = height / width;
+        var MinTableHeight = 1320// 1320 to enforce mininum aspect
+        var MinCanvasHeight = 1215// 1215 to enforce mininum aspect
+
+        //Next canvas height - 1171 for 1.6 aspect, 1333 for 1.777 aspect
+
+        //Set canvas size, subtract out height of elements around canvas for scaling
+        var CanvasHeight = Math.round(((884 * aspect_ratio) - 200), 1);
+        if (CanvasHeight < MinCanvasHeight) { CanvasHeight = MinCanvasHeight }; //Minimum canvas height
+        window.document.getElementById('myCanvas').height = CanvasHeight;
+        
+        //Set aspect ratio range
+        if (aspect_ratio <= 1.6) { aspect_ratio = 1.6 };
+        if (aspect_ratio >= 1.7778) { aspect_ratio = 1.7778 };
+        
+        // Modify table dimensions and font size for typical phone aspect ratio (> 1.7)
+        if (aspect_ratio >= 1.7) {
+
+            //Change table height & canvas for tablet aspect ratio [1564 for 1.777 aspect, ]
+            var table_height = (aspect_ratio * 824);
+            if (table_height < MinTableHeight) { table_height = MinTableHeight }; //Minimum table height
+            
+            if (MainTrafficBars_y < 580) { MainTrafficBars_y = 580 };
+            window.document.getElementById("MainView").style.height = table_height + 'px';
+
+            //Font sizes
+            //D-VAMS Score text
+            var DVAMS_score_text_font = "bold 46px Arial";
+            var DVAMS_score_text_x = 562;
+            var DVAMS_score_text_y = 82;
+
+            //Timestamp text
+            var timestamp_text_font = "bold 20px Arial";
+            var timestamp_text_x = 39;
+            var timestamp_text_y = 68;
+
+            //Scale and percentile labels
+            var scale_label_font = "bold 34px Arial";
+            var percentile_value_font = "bold 28px Arial";
+            var percentile_label_font = "bold 28px Arial";
+            var percentile_label_font_x = 60;
+            var percentile_label_font_yoffset = 34;
+            var percentile_mean_SD_font = "bold 26px Arial";
+
+            //Bar chart label font size, location and spacing
+            var barchart_label_font = "bold 28px Arial";
+            var barchart_score_font = "bold 26px Arial";
+            var barchart_y = 144;
+            var barchart_spacing_y = 28;
+   
+        } else {
+
+            //Change table height & canvas for tablet aspect ratio [1320 for 1.6 aspect, ]
+            var table_height = (aspect_ratio * 824);
+            if (table_height < MinTableHeight) { table_height = MinTableHeight }; //Minimum table height
+
+            window.document.getElementById("MainView").style.height = table_height + 'px';
+
+            //Font sizes 
+            //D-VAMS Score text
+            var DVAMS_score_text_font = "bold 38px Arial";
+            var DVAMS_score_text_x = 616;
+            var DVAMS_score_text_y = 72;
+
+            //Timestamp text
+            var timestamp_text_font = "bold 16px Arial";
+            var timestamp_text_x = 39;
+            var timestamp_text_y = 60;
+
+            //Scale and percentile labels
+            var scale_label_font = "bold 28px Arial";
+            var percentile_value_font = "bold 22px Arial";
+            var percentile_label_font = "bold 22px Arial";
+            var percentile_label_font_x = 84; //same as bcx
+            var percentile_label_font_yoffset = 28;
+            var percentile_mean_SD_font = "bold 20px Arial";
+
+            //Bar chart label font size, location and spacing
+            var barchart_label_font = "bold 24px Arial";
+            var barchart_score_font = "bold 22px Arial";
+            var barchart_y = 124;
+            var barchart_spacing_y = 24;
+
+        };
+        
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        var centerX = canvas.width / 2;
+        var centerY = 450;
+
+        //Read in parameters
         var QueryString = getRequests();
+
+        //Set reference lines
+        var ratio = 4;
+        var refline_len = ratio * 100;
+
+        //Get face: 1 = #1(F); 2 = #2(M)
+        var face = QueryString["face"];
+
+        if (plotmode == 0) { mode = 0; } else {mode = 1;};
+
+        // Get scale scores 1-7
         var sc = new Array();
         sc[1] = QueryString["sc1"];
         sc[2] = QueryString["sc2"];
@@ -86,473 +345,535 @@
         sc[6] = QueryString["sc6"];
         sc[7] = QueryString["sc7"];
 
-        var face = QueryString["face"];
-        var sResSuffix = "640x480";
-        var strDateTime = QueryString["datetime"];
-        
-        //#1
-        var iNum = parseInt(sc[1]);
-        iNum += 1;
+        //Get mean of 7 scales
+        var sc_mean_7 = parseFloat((parseInt(sc[1]) + parseInt(sc[2]) + parseInt(sc[3]) + parseInt(sc[4]) + parseInt(sc[5]) + parseInt(sc[6]) + parseInt(sc[7])) / 7);
 
-        var sNum = iNum.toString();
-        sNum = "00" + sNum;
-        sNum = (sNum).slice(-3);
-        sDir = "1_MS"; prefix = "MSF";
-        var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
-        image1.src = fname;
+        //+++ Calculate Y-coordinate for Rows of faces +++
+        var Row1_y = (aspect_ratio * 75);
+        var Row2_y = (aspect_ratio * 75) + 224;
 
-        //#2
-        var iNum = parseInt(sc[2]);
-        iNum += 1;
+        //+++ Calculate Y-coordinate for bars and captions +++
+        //Use offset based on preceding block with images (images are not stretched, here)
+        var MainTrafficBars_y = Math.round(Row2_y + 258 +(40 * aspect_ratio), 1) 
+        if (MainTrafficBars_y < 580) { MainTrafficBars_y = 580 }; // Set minimum 
 
-        var sNum = iNum.toString();
-        sNum = "00" + sNum;
-        sNum = (sNum).slice(-3);
-        sDir = "2_SH"; prefix = "SHF";
-        //var x = 376; var y = 80; imratio = 0.7;
-        var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
-        image2.src = fname;
+        //+++ Call language module to populate scale labels +++
+        set_label_lang();
 
-        //#3
-        var iNum = parseInt(sc[3]);
-        iNum += 1;
+        //Now draw faces and traffic bars. Display preloaded images
+        //Loop 1 to 7 and get image name from index
+        for (i = 1; i < 8; i++) {
+            
+            //Offsets for text alignment
+            var xoffset = 184;
+            var xoffset2 = 734;
 
-        var sNum = iNum.toString();
-        sNum = "00" + sNum;
-        sNum = (sNum).slice(-3);
-        sDir = "3_DP"; prefix = "DPF";
-        //var x = 376; var y = 80; imratio = 0.7;
-        var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
-        image3.src = fname;
+            //Space between bars
+            var barinterval_y = Math.round((i-1) * (40 + (140 * (aspect_ratio - 1.6))), 1);
 
-        //#4
-        var iNum = parseInt(sc[4]);
-        iNum += 1;
-
-        var sNum = iNum.toString();
-        sNum = "00" + sNum;
-        sNum = (sNum).slice(-3);
-        sDir = "4_BE"; prefix = "BEF";
-        //var x = 376; var y = 80; imratio = 0.7;
-        var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
-        image4.src = fname;
-
-        //#5
-        var iNum = parseInt(sc[5]);
-        iNum += 1;
-
-        var sNum = iNum.toString();
-        sNum = "00" + sNum;
-        sNum = (sNum).slice(-3);
-        sDir = "5_AFC"; prefix = "AFCF";
-        //var x = 376; var y = 80; imratio = 0.7;
-        var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
-        image5.src = fname;
-
-        //#6
-        var iNum = parseInt(sc[6]);
-        iNum += 1;
-
-        var sNum = iNum.toString();
-        sNum = "00" + sNum;
-        sNum = (sNum).slice(-3);
-        sDir = "6_AGP"; prefix = "AGPF";
-        //var x = 376; var y = 80; imratio = 0.7;
-        var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
-        image6.src = fname;
-
-        //#7
-        var iNum = parseInt(sc[7]);
-        iNum = 101 - iNum;
-
-        var sNum = iNum.toString();
-        sNum = "00" + sNum;
-        sNum = (sNum).slice(-3);
-        sDir = "7_SA"; prefix = "SAF";
-        //var x = 376; var y = 80; imratio = 0.7;
-        var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
-        image7.src = fname;
-
-        //};
-
-        function getRequests() {
-            var s1 = location.search.substring(1, location.search.length).split('&'),
-            r = {}, s2, i;
-            for (i = 0; i < s1.length; i += 1) {
-                s2 = s1[i].split('=');
-                r[decodeURIComponent(s2[0]).toLowerCase()] = decodeURIComponent(s2[1]);
-            }
-            return r;
-        };
-
-        //Draw page
-        function draw_page(facemode, plotmode) {
-
-            function toDegrees(angle) {
-                return angle * (180 / Math.PI);
-            }
-
-            function toRadians(angle) {
-                return angle * (Math.PI / 180);
-            }
-
-            function AddZero(num) {
-                return (num >= 0 && num < 10) ? "0" + num : num + "";
-            }
-
-            var canvas = document.getElementById('myCanvas');
-            var context = canvas.getContext('2d');
-            context.clearRect(0, 0, canvas.width, canvas.height);
-
-            var centerX = canvas.width / 2;
-            var centerY = 450;
-
-            //Read in parameters
-            var QueryString = getRequests();
-
-            //Set reference lines
-            var ratio = 4;
-            var refline_len = ratio * 100;
-
-            //Get face: 1 = #1(F); 2 = #2(M)
-            var face = QueryString["face"];
-
-            if (plotmode == 0) { mode = 0; } else {mode = 1;};
-
-            // Get scale scores 1-7
-            var sc = new Array();
-            sc[1] = QueryString["sc1"];
-            sc[2] = QueryString["sc2"];
-            sc[3] = QueryString["sc3"];
-            sc[4] = QueryString["sc4"];
-            sc[5] = QueryString["sc5"];
-            sc[6] = QueryString["sc6"];
-            sc[7] = QueryString["sc7"];
-
-            //Get mean of 7 scales
-            var sc_mean_7 = parseFloat((parseInt(sc[1]) + parseInt(sc[2]) + parseInt(sc[3]) + parseInt(sc[4]) + parseInt(sc[5]) + parseInt(sc[6]) + parseInt(sc[7])) / 7);
-
-            //Now draw faces if face mode. Display preloaded images
-            //will have to loop 1 to 7 and get image name based on number
-            for (i = 1; i < 8; i++) {
-                //};
-                if (facemode == 1) {
-
-                    //Traffic light bars
-                    var x = 210; var y = 604 + (i * 40); //### Placement of traffic light bars // VERT 
-                    var x_centre = x + 250;
-                    
-                    //Draw bar scores as vectors from centre-point using red/yellow/green scale image
-                    //First paint colour scale image 
-                    context.drawImage(colour_bar, x, y, 500, 26);
-                    context.fillStyle = '#404040';
-                    var score_adj = sc[i];
-
-                    //Then grey out ends according to adjusted (original scores)
-                    var rectw = score_adj * 5;
-                    if (score_adj <= 50) {
-                        var rectw = score_adj * 5;
-                        context.fillRect(x, y, rectw, 26);
-                        context.fillRect(x_centre, y, 250, 26);
-                    };
-
-                    if (score_adj >= 50) {
-                        var rectw = (score_adj-50) * 5;
-                        context.fillRect(x_centre + rectw, y, (250-rectw), 26);
-                        context.fillRect(x, y, 250, 26);
-                    };
-
-                    //Set font
-                    context.fillStyle = "white";
-                    context.font = "bold 26px Arial";
-
-                    //Offsets for text alignment
-                    var xoffset = 6;
-                    var xoffset2 = 738;
-                    var yoffset = 624 + (i * 40) //### Placement of traffic light bars - text - //VERT
-
-                    //Draw faces and labels for traffic light bars
-                    switch (i) {
-
-                        case 1:
-                            var x = 40; var y = 120; imratio = 1.4; //VERT
-                            context.drawImage(image1, x, y, (240 * imratio), (320 * imratio));
-                            var text = ("Miserable");
-                            context.fillText(text, 56 + xoffset, yoffset);
-                            var text = ("Satisfied");
-                            context.fillText(text, xoffset2, yoffset);
-                            break;
-                        case 2:
-                            var x = 376; var y = 120; imratio = 0.7; //VERT
-                            context.drawImage(image2, x, y, (240 * imratio), (320 * imratio));
-                            var text = ("Sad");
-                            context.fillText(text, 130 + xoffset, yoffset);
-                            var text = ("Happy");
-                            context.fillText(text, xoffset2, yoffset);
-                            break;
-                        case 3:
-                            var x = 544; var y = 120; imratio = 0.7; //VERT
-                            context.drawImage(image3, x, y, (240 * imratio), (320 * imratio));
-                            var text = ("Distressed");
-                            context.fillText(text, 44 + xoffset, yoffset);
-                            var text = ("Peaceful");
-                            context.fillText(text, xoffset2, yoffset);
-                            break;
-                        case 4:
-                            var x = 712; var y = 120; imratio = 0.7; //VERT
-                            context.drawImage(image4, x, y, (240 * imratio), (320 * imratio));
-                            var text = ("Bored");
-                            context.fillText(text, 101 + xoffset, yoffset);
-                            var text = ("Excited");
-                            context.fillText(text, xoffset2, yoffset);
-                            break;
-                        case 5:
-                            var x = 376; var y = 344; imratio = 0.7; //VERT
-                            context.drawImage(image5, x, y, (240 * imratio), (320 * imratio));
-                            var text = ("Afraid");
-                            context.fillText(text, 100 + xoffset, yoffset);
-                            var text = ("Calm");
-                            context.fillText(text, xoffset2, yoffset);
-                            break;
-                        case 6:
-                            var x = 544; var y = 344; imratio = 0.7; //VERT
-                            context.drawImage(image6, x, y, (240 * imratio), (320 * imratio));
-                            var text = ("Angry");
-                            context.fillText(text, 100 + xoffset, yoffset);
-                            var text = ("Peaceful");
-                            context.fillText(text, xoffset2, yoffset);
-                            break;
-                        case 7:
-                            var x = 712; var y = 344; imratio = 0.7; //VERT
-                            context.drawImage(image7, x, y, (240 * imratio), (320 * imratio));
-                            var text = ("Sleepy");
-                            context.fillText(text, 92 + xoffset, yoffset);
-                            var text = ("Alert");
-                            context.fillText(text, xoffset2, yoffset);
-                            break;
-                    }
-                };
-            };
-
+            //+++ Calculate Y-coordinate for each increment (default 40) +++
+            var yoffset = (MainTrafficBars_y) + barinterval_y;  //*** Placement of traffic light bars - text
+            
             //Draw centre line down traffic light bars //### Placement of traffic light bars - centre line //VERT
-            if (facemode == 1) {
-                context.strokeStyle = '#ffffff';
-                context.lineWidth = 4;
-                context.setLineDash([3, 5]);
+            context.strokeStyle = '#ffffff';
+            context.lineWidth = 4;
+            context.setLineDash([3, 5]);
 
-                context.beginPath();
-                context.moveTo(x_centre, 634);
-                context.lineTo(x_centre, 924);
-                context.stroke();
-                // END of bar scores
-            };
-                         
-            //Display Results
-            context.fillStyle = "white";
-            context.font = "bold 16px Arial";
-
-            //Chart title
-            if (facemode == 0) {var caption='Chart' } else {var caption='Display' };
-            if (face == 1) { var gender = 'F' } else { var gender = 'M' };
-            
-            var now = new Date();
-            var text = caption + ': #' + gender + '/' + strDateTime; 
-            context.fillText(text, 39, 60);
-            
-            //Display Results 
-            var lx = 460;
-            var lx2 = 644;
-            var rx = 490;
-            var rx2 = 710;
-            var ry = 1016
-                                    
-            context.fillStyle = "white";
-            context.font = "bold 24px Arial";
-
-            var text = ("Scale Scores");
-            context.fillText(text, lx, 998); //VERT
-
-            //Draw Scale Scores with coloured bars
-            for (i = 1; i < 8; i++) {
-
-                switch (i) {
-                    case 1:
-                        var scn = "Mis – Sat";
-                        break;
-                    case 2:
-                        var scn = "Sad – Hap";
-                        break;
-                    case 3:
-                        var scn = "Dis – Pcf";
-                        break;
-                    case 4:
-                        var scn = "Bor – Exc";
-                        break;
-                    case 5:
-                        var scn = "Afr – Clm";
-                        break;
-                    case 6:
-                        var scn = "Ang – Pcf";
-                        break;
-                    case 7:
-                        var scn = "Sle – Ale";
-                        break;
-                };
-                
-                var scr = sc[i];
-                context.beginPath();
-                context.fillStyle = "white";
-                context.font = "bold 22px Arial";
-
-                //Display scale label
-                var text = (scn + ": " + scr);
-                context.fillText(scn, lx, 1004 + (i * 24)); 
-                context.stroke();
-
-                //Display score
-                var text = (scr);
-                context.fillText(text, lx + 140, 1004 + (i * 24));
-                context.stroke();
-
-                context.beginPath();
-                context.setLineDash([0]);
-
-                //Draw bars for scores
-                context.rect(lx2, 994 + (i * 24), scr * 2, 10); 
-                context.fillStyle = style[i];
-                context.lineWidth = 1;
-                context.fill();
-
-                context.beginPath();
-                context.rect(lx2 + (scr * 2), 994 + (i * 24), 200 - (scr * 2), 10);
-                context.fillStyle = "#222222";
-                context.lineWidth = 1;
-                context.fill();
-
-                context.strokeStyle = '#222222';
-                context.stroke();
-            };
-            
-            //Top of page
-            var text = ("D-VAMS = " + sc_mean_7.toFixed(1));
-            context.fillStyle = "#ffffff";
-            context.font = "bold 38px Arial";
-            context.fillText(text, 616, 72);
-            context.stroke();
-
-            //Draw bell curve chart
-            //We need to express the mean value on bell curve based on 
-            //SD and mean for our sample: Default from validation study sample (n=46)
-            //Set coordinates and length of curve display
-            var bcx = 110
-            var xlen = 280
-            var bcy = 1132
-
-            //Display vertical marker for score
-            context.strokeStyle = '#cccccc';
-            context.lineWidth = 2;
-            context.setLineDash([2, 2]);
             context.beginPath();
-            context.moveTo(bcx + (sc_mean_7 * (xlen / 100)), bcy);
-            context.lineTo(bcx + (sc_mean_7 * (xlen / 100)), bcy - 144);
+            // 290 length 
+            context.moveTo(x_centre, MainTrafficBars_y - 30);
+            context.lineTo(x_centre, (MainTrafficBars_y - 30) + (barinterval_y +50));
             context.stroke();
 
-            //Set the distribution and calculate percentage below x (D-VAMS mean)
-            var distribution = gaussian(dist_mean, dist_sd * dist_sd);
-            var perc = distribution.cdf(sc_mean_7)*100;
+            //+++ Traffic light bars +++
+            x = 210; var y = (MainTrafficBars_y - 20) + barinterval_y; //*** Placement of traffic light bars 
+            var x_centre = x + 250;
+            var barlayer = Math.round((34 * (aspect_ratio - 1.6)), 1);
+                    
+            //Draw bar scores as vectors from centre-point using red/yellow/green scale image
+            //First paint colour scale image 
+            context.drawImage(colour_bar, x, y - barlayer, 500, 26 + (2 *barlayer));
+            context.fillStyle = '#404040';
+            var score_adj = sc[i];
 
-            //Loop to draw distribution  intervals of 0.25
-            for (i = 0; i <= 100; i += 0.25) {
+            //Grey out ends according to adjusted scores
+            var rectw = score_adj * 5;
+            if (score_adj <= 50) {
+                var rectw = score_adj * 5;
+                context.fillRect(x, y - barlayer, rectw, 26 + (2 * barlayer));
+                context.fillRect(x_centre, y - barlayer, 250, 26 + (2 * barlayer));
+            };
 
-		//context.beginPath();
-		context.lineWidth = 2;
-                context.setLineDash([]);
+            if (score_adj >= 50) {
+                var rectw = (score_adj-50) * 5;
+                context.fillRect(x_centre + rectw, y - barlayer, (250 - rectw), 26 + (2 * barlayer));
+                context.fillRect(x, y - barlayer, 250, 26 + (2 * barlayer));
+            };
 
-                if (i >= sc_mean_7) {
-                       context.strokeStyle = bell_unfilled
-                }  else  {
-                       context.strokeStyle = bell_filled;
+            //Set font
+            context.fillStyle = "white";
+            //context.font = "bold 26px Arial";
+            context.font = scale_label_font;
+               
+            //Draw faces and labels for traffic light bars
+            switch (i) {
+
+                case 1:
+                    var x = 40; imratio = 1.4;
+                    context.drawImage(image1, x, Row1_y, (240 * imratio), (320 * imratio));
+                    var text = Scale1B;
+                    context.fillText(text, xoffset - context.measureText(text).width, yoffset);
+                    var text = Scale1T;
+                    context.fillText(text, xoffset2, yoffset);
+                    break;
+                case 2:
+                    var x = 376; imratio = 0.7;
+                    context.drawImage(image2, x, Row1_y, (240 * imratio), (320 * imratio));
+                    var text = Scale2B;
+                    context.fillText(text, xoffset - context.measureText(text).width, yoffset);
+                    var text = Scale2T;
+                    context.fillText(text, xoffset2, yoffset);
+                    break;
+                case 3:
+                    var x = 544; imratio = 0.7; 
+                    context.drawImage(image3, x, Row1_y, (240 * imratio), (320 * imratio));
+                    var text = Scale3B;
+                    context.fillText(text, xoffset - context.measureText(text).width, yoffset);
+                    var text = Scale3T;
+                    context.fillText(text, xoffset2, yoffset);
+                    break;
+                case 4:
+                    var x = 712; imratio = 0.7;
+                    context.drawImage(image4, x, Row1_y, (240 * imratio), (320 * imratio));
+                    var text = Scale4B;
+                    context.fillText(text, xoffset - context.measureText(text).width, yoffset);
+                    var text = Scale4T;
+                    context.fillText(text, xoffset2, yoffset);
+                    break;
+                case 5:
+                    var x = 376; imratio = 0.7; 
+                    context.drawImage(image5, x, Row2_y, (240 * imratio), (320 * imratio));
+                    var text = Scale5B;
+                    context.fillText(text, xoffset - context.measureText(text).width, yoffset);
+                    var text = Scale5T;
+                    context.fillText(text, xoffset2, yoffset);
+                    break;
+                case 6:
+                    var x = 544; imratio = 0.7; 
+                    context.drawImage(image6, x, Row2_y, (240 * imratio), (320 * imratio));
+                    var text = Scale6B;
+                    context.fillText(text, xoffset - context.measureText(text).width, yoffset);
+                    var text = Scale6T;
+                    context.fillText(text, xoffset2, yoffset);
+                    break;
+                case 7:
+                    var x = 712; imratio = 0.7; 
+                    context.drawImage(image7, x, Row2_y, (240 * imratio), (320 * imratio));
+                    var text = Scale7B;
+                    context.fillText(text, xoffset - context.measureText(text).width, yoffset);
+                    var text = Scale7T;
+                    context.fillText(text, xoffset2, yoffset);
+                    break;
                 }
 
-                var prob = distribution.pdf(i);
-                context.beginPath();
-                context.moveTo(bcx + (i * (xlen / 100)), bcy);
-                context.lineTo(bcx + (i * (xlen / 100)), bcy - (prob * 7000));
-                context.stroke();
-            }
+        };
 
-            //End of bell curve code
-            context.fillStyle = "white";
-            context.font = "bold 22px Arial";
-
-            //Display percentage on bell curve
-            var text = (perc.toFixed(1) + '%');
-            context.fillText(text, bcx, 1072);
-
-            var text = ("Percentile");
-            context.fillText(text, bcx, 1160); 
+        //Display timestamp
+        context.fillStyle = "white";
+        context.font = timestamp_text_font;
+        var caption = 'Display';
+        if (face == 1) { var gender = 'F' } else { var gender = 'M' };
             
-            context.font = "bold 20px Arial";
-            var text = ("(x̅:" + dist_mean + "; σ:" + dist_sd + ")"); 
-            context.fillText(text, bcx+120, 1160); 
+        var now = new Date();
+        var text = caption + ': #' + gender + '/' + strDateTime;
+        context.fillText(text, timestamp_text_x, timestamp_text_y);
+
+        //Set y for bell curve and scores based on aspect ratio
+        //Display Results 
+        var lx = 460;
+        var lx2 = 644;
+        var rx = 490;
+        var rx2 = 710;
+        var ry = 1016
+
+        //Clearance from canvas bottom
+        var bcy = canvas.height -54
+                                    
+        context.fillStyle = "white";
+        //context.font = "bold 24px Arial";
+        context.font = barchart_label_font;
+
+        var text = ("Scale Scores");
+        //context.fillText(text, lx, 998);
+        //context.fillText(text, lx, bcy - 130);
+        context.fillText(text, lx, bcy - (barchart_y + 6));
+    
+        //+++ Draw Scale Scores with coloured bars +++
+        for (i = 1; i < 8; i++) {
+
+            switch (i) {
+                case 1:
+                    var scn = "Mis – Sat";
+                    break;
+                case 2:
+                    var scn = "Sad – Hap";
+                    break;
+                case 3:
+                    var scn = "Dis – Pcf";
+                    break;
+                case 4:
+                    var scn = "Bor – Exc";
+                    break;
+                case 5:
+                    var scn = "Afr – Clm";
+                    break;
+                case 6:
+                    var scn = "Ang – Pcf";
+                    break;
+                case 7:
+                    var scn = "Sle – Ale";
+                    break;
+            };
+                
+            var scr = sc[i];
+            context.beginPath();
+            context.fillStyle = "white";
+            context.font = barchart_score_font;
+
+            //Display scale label
+            var text = (scn + ": " + scr);
+            context.fillText(scn, lx, bcy - barchart_y + (i * barchart_spacing_y)); 
+            context.stroke();
+
+            //Display score
+            var text = (scr);
+            context.fillText(text, lx + 140, bcy - barchart_y + (i * barchart_spacing_y));
+            context.stroke();
+
+            context.beginPath();
+            context.setLineDash([0]);
+
+            //Draw bars for scores
+            context.rect(lx2, bcy - (barchart_y +10) + (i * barchart_spacing_y), scr * 2, 10); 
+            context.fillStyle = style[i];
+            context.lineWidth = 1;
+            context.fill();
+
+            context.beginPath();
+            context.rect(lx2 + (scr * 2), bcy - (barchart_y + 10) + (i * barchart_spacing_y), 200 - (scr * 2), 10);
+            context.fillStyle = "#222222";
+            context.lineWidth = 1;
+            context.fill();
+
+            context.strokeStyle = '#222222';
             context.stroke();
         };
+            
+        //Main score at top of page
+        var text = ("D-VAMS = " + sc_mean_7.toFixed(1));
+        context.fillStyle = "#ffffff";
+        context.font = DVAMS_score_text_font;
+        context.fillText(text, DVAMS_score_text_x,DVAMS_score_text_y);
+        context.stroke();
 
-        function facebutton_click() {
+        //+++ Draw bell curve chart +++
+        //We need to express the mean value on bell curve based on 
+        //SD and mean for our sample: Default from validation study sample (n=46)
+        //Set coordinates and length of curve display
+        var bcx = 84
+        var xlen = 280
 
-            //Get values
-            var butnFval = document.getElementById('btnFace').value;
+        //Display vertical marker for score
+        context.strokeStyle = '#cccccc';
+        context.lineWidth = 2;
+        context.setLineDash([2, 2]);
+        context.beginPath();
+        context.moveTo(bcx + (sc_mean_7 * (xlen / 100)), bcy);
+        context.lineTo(bcx + (sc_mean_7 * (xlen / 100)), bcy - 144);
+        context.stroke();
 
-            //switch value and image of button for redraw as required
-            if (butnFval == '0') { document.getElementById('btnFace').value = '1'; } else { document.getElementById('btnFace').value = '0'; };
-            if (butnFval == '0') { document.getElementById('btnFace').title = 'Statistics'; } else { document.getElementById('btnFace').title = 'Face Mode';         };
+        //Set the distribution and calculate percentage below x (D-VAMS mean)
+        var distribution = gaussian(dist_mean, dist_sd * dist_sd);
+        var perc = distribution.cdf(sc_mean_7)*100;
 
-            //Get values
-            var butnFval = document.getElementById('btnFace').value;
+        //Loop to draw distribution  intervals of 0.25
+        for (i = 0; i <= 100; i += 0.25) {
 
-            //Draw page with current settings
-            draw_page(butnFval, 0);
+		    //context.beginPath();
+		    context.lineWidth = 2;
+            context.setLineDash([]);
 
+            if (i >= sc_mean_7) {
+                    context.strokeStyle = bell_unfilled
+            }  else  {
+                    context.strokeStyle = bell_filled;
+            }
+
+            var prob = distribution.pdf(i);
+            context.beginPath();
+            context.moveTo(bcx + (i * (xlen / 100)), bcy);
+            context.lineTo(bcx + (i * (xlen / 100)), bcy - (prob * 7000));
+            context.stroke();
+        }
+        //End of bell curve code
+
+        context.fillStyle = "white";
+
+        //Display percentage info on bell curve
+        context.font = percentile_value_font;
+        var text = (perc.toFixed(1) + '%');
+        context.fillText(text, bcx, bcy - 56);
+        
+        context.font = percentile_label_font;
+        var text = ("Percentile");
+        context.fillText(text, percentile_label_font_x, bcy + percentile_label_font_yoffset);
+
+        context.font = percentile_mean_SD_font;
+        var text = ("(x̅:" + dist_mean + "; σ:" + dist_sd + ")");
+        context.fillText(text, bcx + 120, bcy + percentile_label_font_yoffset); 
+        context.stroke();
+    };
+
+    function facebutton_click() {
+
+        //Get values
+        var butnFval = document.getElementById('btnFace').value;
+
+        //Switch value and image of button for redraw as required
+        if (butnFval == '0') { document.getElementById('btnFace').value = '1'; } else { document.getElementById('btnFace').value = '0'; };
+        if (butnFval == '0') { document.getElementById('btnFace').title = 'Statistics'; } else { document.getElementById('btnFace').title = 'Face Mode';         };
+
+        //Get values
+        var butnFval = document.getElementById('btnFace').value;
+
+        //Draw page with current settings
+        draw_page(butnFval, 0);
+
+    };
+
+    function sc1_click() {
+
+        //Get values
+        var butnFval = document.getElementById('btnFace').value;
+
+        //Draw page with current settings
+        draw_page(butnFval, 0);
+    };
+
+    function sc2_click() {
+
+        //Get values - TODO: use sub to retrieve values
+        var butnFval = document.getElementById('btnFace').value;
+
+        //Draw page with current settings
+        draw_page(butnFval, 0);
+    };
+
+    function set_label_lang () {
+        var QueryString = getRequests();
+        var LangText = QueryString["lang"];
+        var Scale = QueryString["scale"];
+
+        //Don't make language URL for default
+        if (typeof LangText === 'undefined') {
+            LangURL = ''; 
+        }
+        else {
+            LangURL = '?lang=' + QueryString["lang"];
         };
 
-        function modebutton_click() {
+        //TODO - ADD LangURL to form return URL ('menu_home_dvams.htm')
 
-            //Get values
-            var butnFval = document.getElementById('btnFace').value;
+        var LangID;
 
-            //Get values
-            var butnFval = document.getElementById('btnFace').value;
-
-            //Draw page with current settings
-            draw_page(butnFval, 0);
+        switch (LangText) {
+            case 'eng': LangID = 1;
+                break;
+            case 'fre': LangID = 2;
+                break;
+            case 'dut': LangID = 3;
+                break;
+            case 'ger': LangID = 4;
+                break;
+            case 'spa': LangID = 5;
+                break;
+            case 'ita': LangID = 6;
+                break;
+            case 'por': LangID = 7;
+                break;
+            case 'swe': LangID = 8;
+                break;
+            case 'nor': LangID = 9;
+                break;
+            case 'fin': LangID = 10;
+                break;
+            case 'ben': LangID = 11;
+                break;
+            case 'rus': LangID = 12;
+                break;
+            case 'hin': LangID = 13;
+                break;
+            case 'chi': LangID = 14;
+                break;
+            case 'ara': LangID = 15;
+                break;
+            case 'tha': LangID = 16;
+                break;
+            case 'jap': LangID = 17;
+                break;
+            case 'pol': LangID = 18;
+                break;
+            default: LangID = 1;
         };
 
-        function sc1_click() {
-
-            //Get values
-            var butnFval = document.getElementById('btnFace').value;
-
-            //Draw page with current settings
-            draw_page(butnFval, 0);
+        switch (LangID) {
+            case 1: Scale1B = "Miserable"; Scale1T = "Satisfied";
+                Scale2B = "Sad"; Scale2T = "Happy";
+                Scale3B = "Distressed"; Scale3T = "Peaceful";
+                Scale4B = "Bored"; Scale4T = "Excited";
+                Scale5B = "Afraid"; Scale5T = "Calm";
+                Scale6B = "Angry"; Scale6T = "Peaceful";
+                Scale7B = "Sleepy"; Scale7T = "Alert";
+                break;
+            case 2: Scale1B = "Misérable"; Scale1T = "Satisfait";
+                Scale2B = "Triste"; Scale2T = "Heureux";
+                Scale3B = "Affligé"; Scale3T = "Pacifique";
+                Scale4B = "Ennuyer"; Scale4T = "Excités";
+                Scale5B = "Peur"; Scale5T = "Le calme";
+                Scale6B = "En colère"; Scale6T = "Pacifique";
+                Scale7B = "Somnolent"; Scale7T = "Alerte";
+                break;
+            case 3: Scale1B = "Miserabele"; Scale1T = "Tevreden";
+                Scale2B = "Triest"; Scale2T = "Gelukkig";
+                Scale3B = "Overstuur"; Scale3T = "Rustig";
+                Scale4B = "Vervelen"; Scale4T = "Enthousiast";
+                Scale5B = "Bang"; Scale5T = "Kalm";
+                Scale6B = "Boos"; Scale6T = "Rustig";
+                Scale7B = "Slaperig"; Scale7T = "Wakker";
+                break;
+            case 4: Scale1B = "Miserabel"; Scale1T = "Zufrieden";
+                Scale2B = "Traurig"; Scale2T = "Glücklich";
+                Scale3B = "Bekümmert"; Scale3T = "Friedlich";
+                Scale4B = "Gelangweilt"; Scale4T = "Aufgeregt";
+                Scale5B = "Angst"; Scale5T = "Ruhe";
+                Scale6B = "Wütend"; Scale6T = "Friedlich";
+                Scale7B = "Schläfrig"; Scale7T = "Wach";
+                break;
+            case 5: Scale1B = "Miserable"; Scale1T = "Satisfecho";
+                Scale2B = "Triste"; Scale2T = "Feliz";
+                Scale3B = "Afligida"; Scale3T = "Pacíficas";
+                Scale4B = "Aburrido"; Scale4T = "Emocionada";
+                Scale5B = "Miedo"; Scale5T = "La calma";
+                Scale6B = "Enfadado"; Scale6T = "Pacíficas";
+                Scale7B = "Sleepy"; Scale7T = "Alerta";
+                break;
+            case 6: Scale1B = "Miserabile"; Scale1T = "Soddisfatto";
+                Scale2B = "Triste"; Scale2T = "Felice";
+                Scale3B = "Angustiati"; Scale3T = "Pacifica";
+                Scale4B = "Annoiato"; Scale4T = "Eccitato";
+                Scale5B = "Paura"; Scale5T = "La calma";
+                Scale6B = "Arrabbiato"; Scale6T = "Pacifica";
+                Scale7B = "Assonnato"; Scale7T = "Avviso";
+                break;
+            case 7: Scale1B = "Miserável"; Scale1T = "Satisfeitos";
+                Scale2B = "Triste"; Scale2T = "Feliz";
+                Scale3B = "Angustiado"; Scale3T = "Pacífica";
+                Scale4B = "Entediado"; Scale4T = "Animado";
+                Scale5B = "Medo"; Scale5T = "A calma";
+                Scale6B = "Irritado"; Scale6T = "Pacífica";
+                Scale7B = "Sonolento"; Scale7T = "Alerta";
+                break;
+            case 8: Scale1B = "Eländiga"; Scale1T = "Nöjd";
+                Scale2B = "Sad"; Scale2T = "Lyckligt";
+                Scale3B = "Upprörd"; Scale3T = "Lugn";
+                Scale4B = "Uttråkad"; Scale4T = "Förväntansfulla";
+                Scale5B = "Rädd"; Scale5T = "Lugn.";
+                Scale6B = "Arg."; Scale6T = "Lugn";
+                Scale7B = "Sömnig"; Scale7T = "Varning";
+                break;
+            case 9: Scale1B = "Elendig"; Scale1T = "Fornøyd";
+                Scale2B = "Trist"; Scale2T = "Fornøyd";
+                Scale3B = "Kriserammet"; Scale3T = "Fredelig";
+                Scale4B = "Lei"; Scale4T = "Spent";
+                Scale5B = "Redd"; Scale5T = "Rolig";
+                Scale6B = "Sint"; Scale6T = "Fredelig";
+                Scale7B = "Søvnig"; Scale7T = "Varsel";
+                break;
+            case 10: Scale1B = "Varsel"; Scale1T = "Tyytyväisiä.";
+                Scale2B = "Surullinen."; Scale2T = "Onnellinen";
+                Scale3B = "Hätääntynyt"; Scale3T = "Rauhallinen";
+                Scale4B = "Tylsää."; Scale4T = "Innoissaan";
+                Scale5B = "Peloissaan."; Scale5T = "Rauhallinen";
+                Scale6B = "Vihainen."; Scale6T = "Rauhallinen";
+                Scale7B = "Väsyttää."; Scale7T = "Hälytys";
+                break;
+            case 11: Scale1B = "দুঃসহ"; Scale1T = "সন্তুষ্ট।";
+                Scale2B = "দুঃখজনক।"; Scale2T = "খুশি।";
+                Scale3B = "বিপন্ন।"; Scale3T = "শান্তিপূর্ণ।";
+                Scale4B = "মুহু।"; Scale4T = "উত্তেজিত।";
+                Scale5B = "ভয়।"; Scale5T = "শান্ত।";
+                Scale6B = "ক্ষুব্ধ।"; Scale6T = "শান্তিপূর্ণ।";
+                Scale7B = "নিদ্রালু"; Scale7T = "সতর্ক";
+                break;
+            case 12: Scale1B = "жалких"; Scale1T = "удовлетворены";
+                Scale2B = "грустно"; Scale2T = "Рад";
+                Scale3B = "в бедственном"; Scale3T = "Мирными";
+                Scale4B = "скучно"; Scale4T = "Взволнованный";
+                Scale5B = "боюсь"; Scale5T = "спокойствие";
+                Scale6B = "рассердятся"; Scale6T = "Мирными";
+                Scale7B = "спится"; Scale7T = "проснулся";
+                break;
+            case 13: Scale1B = "निरानंद"; Scale1T = "तुष्ट";
+                Scale2B = "उदास"; Scale2T = "खुश";
+                Scale3B = "व्यथित"; Scale3T = "शांतिपूर्ण";
+                Scale4B = "ऊब"; Scale4T = "उत्तेजित";
+                Scale5B = "भयभीत"; Scale5T = "शांत";
+                Scale6B = "नाराज"; Scale6T = "उत्तेजित";
+                Scale7B = "निद्रालु"; Scale7T = "फुरतीला";
+                break;
+            case 14: Scale1B = "悒"; Scale1T = "满意";
+                Scale2B = "伤心"; Scale2T = "快乐";
+                Scale3B = "苦恼"; Scale3T = "宁静";
+                Scale4B = "腻烦"; Scale4T = "兴奋";
+                Scale5B = "怕"; Scale5T = "冷静";
+                Scale6B = "愤怒"; Scale6T = "宁静";
+                Scale7B = "困倦"; Scale7T = "惊醒";
+                break;
+            case 15: Scale1B = "بائس"; Scale1T = "راض";
+                Scale2B = "حزين"; Scale2T = "سعيد";
+                Scale3B = "مكروب"; Scale3T = "سلمي";
+                Scale4B = "ضجر"; Scale4T = "متحمس";
+                Scale5B = "خائف"; Scale5T = "بارد الاعصاب";
+                Scale6B = "غاضب"; Scale6T = "سلمي";
+                Scale7B = "نعسان"; Scale7T = "متنبه";
+                break;
+            case 16: Scale1B = "อนาถ"; Scale1T = "จที่น่าสังเวช";
+                Scale2B = "รันทด"; Scale2T = "มีความสุข";
+                Scale3B = "เป็นทุกข์"; Scale3T = "สงบ";
+                Scale4B = "เบื่อ"; Scale4T = "ตื่นเต้น";
+                Scale5B = "กลัว"; Scale5T = "ใจเย็น";
+                Scale6B = "โกรธ"; Scale6T = "สงบ";
+                Scale7B = "ปรือ"; Scale7T = "ตื่นตัว";
+                break;
+            case 17: Scale1B = "悲惨な"; Scale1T = "満足";
+                Scale2B = "悲しい"; Scale2T = "嬉しい";
+                Scale3B = "遣る瀬無い"; Scale3T = "平穏";
+                Scale4B = "退屈"; Scale4T = "励起";
+                Scale5B = "恐れ"; Scale5T = "穏やかな";
+                Scale6B = "怒って"; Scale6T = "平穏";
+                Scale7B = "疲れました"; Scale7T = "アラート";
+                break;
+            case 18: Scale1B = "Nędzny"; Scale1T = "Zadowolona";
+                Scale2B = "Smutny"; Scale2T = "Szczęśliwy";
+                Scale3B = "Strapiony"; Scale3T = "Pokojowy";
+                Scale4B = "Znudzony"; Scale4T = "Podekscytowany";
+                Scale5B = "Zlękniony"; Scale5T = "Uspokojenie";
+                Scale6B = "Gniewny"; Scale6T = "Pokojowy";
+                Scale7B = "Senny"; Scale7T = "Alarm";
+                break;
         };
+    };
 
-        function sc2_click() {
-
-            //Get values - TODO: use sub to retrieve values
-            var butnFval = document.getElementById('btnFace').value;
-
-            //Draw page with current settings
-            draw_page(butnFval, 0);
-        };
-
-
-    </script>
+</script>
     
-    <td style="color: #CCCCCC; font-family: Arial, Helvetica, sans-serif; font-size: small; vertical-align: bottom; text-align: right; padding-bottom: 20px; padding-right: 32px;">    
-    Dynamic Visual Analogue Mood Scales (D-VAMS)/'Emotiscope' Copyright © 2013 Paul Barrows
-    </td>
-    </tr>
-    </table>     
-    
-</body>
 </html>
