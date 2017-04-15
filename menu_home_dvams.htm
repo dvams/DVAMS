@@ -4,8 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.15, target-densitydpi=device-dpi">
     <title>DVAMS Scale Home</title>
     <style type="text/css">
-        <!–– html { visibility:hidden; }––> 
-        
+        html { visibility:hidden; }
+        <!–– ––> 
         .style1
         {
             height: 10px;
@@ -228,7 +228,7 @@
             //var aspect_ratio = 1.7778
 
             //var table_height = (aspect_ratio * 1356) - 850;
-            alert(aspect_ratio + '-' + table_height);
+            //alert(aspect_ratio + '-' + table_height);
 
             //Set aspect ratio range
             if (aspect_ratio <= 1.5) { aspect_ratio = 1.5 };
@@ -239,7 +239,7 @@
 
                 //Change table height to phone aspect ratio [1560 for 1.777 aspect ratio (e.g: 1920x1080, 2560x1440)] 
                 //var table_height = (aspect_ratio * 880) - 4;
-                var table_height = (aspect_ratio * 918); // Now
+                var table_height = (aspect_ratio * 918); // Now 1632
                 window.document.getElementById("MainView").style.height = table_height + 'px';
 
                 //Increase font size for Title
@@ -275,7 +275,7 @@
 
                 //Change table height for tablet aspect ratio [1320 for 1.6 aspect ratio (e.g: 1920x1200)]
                 //var table_height = ((aspect_ratio * 880) - 88);
-                var table_height = ((aspect_ratio * 918) - 89);
+                var table_height = ((aspect_ratio * 918) - 89); //Now 1380
                 window.document.getElementById("MainView").style.height = table_height + 'px';
 
                 //Set language option font to regular size
