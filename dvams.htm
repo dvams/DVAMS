@@ -62,7 +62,7 @@
         <tr>
         <td align="left" valign="top" class="style2">
     
-        <div id="DVAMS_heading" style="padding: 0px; height:34px; font-family: Arial, Helvetica, sans-serif; font-size: 28px; color: #DEDFE0;  vertical-align:
+        <div id="DVAMS_heading" style="padding: 0px; height:34px; font-family: Arial, Helvetica, sans-serif; font-size: 28px; color: #FDFDFD;  vertical-align:
                     text-bottom; width: 690px;" width: 253px;" >
         Dynamic Visual Analogue Mood Scales (D-VAMS)<br />
         </div>  
@@ -75,10 +75,9 @@
                 253px;" >
               
         <input id="txtScaleID" value="" type="text" 
-                
                 style="border-style: none; text-align: left; 
                 font-family: 'Times New Roman', Times, serif; 
-                font-size: 54px; background-color: #BCB5BA; color: #EEE; width:700px; margin-top: 12px;" 
+                font-size: 54px; background-color: #BCB5BA; color: #EEE; width:700px; margin-top: 12px; padding-top: 25px;" 
                 disabled="disabled" />
         </div>  
         </td>
@@ -152,7 +151,6 @@
           $(document).ready(function () {
 
               //TEST FOR DIMENSIONS AND USE LARGER FONTS/BUTTONS/LABELS AND PHONE ASPECT RATIO (1.777 AND ABOVE) 
-
               //TODO for 3.02 support scaling and larger fonts on phones
 
               //First calculate aspect ratio
@@ -168,7 +166,8 @@
               if (aspect_ratio >= 1.7) {
 
                   //Change table height to phone aspect ratio [? for 1.777 aspect ratio (e.g: 2560x1440)]
-                  var table_height = (aspect_ratio * 880) - 4;
+                  //var table_height = (aspect_ratio * 880) - 4;
+                  var table_height = (aspect_ratio * 918); // Now 1632
                   window.document.getElementById("MainView").style.height = table_height + 'px';
 
                   //Increase font size for caption, copyright, mood labels and score 
@@ -189,7 +188,8 @@
               } else {
 
                   //Change table height for tablet aspect ratio [1272 for 1.6 aspect ratio (e.g: 1920x1200)]
-                  var table_height = (aspect_ratio * 880) - 136;
+                  //var table_height = (aspect_ratio * 880) - 136;
+                  var table_height = ((aspect_ratio * 918) - 89); //Now 1380
                   window.document.getElementById("MainView").style.height = table_height + 'px';
 
                   //Set button font to regular size

@@ -22,13 +22,13 @@
 
     <tr><td >
         <form id="home_button" action="menu_home_dvams.htm" method="post" 
-        style="margin-top: 32px; vertical-align: bottom;">
+        style="margin-top: 48px; vertical-align: bottom;">
             <button type="submit" id="cmdSubmit" name ="return" value="1"
                 
                 style ="border-style: none; border-color: inherit; border-width: medium; 
                 background-color:transparent; width: 114px; height: 96px; vertical-align: bottom;" 
                 title="Home Menu">
-            <img src="Images/home_icon_gy2.jpg" alt="Main Menu"
+            <img id="HomeButton" src="Images/home_icon_gy2.jpg" alt="Main Menu"
             style="width: 128px; height: 94px;">
             </button>
             
@@ -38,7 +38,6 @@
         <img id="btnImageFace" src="Images/chart_on.jpg" alt="Main Menu"
             style="width: 112px; height: 94px;">
             </button>
-                      
         </form>
                 
     </td>
@@ -250,7 +249,8 @@
         if (aspect_ratio >= 1.7) {
 
             //Change table height & canvas for tablet aspect ratio [1564 for 1.777 aspect, ]
-            var table_height = (aspect_ratio * 824);
+            //var table_height = (aspect_ratio * 824);
+            var table_height = (aspect_ratio * 900); // Now 
             if (table_height < MinTableHeight) { table_height = MinTableHeight }; //Minimum table height
             
             if (MainTrafficBars_y < 580) { MainTrafficBars_y = 580 };
@@ -280,11 +280,16 @@
             var barchart_score_font = "bold 26px Arial";
             var barchart_y = 144;
             var barchart_spacing_y = 28;
+
+            //Resize home menu button 
+            window.document.getElementById("HomeButton").style.height = '104px';
+            window.document.getElementById("HomeButton").style.width = '152px';
    
         } else {
 
             //Change table height & canvas for tablet aspect ratio [1320 for 1.6 aspect, ]
-            var table_height = (aspect_ratio * 824);
+            //var table_height = (aspect_ratio * 824);
+            var table_height = (aspect_ratio * 900)-64; // Now 13??
             if (table_height < MinTableHeight) { table_height = MinTableHeight }; //Minimum table height
 
             window.document.getElementById("MainView").style.height = table_height + 'px';

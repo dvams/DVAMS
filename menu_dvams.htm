@@ -216,7 +216,7 @@
             var width = window.innerWidth;
             var height = window.innerHeight;
             var aspect_ratio = height / width;
-            var table_height = (aspect_ratio * 1356) - 850;
+            //var table_height = (aspect_ratio * 1356) - 850;
 
             //Set aspect ratio range
             if (aspect_ratio <= 1.5) { aspect_ratio = 1.5 };
@@ -227,6 +227,7 @@
 
                 //Change table height to phone aspect ratio [e.g: 1560 for 1.777 aspect ratio]
                 //var table_height = (aspect_ratio * 880) - 4;
+                var table_height = (aspect_ratio * 918); // Now 1632
                  window.document.getElementById("MainView").style.height = table_height + 'px';
 
                 //Increase font size for Title
@@ -258,7 +259,8 @@
             } else {
 
                 //Change table height for tablet aspect ratio [e.g: 1320 for 1.6 aspect ratio (1920x1200)]
-                //var table_height = ((aspect_ratio *  880) -88);
+                //var table_height = ((aspect_ratio * 880) - 88);
+                var table_height = ((aspect_ratio * 918) - 89); //Now 12??
                 window.document.getElementById("MainView").style.height = table_height + 'px';
 
             };
