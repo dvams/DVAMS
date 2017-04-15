@@ -3,9 +3,11 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.15, target-densitydpi=device-dpi">
     <title>DVAMS Assessment Run</title>
+        <style type="text/css">
+        html { visibility:hidden; }
+        </style>
 </head>
 <body bgcolor="#bcb5ba">
-
     <div>
         
     <link rel="stylesheet" href="Styles/jquery-ui.css">
@@ -597,6 +599,9 @@
               $("#slider").css({
                   "border-radius": "12px"
               });
+
+              //Make all HTML visible only now that it has finished loading
+              document.getElementsByTagName("html")[0].style.visibility = "visible";
           });
 
 
