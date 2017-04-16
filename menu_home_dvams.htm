@@ -4,12 +4,13 @@
     <meta id="view" name="viewport" content="width=device-width, initial-scale=1.0, target-densitydpi=device-dpi">
     <script type="text/javascript">
         var mvp = document.getElementById('view');
-        var scale=(screen.width/940);
+        //var scale=(screen.width/940);
         //metaTag.name = "viewport";
         //metaTag.content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
         //document.getElementsByTagName('head')[0].appendChild(metaTag);
 
-        mvp.setAttribute('content', 'width=device-width, initial-scale=1.28, target-densitydpi=device-dpi');
+        var sscale = '1.28';
+        mvp.setAttribute('content', 'width=device-width, initial-scale='+ sscale +', target-densitydpi=device-dpi');
     </script>
 
     <title>DVAMS Scale Home</title>
@@ -229,8 +230,11 @@
 
         window.onload = function () {
             //TEST FOR DIMENSIONS AND USE LARGER FONTS/BUTTONS/LABELS AND PHONE ASPECT RATIO (1.7 AND ABOVE) 
-            var scale = (screen.width / 740)
-            alert(screen.width + '--' + scale);
+            var scale = screen.width / 940
+            var str = scale.toString();
+            var str4 = str.substring(0, 4);
+            alert(screen.width + '--' + str4 + '--' + str);
+
             //First calculate aspect ratio
             var width = window.innerWidth;
             var height = window.innerHeight;
