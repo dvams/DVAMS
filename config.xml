@@ -15,6 +15,11 @@
   <preference name="target-device" value="universal" />
   <preference name="fullscreen" value="false" />
   <preference name="EnableViewportScale" value="true" />
+  <gap:plugin name="cordova-plugin-geolocation" source="npm" />
+  <gap:plugin name="cordova-plugin-whitelist" version="1.1.0" source="npm" />
+  <access origin="*" launch-external="yes" />
+  <allow-intent href="http://*/*" />
+  <allow-intent href="https://*/*" />
   <icon src="icon.png" />
   <preference name="Splashscreen" value="splash" />
   <splash src="splash.png" />
