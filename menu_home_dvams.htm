@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.28, target-densitydpi=device-dpi">
+    <meta name="viewport" content="width=device-width, initial-scale=1.15, target-densitydpi=device-dpi">
     <title>DVAMS Scale Home</title>
     <style type="text/css">
         html { visibility:hidden; }
@@ -94,7 +94,7 @@
                 style="padding:6px;  width: 900px; height: 128px;">
         
             <tr style="text-align: left">
-            <td valign="top" class="style1"><br />
+            <td valign="top" class="style1">
     
             <div id="DVAMS_title" style="padding: 0px 0px 10px 0px; height:70px; font-size: 68px; color: #FDFDFD;  vertical-align:
             text-bottom; font-family: Arial, Helvetica, sans-serif; width: 690px;" >
@@ -112,13 +112,13 @@
                                                 
                 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=J8PZ2CEA3FNCU" target="_blank">
                 
-                <img src="Images/btn_donateCC_LG.gif" 
+                <img id="paypal" src="Images/btn_donateCC_LG.gif" 
                     style="width: 121px; margin-left: 12px; height: 34px;"></></a>
             </td>
         
             <td  width="400" valign="top" align="right" class="style3">
             <img alt="" id="Image2" src="Images/UoN-UK-C-M.White.png" Width="154px" height="62px"/>
-            <br />
+            
             </td>
             </tr>
             </table>        
@@ -251,6 +251,10 @@
                 $('#Copyright').css('font-size', '14px');
                 $('#Copyright').css('height', '20px');
 
+                //Increase size of donate image
+                window.document.getElementById("paypal").style.height = '50px';
+                window.document.getElementById("paypal").style.width = '170px';
+
                 //Increase font size for main text
                 //$('#tx1').css('font-size', '26px');
                 //$('#tx2').css('font-size', '26px');
@@ -294,7 +298,6 @@
             document.getElementsByTagName("html")[0].style.visibility = "visible";
         };
 
-        //Version 3.0
         var LangText = String;
         var LangURL = String;
         var LangURLVAR = String;

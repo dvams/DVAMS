@@ -1,4 +1,4 @@
-Dynamic Visual Analogue Mood Scales (D-VAMS/'Emotiscope') v3.0
+Dynamic Visual Analogue Mood Scales (D-VAMS/'Emotiscope') v3.02
 Copyright © 2013 Paul Barrows
 ___________________________________________________________________________________________________________
 
@@ -19,17 +19,18 @@ RELEASES
 1.21 - Final, word-included versions of the scale runs, with mood words top and bottom (with multi-language support)
 2.0 - Six item version, omitting Sleepy-Alert item. Chart page amended. Bell curve score position charted for normative guidance.
 3.0 - Seven item version, including Sleepy-Alert scale (validation study suggests slightly better performance).
+3.02 - Automatically adjusts aspect ratio and button/text size for readability on phones. Layout improved. Language support extended to scale browser pages and chart display.
 
 Language support: Arabic, Bengali, Chinese (simplified), English, Dutch, French, German, Japanese, Finnish, Hindi, Italian, Norwegian, Polish, Portuguese, Russian, Spanish, Swedish, Thai
 ___________________________________________________________________________________________________________
 
 
-D-VAMS v3.0 Install Instructions
-================================
+D-VAMS v3.0/v3.02 Install Instructions
+=================================
 
-AS ANDROID APP FROM "DVAMS.apk"
+AS ANDROID APP
 _____________________________________________
-1) Download the file DVAMS.apk using your Android device
+1) Download the DVAMS 3.02 apk file from the website. Make sure that you select the correct version for the resolution of your device display.
 
 2) Select the option to run the file. It will automatically install as prompted.
 
@@ -46,7 +47,7 @@ D-VAMS software has been written in HTML/Javascript/JQuery. It should be capable
 
 3) When the browser opens, you should be presented with D-VAMS home page. Bookmark the page so that it is available for easy access.
 
-
+4) For the latest version, download the v3.02 update "DVAMS_v302_update.zip" and overwrite the existing files in your DVAMS directory with these newer versions.
 
 If your browser cannot browse files on your device, try the following instead:
 ______________________________________________________________________________
@@ -58,4 +59,6 @@ ______________________________________________________________________________
 3) Start your web server app, navigate to the DVAMS directory on your device and open the file "index.html". The browser on your device should open with the DVAMS home page and menu ("menu_home_dvams.htm"). Alternately, you can start up your browser and type in the URL "http://localhost:8080/dvams/"
 
 4) For easy access, bookmark the link or save it to your desktop as an icon that can be used to start it up when needed.
+
+
 
