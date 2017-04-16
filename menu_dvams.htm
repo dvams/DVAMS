@@ -1,7 +1,15 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-     <meta name="viewport" content="width=device-width, initial-scale=1.15, target-densitydpi=device-dpi">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, target-densitydpi=device-dpi">
+     <script type="text/javascript">
+        var mvp = document.getElementById('view');
+        var scale = screen.width / 940
+        var str = scale.toString();
+        var str4 = str.substring(0, 5);
+        mvp.setAttribute('content', 'width=device-width, initial-scale=' + str4 + ', target-densitydpi=device-dpi');
+     </script>
+
      <title>DVAMS Scale Browser</title>
      <style type="text/css">
         html { visibility:hidden; }
