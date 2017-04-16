@@ -4,7 +4,7 @@
     <meta id="view" name="viewport" content="width=device-width">
     <script type="text/css">
         var mvp = document.getElementById('view');
-        var scale=(window.innerWidth/740)
+        var scale=(screen.width/740)
 
         mvp.setAttribute('content', 'width=device-width, initial-scale=' + scale + ', target-densitydpi=device-dpi');
     </script>
@@ -226,8 +226,8 @@
 
         window.onload = function () {
             //TEST FOR DIMENSIONS AND USE LARGER FONTS/BUTTONS/LABELS AND PHONE ASPECT RATIO (1.7 AND ABOVE) 
-            var scale = (window.innerWidth / 740) 
-            alert(window.innerWidth + '--' + scale);
+            var scale = (screen.width / 740)
+            alert(screen.width + '--' + scale);
             //First calculate aspect ratio
             var width = window.innerWidth;
             var height = window.innerHeight;
