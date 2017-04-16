@@ -4,7 +4,9 @@
     <meta id="view" name="viewport" content="width=device-width">
     <script type="text/css">
         var mvp = document.getElementById('view');
-        mvp.setAttribute('content', 'width=' + screen.width + ', initial-scale=1.0, target-densitydpi=device-dpi');
+        var scale=(window.innerWidth/740)
+
+        mvp.setAttribute('content', 'width=device-width, initial-scale=' + scale + ', target-densitydpi=device-dpi');
     </script>
 
     <title>DVAMS Scale Home</title>
@@ -224,7 +226,8 @@
 
         window.onload = function () {
             //TEST FOR DIMENSIONS AND USE LARGER FONTS/BUTTONS/LABELS AND PHONE ASPECT RATIO (1.7 AND ABOVE) 
-            alert(screen.width);
+            var scale = (window.innerWidth / 740) 
+            alert(window.innerWidth + '--' + scale);
             //First calculate aspect ratio
             var width = window.innerWidth;
             var height = window.innerHeight;
