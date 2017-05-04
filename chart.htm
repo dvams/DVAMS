@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta id="view" name="viewport" content="width=device-width, initial-scale=1.0, target-densitydpi=device-dpi">
+
     <script type="text/javascript">
         var mvp = document.getElementById('view');
         var scale = screen.width / 940
@@ -19,44 +19,6 @@
         }
     </style>
 </head>
-<body style="background-color: #000000; font-size: 26px; font-family: Arial, Helvetica, sans-serif; color: #FFFFFF; height: 218px;">
-   
-    <script src="Scripts/gaussian.js" type="text/javascript"></script>
-
-    <table id="MainView" align="center" style="padding: 0px; height: 1320px; border-spacing: 0px; background-color: #000000;">
-    <tr><td colspan="2" class="style3">
-    <canvas id="myCanvas" width="900" height="1184" style="background-color: #000000"></canvas>
-    <br />
-    </td></tr>
-
-    <tr><td >
-        <form id="home_button" action="menu_home_dvams.htm" method="post" 
-        style="margin-top: 48px; vertical-align: bottom;">
-            <button type="submit" id="cmdSubmit" name ="return" value="1"
-                
-                style ="border-style: none; border-color: inherit; border-width: medium; 
-                background-color:transparent; width: 114px; height: 96px; vertical-align: bottom;" 
-                title="Home Menu">
-            <img id="HomeButton" src="Images/home_icon_gy2.jpg" alt="Main Menu"
-            style="width: 128px; height: 94px;">
-            </button>
-            
-        <button type="button" id="btnFace" value="1"  style="border-style: none; border-color: inherit; border-width: medium; 
-            background-color:transparent; width: 114px; height: 96px;" title="Statistics" 
-                onclick="facebutton_click();" hidden="hidden" >
-        <img id="btnImageFace" src="Images/chart_on.jpg" alt="Main Menu"
-            style="width: 112px; height: 94px;">
-            </button>
-        </form>
-                
-    </td>
-    <td style="color: #CCCCCC; font-family: Arial, Helvetica, sans-serif; font-size: small; vertical-align: bottom; text-align: right; padding-bottom: 20px; padding-right: 32px;">    
-    Dynamic Visual Analogue Mood Scales (D-VAMS)/'Emotiscope' Copyright © 2013 Paul Barrows
-    </td>
-    </tr>
-    </table>     
-    
-</body>
 
 <script type="text/javascript">
     
@@ -208,7 +170,7 @@
         draw_page(1, 0);
         document.getElementsByTagName("html")[0].style.visibility = "visible";    
         //home_button
-        home_button.action = "menu_home_dvams.htm" + LangURL;
+        //home_button.action = "menu_home_dvams.htm" + LangURL;
     }
 
     //Retrieve values from URL string
@@ -890,5 +852,41 @@
     };
 
 </script>
+
+    <body style="background-color: #000000; font-size: 26px; font-family: Arial, Helvetica, sans-serif; color: #FFFFFF; height: 218px;">
+   
+    <script src="Scripts/gaussian.js" type="text/javascript"></script>
+
+    <table id="MainView" align="center" style="padding: 0px; height: 1320px; border-spacing: 0px; background-color: #000000;">
+    <tr><td colspan="2" class="style3">
+    <canvas id="myCanvas" width="900" height="1184" style="background-color: #000000"></canvas>
+    <br />
+    </td></tr>
+
+    <tr><td >
+
+        <button type="submit" id="cmdSubmit" name ="return" value="1"
+            style ="border-style: none; border-color: inherit; border-width: medium; 
+            background-color:transparent; width: 114px; height: 96px; vertical-align: bottom;" 
+            title="Home Menu">
+        <img id="HomeButton" src="Images/home_icon_gy2.jpg" alt="Main Menu"
+        style="width: 128px; height: 94px;"onclick="window.location='menu_home_dvams.htm'+ LangURL;">
+        </button>
+                
+        <button type="button" id="btnFace" value="1"  style="border-style: none; border-color: inherit; border-width: medium; 
+            background-color:transparent; width: 114px; height: 96px;" title="Statistics" 
+                onclick="facebutton_click();" hidden="hidden" >
+        <img id="btnImageFace" src="Images/chart_on.jpg" alt="Main Menu"
+            style="width: 112px; height: 94px;">
+        </button>
+        
+    </td>
+    <td style="color: #CCCCCC; font-family: Arial, Helvetica, sans-serif; font-size: small; vertical-align: bottom; text-align: right; padding-bottom: 20px; padding-right: 32px;">    
+    Dynamic Visual Analogue Mood Scales (D-VAMS)/'Emotiscope' Copyright © 2013 Paul Barrows
+    </td>
+    </tr>
+    </table>     
     
+</body>
+
 </html>
