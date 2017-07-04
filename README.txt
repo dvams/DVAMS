@@ -1,4 +1,4 @@
-Dynamic Visual Analogue Mood Scales (D-VAMS/'Emotiscope') v3.02
+Dynamic Visual Analogue Mood Scales (D-VAMS/'Emotiscope') v3.03
 Copyright © 2013 Paul Barrows
 ___________________________________________________________________________________________________________
 
@@ -20,6 +20,8 @@ RELEASES
 2.0 - Six item version, omitting Sleepy-Alert item. Chart page amended. Bell curve score position charted for normative guidance.
 3.0 - Seven item version, including Sleepy-Alert scale (validation study suggests slightly better performance).
 3.02 - Automatically adjusts aspect ratio and button/text size for readability on phones. Layout improved. Language support extended to scale browser pages and chart display.
+3.03 - [HTML version] Fix for form post error returned by some browsers when main menu called from results page (chart.htm)
+3.03 - [Android app] Fix to include user guide with app, called from information button at top of main page
 
 Language support: Arabic, Bengali, Chinese (simplified), English, Dutch, French, German, Japanese, Finnish, Hindi, Italian, Norwegian, Polish, Portuguese, Russian, Spanish, Swedish, Thai
 ___________________________________________________________________________________________________________
@@ -30,10 +32,8 @@ D-VAMS v3.0/v3.02 Install Instructions
 
 AS ANDROID APP
 _____________________________________________
-1) Download the DVAMS 3.02 apk file from the website. Make sure that you select the correct version for the resolution of your device display.
-
-2) Select the option to run the file. It will automatically install as prompted.
-
+Download DVAMS 3.02 from Google play at:
+https://play.google.com/store/apps/details?id=com.phonegap.dvams
 
 
 AS LOCAL WEBSITE FROM "DVAMS_install_v3.00.zip"

@@ -1,14 +1,6 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta id="view" name="viewport" content="width=device-width, initial-scale=1.0, target-densitydpi=device-dpi">
-    <script type="text/javascript">
-        var mvp = document.getElementById('view');
-        var scale = screen.width / 940
-        var str = scale.toString();
-        var str4 = str.substring(0, 5);
-        mvp.setAttribute('content', 'width=device-width, initial-scale='+ str4 +', target-densitydpi=device-dpi');
-    </script>
 
     <title>DVAMS Scale Home</title>
     <style type="text/css">
@@ -107,7 +99,7 @@
             <div id="DVAMS_title" style="padding: 0px 0px 10px 0px; height:70px; font-size: 68px; color: #FDFDFD;  vertical-align:
             text-bottom; font-family: Arial, Helvetica, sans-serif; width: 690px;" >
             D-VAMS<label id="DVAMS_version" style="padding: 0px; height:26px; font-size: 24px; color: #FDFDFD; 
-            font-family: Arial, Helvetica, sans-serif; width: 64px;">3.0.2</label>
+            font-family: Arial, Helvetica, sans-serif; width: 64px;">3.0.3</label>
             <br /></div> 
 
             <div id="DVAMS_subtitle" style="padding: 0px 0px 6px 0px; height:42px; font-family: Arial, Helvetica, sans-serif; font-size: 36px; color: #FFFFFF; width: 690px; text-align: left;" >
@@ -117,9 +109,12 @@
             <div id="Copyright" style="padding: 0px; height:18px; font-size: 12px; color: #FFFFFF; width: 690px; text-align: left; font-family: Arial, Helvetica, sans-serif;" >
             Copyright © 2013 Paul Barrows<br />
             </div> <br />
+
+                <a target="_blank" href="D-VAMS_user_guide.ed1.pdf">
+                <img id="download_user_guide" src="images/userguide.ico" 
+                    style="width: 40px; margin-left: 12px; height: 40px;" title="User Guide"></a>  
                                                 
                 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=J8PZ2CEA3FNCU" target="_blank">
-                
                 <img id="paypal" src="Images/btn_donateCC_LG.gif" 
                     style="width: 121px; margin-left: 12px; height: 34px;"></></a>
             </td>
@@ -232,6 +227,10 @@
             var width = window.innerWidth;
             var height = window.innerHeight;
             var aspect_ratio = height / width;
+            //var aspect_ratio = 1.7778
+
+            //var table_height = (aspect_ratio * 1356) - 850;
+            //alert(aspect_ratio + '-' + table_height);
 
             //Set aspect ratio range
             if (aspect_ratio <= 1.5) { aspect_ratio = 1.5 };
@@ -256,6 +255,8 @@
                 $('#Copyright').css('height', '20px');
 
                 //Increase size of donate image
+                window.document.getElementById("download_user_guide").style.height = '59px';
+                window.document.getElementById("download_user_guide").style.width = '59px';
                 window.document.getElementById("paypal").style.height = '50px';
                 window.document.getElementById("paypal").style.width = '170px';
 
