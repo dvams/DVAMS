@@ -1,11 +1,11 @@
-Dynamic Visual Analogue Mood Scales (D-VAMS/'Emotiscope') v3.03
-Copyright © 2013 Paul Barrows
+Dynamic Visual Analogue Mood Scales (D-VAMS/'Emotiscope') v3.04
+Copyright Â© 2013 Paul Barrows
 ___________________________________________________________________________________________________________
 
 LEGAL NOTICE: 
 Unless otherwise stated, the software on this site is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. THERE IS NO WARRANTY FOR THE SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS PROVIDE THE SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE SOFTWARE IS WITH YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE SOFTWARE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
-This Software and its content is copyright of Paul Barrows - Copyright © 2013 Paul Barrows. All rights reserved.
+This Software and its content is copyright of Paul Barrows - Copyright Â© 2013 Paul Barrows. All rights reserved.
 
 Any redistribution or reproduction of part or all of the contents in any form is prohibited other than the following:
 - You may download and use this for your personal and non-commercial use only
