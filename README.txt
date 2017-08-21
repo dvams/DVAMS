@@ -1,4 +1,4 @@
-Dynamic Visual Analogue Mood Scales (D-VAMS/'Emotiscope') v3.05
+Dynamic Visual Analogue Mood Scales (D-VAMS/'Emotiscope') v3.0.5
 Copyright © 2013 Paul Barrows
 ___________________________________________________________________________________________________________
 
