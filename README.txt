@@ -28,12 +28,12 @@ Language support: Arabic, Bengali, Chinese (simplified), English, Dutch, French,
 ___________________________________________________________________________________________________________
 
 
-D-VAMS v3.0/v3.02 Install Instructions
+D-VAMS v3.0-v3.06 Install Instructions
 =================================
 
 AS ANDROID APP
 _____________________________________________
-Download DVAMS 3.05 from Google play at:
+Download DVAMS 3.06 from Google play at:
 https://play.google.com/store/apps/details?id=com.phonegap.dvams
 
 
