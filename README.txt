@@ -1,4 +1,4 @@
-Dynamic Visual Analogue Mood Scales (D-VAMS/'Emotiscope') v3.04
+Dynamic Visual Analogue Mood Scales (D-VAMS/'Emotiscope') v3.05
 Copyright © 2013 Paul Barrows
 ___________________________________________________________________________________________________________
 
@@ -21,7 +21,7 @@ RELEASES
 3.0 - Seven item version, including Sleepy-Alert scale (validation study suggests slightly better performance).
 3.02 - Automatically adjusts aspect ratio and button/text size for readability on phones. Layout improved. Language support extended to scale browser pages and chart display.
 3.03 - [HTML version] Fix for form post error returned by some browsers when main menu called from results page (chart.htm)
-3.03 - [Android app] Fix to include user guide with app, called from information button at top of main page
+3.04 - [Android app] Fix to include user guide with app, called from information button at top of main page
 
 Language support: Arabic, Bengali, Chinese (simplified), English, Dutch, French, German, Japanese, Finnish, Hindi, Italian, Norwegian, Polish, Portuguese, Russian, Spanish, Swedish, Thai
 ___________________________________________________________________________________________________________
