@@ -6,7 +6,7 @@
         version   = "3.0.8">
   <name>D-VAMS</name>
   <description>Dynamic Visual Analogue Mood Scales (D-VAMS) - A nonverbal mood assessment instrument to help assess people with communication problems due to aphasia.</description>
-  <author email="admin@dvams.com" href="http://www.dvams.com">Paul D. Barrows, Ph.D.</author>
+  <author email="paul.barrows@dvams.org" href="http://www.dvams.org">Paul D. Barrows, Ph.D.</author>
   <preference name="phonegap-version" value="cli-6.5.0" />
   <preference name="D-VAMS" value="PhonegapBuild.PGBDeveloper" />
   <preference name="WindowsStoreIdentityName" value="D-VAMS"/>
