@@ -1,4 +1,4 @@
-Dynamic Visual Analogue Mood Scales (D-VAMS/'Emotiscope') v3.0.7
+Dynamic Visual Analogue Mood Scales (D-VAMS/'Emotiscope') v3.0.8
 Copyright © 2013 Paul Barrows
 ___________________________________________________________________________________________________________
 
@@ -23,12 +23,13 @@ RELEASES
 3.03 - [HTML version] Fix for form post error returned by some browsers when main menu called from results page (chart.htm)
 3.04 - [Android app] Fix to include user guide with app, called from information button at top of main page
 3.07 - Progress bar added to file caching page
+3.08 - CE mark added. Code added to give warning if screen resolution less than 1080 x 1920
 
 Language support: Arabic, Bengali, Chinese (simplified), English, Dutch, French, German, Japanese, Finnish, Hindi, Italian, Norwegian, Polish, Portuguese, Russian, Spanish, Swedish, Thai
 ___________________________________________________________________________________________________________
 
 
-D-VAMS v3.0-v3.07 Install Instructions
+D-VAMS v3.0-v3.08 Install Instructions
 =================================
 
 AS ANDROID APP
@@ -48,7 +49,7 @@ D-VAMS software has been written in HTML/Javascript/JQuery. It should be capable
 
 3) When the browser opens, you should be presented with D-VAMS home page. Bookmark the page so that it is available for easy access.
 
-4) For the latest version, download the v3.02 update "DVAMS_v302_update.zip" and overwrite the existing files in your DVAMS directory with these newer versions.
+4) For the latest version, download the v3.08 update "DVAMS_v308_update.zip" and overwrite the existing files in your DVAMS directory with these newer versions.
 
 If your browser cannot browse files on your device, try the following instead:
 ______________________________________________________________________________
