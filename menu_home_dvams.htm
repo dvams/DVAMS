@@ -7,9 +7,11 @@
          var scale = screen.width / 940
          var str = scale.toString();
          var str4 = str.substring(0, 5);
+	 var wid='700'
 	 alert(str4);
-	 str4='0.3';
-         mvp.setAttribute('content', 'width=device-width, initial-scale='+ str4 +', target-densitydpi=device-dpi');
+	 str4='1.0';
+         //mvp.setAttribute('content', 'width=device-width, initial-scale='+ str4 +', target-densitydpi=device-dpi');
+	 mvp.setAttribute('content', 'width='+ wid +', initial-scale='+ str4 +', target-densitydpi=device-dpi');   
     </script>
 
     <title>DVAMS Scale Home</title>
