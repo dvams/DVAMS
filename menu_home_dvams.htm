@@ -3,13 +3,24 @@
 <head>
     <meta id="view" name="viewport" content="width=device-width, target-densitydpi=device-dpi">
     <script type="text/javascript">
-         var mvp = document.getElementById('view');
-         var scale = screen.width / 940
-         var str = scale.toString();
-         var str4 = str.substring(0, 5);
-         if (screen.width >= 940) {mvp.setAttribute('content', 'width=device-width, initial-scale='+ str4 +', target-densitydpi=device-dpi')};
-	 if (screen.width < 940) {mvp.setAttribute('content', 'initial-scale=1.0, width=' + screen.width)};
-	 if (screen.width < 940){alert('screen width' + screen.width)};   
+         //var mvp = document.getElementById('view');
+         //var scale = screen.width / 940
+         //var str = scale.toString();
+         //var str4 = str.substring(0, 5);
+         //if (screen.width >= 940) {mvp.setAttribute('content', 'width=device-width, initial-scale='+ str4 +', target-densitydpi=device-dpi')};
+	 //if (screen.width < 940) {mvp.setAttribute('content', 'width=device-width')};
+	 //if (screen.width < 940){alert('screen width' + screen.width)};   
+	 
+	 var ww = window.screen.width;
+      	 var mw = 800; // min width of site
+     	 var ratio =  ww / mw; //calculate ratio
+         var viewport_meta_tag = document.getElementById('viewport');
+         if( ww < mw){ //smaller than minimum size
+	 	viewport_meta_tag.setAttribute('content', 'initial-scale=' + ratio + ', maximum-scale=' + ratio + ', minimum-scale=' + ratio + ', user-scalable=no, width=' + mw);
+      	 }
+      		else { //regular size
+		viewport_meta_tag.setAttribute('content', 'initial-scale=1.0, maximum-scale=1, minimum-scale=1.0, user-scalable=yes, width=' + ww);
+         }
     </script>
 
     <title>DVAMS Scale Home</title>
