@@ -9,6 +9,7 @@
          var str4 = str.substring(0, 5);
          if (screen.width >= 940) {mvp.setAttribute('content', 'width=device-width, initial-scale='+ str4 +', target-densitydpi=device-dpi')};
 	 if (screen.width < 940) {mvp.setAttribute('content', 'initial-scale=1.0, maximum-scale=1, minimum-scale=1.0, user-scalable=yes, width=' + screen.width)};
+	 if (screen.width < 940){alert('screen width' + screen.width)};   
     </script>
 
     <title>DVAMS Scale Home</title>
