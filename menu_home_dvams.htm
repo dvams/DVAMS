@@ -8,7 +8,7 @@
 	 var pxlratio = window.devicePixelRatio;
          if (screen.width >= 940) {mvp.setAttribute('content', 'width=device-width, initial-scale='+ ratio +', target-densitydpi=device-dpi')};
 	 if (screen.width < 940) {mvp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=248')};
-	 if (screen.width < 940){alert('screen width-' + screen.width + ' - dpidensity' + pxlratio)};   
+	 //if (screen.width < 940){alert('screen width-' + screen.width + ' - dpidensity' + pxlratio)};   
     </script>
 
     <title>DVAMS Scale Home</title>
@@ -107,7 +107,8 @@
     
         //Create alert message
         var alertmessage = "Your display resolution is "
-        + pw + " x " + ph + ".\n\n " + "This app requires a minimum display resolution of 1920 x 1080.";
+        + pw + " x " + ph + " (devicePixelRatio: " + DPR + ") + ".\n\n " + "This app may not display correctly on displays below 940px wide."
+	+ ".\n\n " + "If you have a problem, please contact admin@dvams.org with this information.";
         alert(alertmessage);
 
     } else {
