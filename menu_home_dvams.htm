@@ -4,12 +4,11 @@
     <meta id="view" name="viewport" content="width=device-width, target-densitydpi=device-dpi">
     <script type="text/javascript">
          var mvp = document.getElementById('view');
-         var ratio = screen.width / 940
-         //var str = scale.toString();
-         //var str4 = str.substring(0, 5);
+         var ratio = screen.width / 940;
+	 var pxlratio = window.devicePixelRatio;
          if (screen.width >= 940) {mvp.setAttribute('content', 'width=device-width, initial-scale='+ ratio +', target-densitydpi=device-dpi')};
-	 if (screen.width < 940) {mvp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=240')};
-	 if (screen.width < 940){alert('screen width-' + screen.width + ' - dpidensity')};   
+	 if (screen.width < 940) {mvp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=256')};
+	 if (screen.width < 940){alert('screen width-' + screen.width + ' - dpidensity' + pxlratio)};   
 
     </script>
 
