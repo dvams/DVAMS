@@ -5,8 +5,9 @@
     <script type="text/javascript">
         var mvp = document.getElementById('view');
         var ratio = screen.width / 940;
+	var targdensdpi = screen.width * 0.4133;
         if (screen.width >= 940) {mvp.setAttribute('content', 'width=device-width, initial-scale='+ ratio +', target-densitydpi=device-dpi')};
-	if (screen.width < 940) {mvp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=248')};
+	if (screen.width < 940) {mvp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi='+ targdensdpi)};
     </script>
     <title>DVAMS Assessment Run</title>
         <style type="text/css">
