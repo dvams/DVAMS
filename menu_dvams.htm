@@ -3,11 +3,13 @@
 <head>
      <meta id="view" name="viewport" content="width=device-width, initial-scale=1.0, target-densitydpi=device-dpi">
      <script type="text/javascript">
-         var mvp = document.getElementById('view');
-         var ratio = screen.width / 940;
-	 var targdensdpi = screen.width * 0.4133;
-         if (screen.width >= 940) {mvp.setAttribute('content', 'width=device-width, initial-scale='+ ratio +', target-densitydpi=device-dpi')};
-	 if (screen.width < 940) {mvp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi='+ targdensdpi)};
+	var mvp = document.getElementById('view');
+	var DPR = window.devicePixelRatio;
+	var w = Math.round(DPR * screen.width);
+        var ratio = w / 940;
+	var targdensdpi = (w * DPR * 0.4133);
+        if (w >= 940) {mvp.setAttribute('content', 'width=device-width, initial-scale='+ ratio +', target-densitydpi=device-dpi')};
+	if (w < 940) {mvp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi='+ targdensdpi)};
      </script>
 
      <title>DVAMS Scale Browser</title>
