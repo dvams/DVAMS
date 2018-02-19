@@ -6,7 +6,6 @@
 	    
 	//Check storage for dpi_zoom
         if (typeof (Storage) !== "undefined") { dpi_zoom_current=localStorage.dpi_zoom };
-        alert('stored:' + dpi_zoom_current);
         if (typeof dpi_zoom_current === 'undefined') { dpi_zoom_current = 1 };   
 	    
         var mvp = document.getElementById('view');
