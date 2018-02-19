@@ -26,7 +26,7 @@
         
         //if dpi_zoom passed then save to storage
         if (typeof dpi_zoom === 'undefined') {
-            dpi_zoom = 1;
+            dpi_zoom = dpi_zoom_current;
         } else {
             //Store dpi_zoom value if in URL
             dpi_zoom = dpi_zoom * dpi_zoom_current;
