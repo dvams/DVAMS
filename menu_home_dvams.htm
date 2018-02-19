@@ -3,6 +3,37 @@
 <head>
     <meta id="view" name="viewport" content="width=device-width, target-densitydpi=device-dpi">
     <script type="text/javascript">
+	
+	//This is to manage viewport size scaling and zooming for devices
+        function getRequests() {
+            var s1 = location.search.substring(1, location.search.length).split('&'),
+            r = {}, s2, i;
+            for (i = 0; i < s1.length; i += 1) {
+                s2 = s1[i].split('=');
+                r[decodeURIComponent(s2[0]).toLowerCase()] = decodeURIComponent(s2[1]);
+            }
+            return r;
+        };
+
+        //Check storage for dpi_zoom
+        if (typeof (Storage) !== "undefined") { dpi_zoom_current=localStorage.dpi_zoom };
+        alert('stored:' + dpi_zoom_current);
+        if (typeof dpi_zoom_current === 'undefined') { dpi_zoom_current = 1 };
+
+        //Check URL to see if dpi_zoom has been passed
+        var QueryString = getRequests();
+        var dpi_zoom = QueryString["dpi_zoom"];
+        
+        //if dpi_zoom passed then save to storage
+        if (typeof dpi_zoom === 'undefined') {
+            dpi_zoom = 1;
+        } else {
+            //Store dpi_zoom value if in URL
+            dpi_zoom = dpi_zoom * dpi_zoom_current;
+            if (typeof (Storage) !== "undefined") { localStorage.dpi_zoom = dpi_zoom };
+        };
+        alert('New zoom' + dpi_zoom);
+	    
          var mvp = document.getElementById('view');
 	 var DPR = window.devicePixelRatio;
 	 var w = Math.round(DPR * screen.width);
@@ -348,17 +379,6 @@
         var LangText = String;
         var LangURL = String;
         var LangURLVAR = String;
-
-        function getRequests() {
-
-            var s1 = location.search.substring(1, location.search.length).split('&'),
-            r = {}, s2, i;
-            for (i = 0; i < s1.length; i += 1) {
-                s2 = s1[i].split('=');
-                r[decodeURIComponent(s2[0]).toLowerCase()] = decodeURIComponent(s2[1]);
-            }
-            return r;
-        };
 
         $(document).ready(function () {
             //window.document.getElementById("MainView").height = 1480;
