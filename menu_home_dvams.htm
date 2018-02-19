@@ -372,11 +372,14 @@
             var QueryString = getRequests();
             LangText = QueryString["lang"];
 
-            //Don't make language URL for default
+            //If default then check storage for language setting
             if (typeof LangText === 'undefined') {
+		if (typeof (Storage) !== "undefined") { LangText = localStorage.langtext };
                 LangURL = ''; LangURLVAR = '';
             }
             else {
+		//If language setting altered then save to storage
+		if (typeof (Storage) !== "undefined") { localStorage.langtext = LangText };
                 LangURL = '?lang=' + QueryString["lang"];
                 LangURLVAR = '&lang=' + QueryString["lang"];
             };
