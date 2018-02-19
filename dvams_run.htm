@@ -3,6 +3,11 @@
 <head>
     <meta id="view" name="viewport" content="width=device-width, initial-scale=1.0, target-densitydpi=device-dpi">
     <script type="text/javascript">
+	
+	//Check storage for dpi_zoom
+        if (typeof (Storage) !== "undefined") { dpi_zoom_current=localStorage.dpi_zoom };
+        if (typeof dpi_zoom_current === 'undefined') { dpi_zoom_current = 1 };
+	    
         var mvp = document.getElementById('view');
 	var DPR = window.devicePixelRatio;
 	var w = Math.round(DPR * screen.width);
