@@ -32,7 +32,7 @@
             dpi_zoom = dpi_zoom * dpi_zoom_current;
             if (typeof (Storage) !== "undefined") { localStorage.dpi_zoom = dpi_zoom };
         };
-        alert('New zoom' + dpi_zoom);
+        //alert('New zoom' + dpi_zoom);
 	    
          var mvp = document.getElementById('view');
 	 var DPR = window.devicePixelRatio;
@@ -137,12 +137,10 @@
     };
 
     if ((pw < 1920) && (ph < 1080)) {
-    
         //Create alert message
         var alertmessage = "Your display resolution is "
         + pw + " x " + ph + " (devicePixelRatio: " + DPR + ")" + ".\n\n" + "If this app does not display properly on your device, please contact admin@dvams.org with this information.";
-        alert(alertmessage);
-
+        //alert(alertmessage);
     } else {
         //alert("DISPLAY FINE");
     };
