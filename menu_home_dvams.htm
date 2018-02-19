@@ -38,7 +38,7 @@
 	 var DPR = window.devicePixelRatio;
 	 var w = Math.round(DPR * screen.width);
          var ratio = screen.width / 940;
-	 var targdensdpi = (w * DPR * 0.4133);
+	 var targdensdpi = (w * DPR * 0.4133 * dpi_zoom);
          if (w >= 940) {mvp.setAttribute('content', 'width=device-width, initial-scale='+ ratio +', target-densitydpi=device-dpi')};
 	 if (w < 940) {mvp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi='+ targdensdpi)};
 	 //if (screen.width < 940){alert('screen width-' + screen.width + ' - dpidensity' + pxlratio)};   
@@ -184,11 +184,11 @@
             </div> <br />
 
 		<a href="menu_home_dvams.htm?dpi_zoom=1.05263">
-                <img id="Zoom_in" src="images/zoomin.png" 
+                <img id="zoom_in" src="images/zoom_in.png" 
                     style="width: 40px; margin-left: 12px; height: 40px;" title="Zoom Out"></a>   
 		    
 		<a href="menu_home_dvams.htm?dpi_zoom=0.95">
-                <img id="Zoom_out" src="images/zoomout.png" 
+                <img id="zoom_out" src="images/zoom_out.png" 
                     style="width: 40px; margin-left: 12px; height: 40px;" title="Zoom Out"></a>   
 		    
                 <a target="_blank" href="http://dvams.org/dvams/docs/D-VAMS_user_guide.ed1.pdf">
