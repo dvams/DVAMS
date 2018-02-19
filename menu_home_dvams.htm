@@ -187,11 +187,11 @@
 		    
 		<a href="menu_home_dvams.htm?dpi_zoom=1.0526315789">
                 <img id="zoom_out" src="Images/zoom_out.png" 
-                    style="width: 40px; margin-left: 6px; height: 40px;" title="Zoom Out"></a>   
+                    style="width: 40px; margin-left: 12px; height: 40px;" title="Zoom Out"></a>   
 		    
                 <a target="_blank" href="http://dvams.org/dvams/docs/D-VAMS_user_guide.ed1.pdf">
                 <img id="download_user_guide" src="Images/userguide.ico" 
-                    style="width: 44px; margin-left: 12px; height: 44px;" title="User Guide"></a>  
+                    style="width: 44px; margin-left: 40px; height: 44px;" title="User Guide"></a>  
                                                 
                 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=J8PZ2CEA3FNCU" target="_blank">
                 <img id="paypal" src="Images/btn_donateCC_LG.gif" 
@@ -334,6 +334,10 @@
                 $('#Copyright').css('height', '20px');
 
                 //Increase size of user guide and donate images
+		window.document.getElementById("zoom_out").style.height = '50px';
+                window.document.getElementById("zoom_out").style.width = '50px';
+                window.document.getElementById("zoom_in").style.height = '50px';
+                window.document.getElementById("zoom_in").style.width = '50px';
                 window.document.getElementById("download_user_guide").style.height = '65px';
                 window.document.getElementById("download_user_guide").style.width = '65px';
                 window.document.getElementById("paypal").style.height = '50px';
