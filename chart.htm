@@ -634,9 +634,9 @@
        
         //First create SaveAs dialog
         //Get name
-        //var fname = prompt("Save As:", "DVAMS_result");
+        var XMLfname = prompt("Save As:", "DVAMS_result");
 	//Use phonegap implementation
-	navigator.notification.prompt('Save As', onPrompt, 'Registration', ['Ok','Cancel'],'DVAMS_Result');
+	//navigator.notification.prompt('Save As', onPrompt, 'Registration', ['OK','Cancel'],'DVAMS_Result');
 	    
         if (XMLfname == null || XMLfname == "") {
             return;
