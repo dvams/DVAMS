@@ -641,6 +641,7 @@
         if (XMLfname == null || XMLfname == "") {
             return;
         } 
+	    alert(XMLfname);
 	    
         //Then construct xml for querystring items
         var QueryString = getRequests();
@@ -658,7 +659,7 @@
         sc[6] = QueryString["sc6"];
         sc[7] = QueryString["sc7"];
         var dt = QueryString["datetime"];
-
+	
         //Work out mean
         var sc_mean_7 = (parseFloat((parseInt(sc[1]) + parseInt(sc[2]) + parseInt(sc[3]) + parseInt(sc[4]) + parseInt(sc[5]) + parseInt(sc[6]) + parseInt(sc[7])) / 7)).toFixed(1);
 
@@ -667,7 +668,7 @@
 
         //Assemble XML string
         XMLtext = '<?xml version="1.0"?><dvams_result>';
-        XMLtext = XMLtext + '<name>' + fname + '</name>';
+        XMLtext = XMLtext + '<name>' + XMLfname + '</name>';
         XMLtext = XMLtext + '<dvams_mean>' + sc_mean_7 + '</dvams_mean>';
         XMLtext = XMLtext + '<scale_gender>' + gender + '</scale_gender>';
 
