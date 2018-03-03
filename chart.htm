@@ -626,6 +626,10 @@
         XMLtext = XMLtext + '</dvams_result>';
         alert(XMLtext);
 	    
+	filename ='info.xml';
+	XMLtext = 'blah';
+	alert(XMLtext);
+	    
         //Create download file
         var element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(XMLtext));
@@ -638,8 +642,8 @@
 	//TEST fix
 	//element.download = 'Downloading Results';
         //element.target="_self" ; //required in FF, optional for Chrome
-  
 	//alert('done');
+
     };
 	
     function set_label_lang () {
