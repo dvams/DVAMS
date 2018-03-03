@@ -629,13 +629,13 @@
         //Create download file
         var element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(XMLtext));
-        element.setAttribute('download', filename);
+        element.setAttribute('download', 'test.xml');
         element.style.display = 'none';
         document.body.appendChild(element);
 
 	//TEST fix
-	element.download = 'Downloading Results';
-        element.target="_self" ; //required in FF, optional for Chrome
+	//element.download = 'Downloading Results';
+        //element.target="_self" ; //required in FF, optional for Chrome
   
 	element.click();
         document.body.removeChild(element);
