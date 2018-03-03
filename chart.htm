@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta id="view" name="viewport" content="width=device-width, initial-scale=1.0, target-densitydpi=device-dpi">
@@ -35,7 +35,6 @@
     var dist_sd = 20.5; // Standard deviation for distribution of display
     var bell_filled = '#ffffff'; //Colour for filled part of bell curve
     var bell_unfilled = '#888888'; //Colour for unfilled part of bell curve
-
     //BAR CHART COLOURS
     var style = new Array();
     style[1] = '#33cccc'// Colour for Scale 1
@@ -45,7 +44,6 @@
     style[5] = '#ff8d87'// Colour for Scale 5
     style[6] = '#ff346d'// Colour for Scale 6
     style[7] = '#CC99FF'// Colour for Scale 7
-
     var image1 = new Image();
     var image2 = new Image();
     var image3 = new Image();
@@ -54,7 +52,6 @@
     var image6 = new Image();
     var image7 = new Image();
     var colour_bar = new Image();
-
     //Preload images            
     colour_bar.src = "Images/colour_bar.jpg";
     var QueryString = getRequests();
@@ -82,7 +79,6 @@
     var Scale6T = '';
     var Scale7B = '';
     var Scale7T = '';
-
     var face = QueryString["face"];
     var sResSuffix = "640x480";
     var strDateTime = QueryString["datetime"];
@@ -91,18 +87,15 @@
     //#1
     var iNum = parseInt(sc[1]);
     iNum += 1;
-
     var sNum = iNum.toString();
     sNum = "00" + sNum;
     sNum = (sNum).slice(-3);
     sDir = "1_MS"; prefix = "MSF";
     var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
     image1.src = fname;
-
     //#2
     var iNum = parseInt(sc[2]);
     iNum += 1;
-
     var sNum = iNum.toString();
     sNum = "00" + sNum;
     sNum = (sNum).slice(-3);
@@ -110,11 +103,9 @@
     //var x = 376; var y = 80; imratio = 0.7;
     var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
     image2.src = fname;
-
     //#3
     var iNum = parseInt(sc[3]);
     iNum += 1;
-
     var sNum = iNum.toString();
     sNum = "00" + sNum;
     sNum = (sNum).slice(-3);
@@ -122,11 +113,9 @@
     //var x = 376; var y = 80; imratio = 0.7;
     var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
     image3.src = fname;
-
     //#4
     var iNum = parseInt(sc[4]);
     iNum += 1;
-
     var sNum = iNum.toString();
     sNum = "00" + sNum;
     sNum = (sNum).slice(-3);
@@ -134,11 +123,9 @@
     //var x = 376; var y = 80; imratio = 0.7;
     var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
     image4.src = fname;
-
     //#5
     var iNum = parseInt(sc[5]);
     iNum += 1;
-
     var sNum = iNum.toString();
     sNum = "00" + sNum;
     sNum = (sNum).slice(-3);
@@ -146,11 +133,9 @@
     //var x = 376; var y = 80; imratio = 0.7;
     var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
     image5.src = fname;
-
     //#6
     var iNum = parseInt(sc[6]);
     iNum += 1;
-
     var sNum = iNum.toString();
     sNum = "00" + sNum;
     sNum = (sNum).slice(-3);
@@ -158,11 +143,9 @@
     //var x = 376; var y = 80; imratio = 0.7;
     var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
     image6.src = fname;
-
     //#7
     var iNum = parseInt(sc[7]);
     iNum = 101 - iNum;
-
     var sNum = iNum.toString();
     sNum = "00" + sNum;
     sNum = (sNum).slice(-3);
@@ -170,7 +153,6 @@
     //var x = 376; var y = 80; imratio = 0.7;
     var fname = "Images/DVAMS/" + sDir + face + "/" + sResSuffix + "/" + face + prefix + sNum + ".jpg";
     image7.src = fname;
-
     // *** Onload - Call Draw_page routine
     window.onload = function () {
         draw_page(1, 0);
@@ -178,7 +160,6 @@
         //home_button
         //home_button.action = "menu_home_dvams.htm" + LangURL;
     }
-
     //Retrieve values from URL string
     function getRequests() {
         var s1 = location.search.substring(1, location.search.length).split('&'),
@@ -189,7 +170,6 @@
         }
         return r;
     };
-
     //Draw page - plotmode now deprecated
     function draw_page(facemode, plotmode) {
     
@@ -197,23 +177,18 @@
         function toDegrees(angle) {
             return angle * (180 / Math.PI);
         }
-
         //Convert from degrees to radians
         function toRadians(angle) {
             return angle * (Math.PI / 180);
         }
-
         //*** TEST FOR DIMENSIONS AND USE LARGER FONTS/BUTTONS/LABELS AND PHONE ASPECT RATIO (1.777 AND ABOVE) 
-
         //First calculate aspect ratio
         var width = window.innerWidth;
         var height = window.innerHeight;
         var aspect_ratio = height / width;
         var MinTableHeight = 1320// 1320 to enforce mininum aspect
         var MinCanvasHeight = 1215// 1215 to enforce mininum aspect
-
         //Next canvas height - 1171 for 1.6 aspect, 1333 for 1.777 aspect
-
         //Set canvas size, subtract out height of elements around canvas for scaling
         var CanvasHeight = Math.round(((884 * aspect_ratio) - 200), 1);
         if (CanvasHeight < MinCanvasHeight) { CanvasHeight = MinCanvasHeight }; //Minimum canvas height
@@ -225,7 +200,6 @@
         
         // Modify table dimensions and font size for typical phone aspect ratio (> 1.7)
         if (aspect_ratio >= 1.7) {
-
             //Change table height & canvas for tablet aspect ratio [1564 for 1.777 aspect, ]
             //var table_height = (aspect_ratio * 824);
             var table_height = (aspect_ratio * 900); // Now 
@@ -233,18 +207,15 @@
             
             if (MainTrafficBars_y < 580) { MainTrafficBars_y = 580 };
             window.document.getElementById("MainView").style.height = table_height + 'px';
-
             //Font sizes
             //D-VAMS Score text
             var DVAMS_score_text_font = "bold 46px Arial";
             var DVAMS_score_text_x = 562;
             var DVAMS_score_text_y = 82;
-
             //Timestamp text
             var timestamp_text_font = "bold 20px Arial";
             var timestamp_text_x = 39;
             var timestamp_text_y = 68;
-
             //Scale and percentile labels
             var scale_label_font = "bold 34px Arial";
             var percentile_value_font = "bold 28px Arial";
@@ -252,44 +223,36 @@
             var percentile_label_font_x = 60;
             var percentile_label_font_yoffset = 34;
             var percentile_mean_SD_font = "bold 26px Arial";
-
             //Bar chart label font size, location and spacing
             var barchart_label_font = "bold 28px Arial";
             var barchart_score_font = "bold 26px Arial";
             var barchart_y = 144;
             var barchart_spacing_y = 28;
-
             //Resize Home Menu and Save As buttons/images
             window.document.getElementById("cmdSubmit").style.height = '104px';
             window.document.getElementById("cmdSubmit").style.width = '152px';
             window.document.getElementById("SaveAs").style.height = '104px';
             window.document.getElementById("SaveAs").style.width = '152px';
-
             window.document.getElementById("HomeButton").style.height = '104px';
             window.document.getElementById("HomeButton").style.width = '152px';
             window.document.getElementById("SaveImage").style.height = '104px';
             window.document.getElementById("SaveImage").style.width = '152px';
    
         } else {
-
             //Change table height & canvas for tablet aspect ratio [1320 for 1.6 aspect, ]
             //var table_height = (aspect_ratio * 824);
             var table_height = (aspect_ratio * 900)-64; // Now 13??
             if (table_height < MinTableHeight) { table_height = MinTableHeight }; //Minimum table height
-
             window.document.getElementById("MainView").style.height = table_height + 'px';
-
             //Font sizes 
             //D-VAMS Score text
             var DVAMS_score_text_font = "bold 38px Arial";
             var DVAMS_score_text_x = 616;
             var DVAMS_score_text_y = 72;
-
             //Timestamp text
             var timestamp_text_font = "bold 16px Arial";
             var timestamp_text_x = 39;
             var timestamp_text_y = 60;
-
             //Scale and percentile labels
             var scale_label_font = "bold 28px Arial";
             var percentile_value_font = "bold 22px Arial";
@@ -297,34 +260,26 @@
             var percentile_label_font_x = 84; //same as bcx
             var percentile_label_font_yoffset = 28;
             var percentile_mean_SD_font = "bold 20px Arial";
-
             //Bar chart label font size, location and spacing
             var barchart_label_font = "bold 24px Arial";
             var barchart_score_font = "bold 22px Arial";
             var barchart_y = 124;
             var barchart_spacing_y = 24;
-
         };
         
         var canvas = document.getElementById('myCanvas');
         var context = canvas.getContext('2d');
         context.clearRect(0, 0, canvas.width, canvas.height);
-
         var centerX = canvas.width / 2;
         var centerY = 450;
-
         //Read in parameters
         var QueryString = getRequests();
-
         //Set reference lines
         var ratio = 4;
         var refline_len = ratio * 100;
-
         //Get face: 1 = #1(F); 2 = #2(M)
         var face = QueryString["face"];
-
         if (plotmode == 0) { mode = 0; } else {mode = 1;};
-
         // Get scale scores 1-7
         var sc = new Array();
         sc[1] = QueryString["sc1"];
@@ -334,22 +289,17 @@
         sc[5] = QueryString["sc5"];
         sc[6] = QueryString["sc6"];
         sc[7] = QueryString["sc7"];
-
         //Get mean of 7 scales
         var sc_mean_7 = parseFloat((parseInt(sc[1]) + parseInt(sc[2]) + parseInt(sc[3]) + parseInt(sc[4]) + parseInt(sc[5]) + parseInt(sc[6]) + parseInt(sc[7])) / 7);
-
         //+++ Calculate Y-coordinate for Rows of faces +++
         var Row1_y = (aspect_ratio * 75);
         var Row2_y = (aspect_ratio * 75) + 224;
-
         //+++ Calculate Y-coordinate for bars and captions +++
         //Use offset based on preceding block with images (images are not stretched, here)
         var MainTrafficBars_y = Math.round(Row2_y + 258 +(40 * aspect_ratio), 1) 
         if (MainTrafficBars_y < 580) { MainTrafficBars_y = 580 }; // Set minimum 
-
         //+++ Call language module to populate scale labels +++
         set_label_lang();
-
         //Now draw faces and traffic bars. Display preloaded images
         //Loop 1 to 7 and get image name from index
         for (i = 1; i < 8; i++) {
@@ -357,10 +307,8 @@
             //Offsets for text alignment
             var xoffset = 184;
             var xoffset2 = 734;
-
             //Space between bars
             var barinterval_y = Math.round((i-1) * (40 + (140 * (aspect_ratio - 1.6))), 1);
-
             //+++ Calculate Y-coordinate for each increment (default 40) +++
             var yoffset = (MainTrafficBars_y) + barinterval_y;  //*** Placement of traffic light bars - text
             
@@ -368,13 +316,11 @@
             context.strokeStyle = '#ffffff';
             context.lineWidth = 4;
             context.setLineDash([3, 5]);
-
             context.beginPath();
             // 290 length 
             context.moveTo(x_centre, MainTrafficBars_y - 30);
             context.lineTo(x_centre, (MainTrafficBars_y - 30) + (barinterval_y +50));
             context.stroke();
-
             //+++ Traffic light bars +++
             x = 210; var y = (MainTrafficBars_y - 20) + barinterval_y; //*** Placement of traffic light bars 
             var x_centre = x + 250;
@@ -385,7 +331,6 @@
             context.drawImage(colour_bar, x, y - barlayer, 500, 26 + (2 *barlayer));
             context.fillStyle = '#404040';
             var score_adj = sc[i];
-
             //Grey out ends according to adjusted scores
             var rectw = score_adj * 5;
             if (score_adj <= 50) {
@@ -393,13 +338,11 @@
                 context.fillRect(x, y - barlayer, rectw, 26 + (2 * barlayer));
                 context.fillRect(x_centre, y - barlayer, 250, 26 + (2 * barlayer));
             };
-
             if (score_adj >= 50) {
                 var rectw = (score_adj-50) * 5;
                 context.fillRect(x_centre + rectw, y - barlayer, (250 - rectw), 26 + (2 * barlayer));
                 context.fillRect(x, y - barlayer, 250, 26 + (2 * barlayer));
             };
-
             //Set font
             context.fillStyle = "white";
             //context.font = "bold 26px Arial";
@@ -407,7 +350,6 @@
                
             //Draw faces and labels for traffic light bars
             switch (i) {
-
                 case 1:
                     var x = 40; imratio = 1.4;
                     context.drawImage(image1, x, Row1_y, (240 * imratio), (320 * imratio));
@@ -466,17 +408,15 @@
                     break;
                 }
         };
-
         //Display timestamp
         context.fillStyle = "white";
         context.font = timestamp_text_font;
         var caption = 'Display';
         if (face == 1) { var gender = 'F' } else { var gender = 'M' };
-           
+            
         var now = new Date();
         var text = caption + ': ' + gender + ' ' + strDateTime;
         context.fillText(text, timestamp_text_x, timestamp_text_y);
-
         //Set y for bell curve and scores based on aspect ratio
         //Display Results 
         var lx = 460;
@@ -484,14 +424,12 @@
         var rx = 490;
         var rx2 = 710;
         var ry = 1016
-
         //Clearance from canvas bottom
         var bcy = canvas.height -54
                                     
         context.fillStyle = "white";
         //context.font = "bold 24px Arial";
         context.font = barchart_label_font;
-
         var text = ("Scale Scores");
         //context.fillText(text, lx, 998);
         //context.fillText(text, lx, bcy - 130);
@@ -499,7 +437,6 @@
     
         //+++ Draw Scale Scores with coloured bars +++
         for (i = 1; i < 8; i++) {
-
             switch (i) {
                 case 1:
                     var scn = "Mis – Sat";
@@ -528,32 +465,26 @@
             context.beginPath();
             context.fillStyle = "white";
             context.font = barchart_score_font;
-
             //Display scale label
             var text = (scn + ": " + scr);
             context.fillText(scn, lx, bcy - barchart_y + (i * barchart_spacing_y)); 
             context.stroke();
-
             //Display score
             var text = (scr);
             context.fillText(text, lx + 140, bcy - barchart_y + (i * barchart_spacing_y));
             context.stroke();
-
             context.beginPath();
             context.setLineDash([0]);
-
             //Draw bars for scores
             context.rect(lx2, bcy - (barchart_y +10) + (i * barchart_spacing_y), scr * 2, 10); 
             context.fillStyle = style[i];
             context.lineWidth = 1;
             context.fill();
-
             context.beginPath();
             context.rect(lx2 + (scr * 2), bcy - (barchart_y + 10) + (i * barchart_spacing_y), 200 - (scr * 2), 10);
             context.fillStyle = "#222222";
             context.lineWidth = 1;
             context.fill();
-
             context.strokeStyle = '#222222';
             context.stroke();
         };
@@ -564,14 +495,12 @@
         context.font = DVAMS_score_text_font;
         context.fillText(text, DVAMS_score_text_x,DVAMS_score_text_y);
         context.stroke();
-
         //+++ Draw bell curve chart +++
         //We need to express the mean value on bell curve based on 
         //SD and mean for our sample: Default from validation study sample (n=46)
         //Set coordinates and length of curve display
         var bcx = 84
         var xlen = 280
-
         //Display vertical marker for score
         context.strokeStyle = '#cccccc';
         context.lineWidth = 2;
@@ -580,24 +509,19 @@
         context.moveTo(bcx + (sc_mean_7 * (xlen / 100)), bcy);
         context.lineTo(bcx + (sc_mean_7 * (xlen / 100)), bcy - 144);
         context.stroke();
-
         //Set the distribution and calculate percentage below x (D-VAMS mean)
         var distribution = gaussian(dist_mean, dist_sd * dist_sd);
         var perc = distribution.cdf(sc_mean_7)*100;
-
         //Loop to draw distribution  intervals of 0.25
         for (i = 0; i <= 100; i += 0.25) {
-
-	    //context.beginPath();
-	    context.lineWidth = 2;
+		    //context.beginPath();
+		    context.lineWidth = 2;
             context.setLineDash([]);
-
             if (i >= sc_mean_7) {
                     context.strokeStyle = bell_unfilled
             }  else  {
                     context.strokeStyle = bell_filled;
             }
-
             var prob = distribution.pdf(i);
             context.beginPath();
             context.moveTo(bcx + (i * (xlen / 100)), bcy);
@@ -605,9 +529,7 @@
             context.stroke();
         }
         //End of bell curve code
-
         context.fillStyle = "white";
-
         //Display percentage info on bell curve
         context.font = percentile_value_font;
         var text = (perc.toFixed(1) + '%');
@@ -616,38 +538,25 @@
         context.font = percentile_label_font;
         var text = ("Percentile");
         context.fillText(text, percentile_label_font_x, bcy + percentile_label_font_yoffset);
-
         context.font = percentile_mean_SD_font;
         var text = ("(x̅:" + dist_mean + "; σ:" + dist_sd + ")");
         context.fillText(text, bcx + 120, bcy + percentile_label_font_yoffset); 
         context.stroke();
     };
-
-    function onPrompt(results) {
-        alert("You selected button number " + results.buttonIndex + " and entered " + results.input1);
-	XMLfname=results.input1;
-    } 
-	
     //Save XML to filename specified by user
     function savebutton_click() {
        
         //First create SaveAs dialog
         //Get name
         var fname = prompt("Save As:", "DVAMS_result");
-	//Use phonegap implementation
-	//navigator.notification.prompt('Save As', onPrompt, 'Registration', ['OK','Cancel'],'DVAMS_Result');
-	    
         if (fname == null || fname == "") {
             return;
         } 
-	alert(fname);
-	    
         //Then construct xml for querystring items
         var QueryString = getRequests();
         var XMLtext = String;
         var face = QueryString["face"];
         if (face == 1) { var gender = '♀' } else { var gender = '♂' };
-
         // Get scale scores 1-7
         var sc = new Array();
         sc[1] = QueryString["sc1"];
@@ -658,44 +567,34 @@
         sc[6] = QueryString["sc6"];
         sc[7] = QueryString["sc7"];
         var dt = QueryString["datetime"];
-	
         //Work out mean
         var sc_mean_7 = (parseFloat((parseInt(sc[1]) + parseInt(sc[2]) + parseInt(sc[3]) + parseInt(sc[4]) + parseInt(sc[5]) + parseInt(sc[6]) + parseInt(sc[7])) / 7)).toFixed(1);
-
         //Name file
-        var filename = fname + '.xml';
-        alert(filename);
-	    
+        filename = fname + '.xml';
         //Assemble XML string
         XMLtext = '<?xml version="1.0"?><dvams_result>';
         XMLtext = XMLtext + '<name>' + fname + '</name>';
         XMLtext = XMLtext + '<dvams_mean>' + sc_mean_7 + '</dvams_mean>';
         XMLtext = XMLtext + '<scale_gender>' + gender + '</scale_gender>';
-
         for (i = 1; i < 8; i++) {
             XMLtext = XMLtext + '<scale' + i + '>' + sc[i] + '</scale' + i + '>';
         }
         XMLtext = XMLtext + '<datetime>' + dt + '</datetime>';
         XMLtext = XMLtext + '</dvams_result>';
         //alert(XMLtext);
-
         //Create download file
         var element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(XMLtext));
         element.setAttribute('download', filename);
-
         element.style.display = 'none';
         document.body.appendChild(element);
         element.click();
         document.body.removeChild(element);
-	
     };
-
     function set_label_lang () {
         var QueryString = getRequests();
         var LangText = QueryString["lang"];
         var Scale = QueryString["scale"];
-
         //Don't make language URL for default
         if (typeof LangText === 'undefined') {
             LangURL = ''; 
@@ -703,11 +602,8 @@
         else {
             LangURL = '?lang=' + QueryString["lang"];
         };
-
         //TODO - ADD LangURL to form return URL ('menu_home_dvams.htm')
-
         var LangID;
-
         switch (LangText) {
             case 'eng': LangID = 1;
                 break;
@@ -747,7 +643,6 @@
                 break;
             default: LangID = 1;
         };
-
         switch (LangID) {
             case 1: Scale1B = "Miserable"; Scale1T = "Satisfied";
                 Scale2B = "Sad"; Scale2T = "Happy";
@@ -895,7 +790,6 @@
                 break;
         };
     };
-
 </script>
 
     <body style="background-color: #000000; font-size: 26px; font-family: Arial, Helvetica, sans-serif; color: #FFFFFF; height: 218px;">
