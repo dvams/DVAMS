@@ -53,6 +53,7 @@
     var image6 = new Image();
     var image7 = new Image();
     var colour_bar = new Image();
+	
     //Preload images            
     colour_bar.src = "Images/colour_bar.jpg";
     var QueryString = getRequests();
@@ -579,7 +580,7 @@
        
         //First create SaveAs dialog
         //Get name
-        var fname = prompt("Save As:", "DVAMS_result");
+	var fname = prompt("Save As:", "DVAMS_result");
         if (fname == null || fname == "") {
             return;
         } 
@@ -624,11 +625,13 @@
         //Create download file
         var element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(XMLtext));
-        element.setAttribute('download', filename);
+        element.setAttribute('download', fname + 'xml');
         element.style.display = 'none';
         document.body.appendChild(element);
         element.click();
         document.body.removeChild(element);
+	    
+	alert('done');
     };
 	
     function set_label_lang () {
