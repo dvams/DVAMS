@@ -210,6 +210,7 @@
             
             if (MainTrafficBars_y < 580) { MainTrafficBars_y = 580 };
             window.document.getElementById("MainView").style.height = table_height + 'px';
+		
             //Font sizes
             //D-VAMS Score text
             var DVAMS_score_text_font = "bold 46px Arial";
@@ -327,6 +328,7 @@
             //Offsets for text alignment
             var xoffset = 184;
             var xoffset2 = 734;
+		
             //Space between bars
             var barinterval_y = Math.round((i-1) * (40 + (140 * (aspect_ratio - 1.6))), 1);
             //+++ Calculate Y-coordinate for each increment (default 40) +++
@@ -368,6 +370,7 @@
             };
             //Set font
             context.fillStyle = "white";
+		
             //context.font = "bold 26px Arial";
             context.font = scale_label_font;
                
@@ -440,6 +443,7 @@
         var now = new Date();
         var text = caption + ': ' + gender + ' ' + strDateTime;
         context.fillText(text, timestamp_text_x, timestamp_text_y);
+	    
         //Set y for bell curve and scores based on aspect ratio
         //Display Results 
         var lx = 460;
@@ -447,6 +451,7 @@
         var rx = 490;
         var rx2 = 710;
         var ry = 1016
+	
         //Clearance from canvas bottom
         var bcy = canvas.height -54
                                     
@@ -583,8 +588,7 @@
 	var fname = prompt("Save As:", "DVAMS_result");
         if (fname == null || fname == "") {
             return;
-        } 
-	
+        } 	
 	    
         //Then construct xml for querystring items
         var QueryString = getRequests();
@@ -628,7 +632,12 @@
         element.setAttribute('download', filename);
         element.style.display = 'none';
         document.body.appendChild(element);
-        element.click();
+
+	//TEST fix
+	element.download = 'Downloading Results';
+        element.target="_self" ; //required in FF, optional for Chrome
+  
+	element.click();
         document.body.removeChild(element);
 	    
 	//alert('done');
