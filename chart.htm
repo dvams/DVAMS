@@ -35,6 +35,7 @@
     var dist_sd = 20.5; // Standard deviation for distribution of display
     var bell_filled = '#ffffff'; //Colour for filled part of bell curve
     var bell_unfilled = '#888888'; //Colour for unfilled part of bell curve
+	
     //BAR CHART COLOURS
     var style = new Array();
     style[1] = '#33cccc'// Colour for Scale 1
@@ -188,6 +189,7 @@
         var aspect_ratio = height / width;
         var MinTableHeight = 1320// 1320 to enforce mininum aspect
         var MinCanvasHeight = 1215// 1215 to enforce mininum aspect
+	
         //Next canvas height - 1171 for 1.6 aspect, 1333 for 1.777 aspect
         //Set canvas size, subtract out height of elements around canvas for scaling
         var CanvasHeight = Math.round(((884 * aspect_ratio) - 200), 1);
@@ -212,10 +214,12 @@
             var DVAMS_score_text_font = "bold 46px Arial";
             var DVAMS_score_text_x = 562;
             var DVAMS_score_text_y = 82;
+		
             //Timestamp text
             var timestamp_text_font = "bold 20px Arial";
             var timestamp_text_x = 39;
             var timestamp_text_y = 68;
+		
             //Scale and percentile labels
             var scale_label_font = "bold 34px Arial";
             var percentile_value_font = "bold 28px Arial";
@@ -223,11 +227,13 @@
             var percentile_label_font_x = 60;
             var percentile_label_font_yoffset = 34;
             var percentile_mean_SD_font = "bold 26px Arial";
+		
             //Bar chart label font size, location and spacing
             var barchart_label_font = "bold 28px Arial";
             var barchart_score_font = "bold 26px Arial";
             var barchart_y = 144;
             var barchart_spacing_y = 28;
+		
             //Resize Home Menu and Save As buttons/images
             window.document.getElementById("cmdSubmit").style.height = '104px';
             window.document.getElementById("cmdSubmit").style.width = '152px';
@@ -244,15 +250,18 @@
             var table_height = (aspect_ratio * 900)-64; // Now 13??
             if (table_height < MinTableHeight) { table_height = MinTableHeight }; //Minimum table height
             window.document.getElementById("MainView").style.height = table_height + 'px';
+		
             //Font sizes 
             //D-VAMS Score text
             var DVAMS_score_text_font = "bold 38px Arial";
             var DVAMS_score_text_x = 616;
             var DVAMS_score_text_y = 72;
+		
             //Timestamp text
             var timestamp_text_font = "bold 16px Arial";
             var timestamp_text_x = 39;
             var timestamp_text_y = 60;
+		
             //Scale and percentile labels
             var scale_label_font = "bold 28px Arial";
             var percentile_value_font = "bold 22px Arial";
@@ -260,6 +269,7 @@
             var percentile_label_font_x = 84; //same as bcx
             var percentile_label_font_yoffset = 28;
             var percentile_mean_SD_font = "bold 20px Arial";
+		
             //Bar chart label font size, location and spacing
             var barchart_label_font = "bold 24px Arial";
             var barchart_score_font = "bold 22px Arial";
@@ -272,14 +282,18 @@
         context.clearRect(0, 0, canvas.width, canvas.height);
         var centerX = canvas.width / 2;
         var centerY = 450;
+	    
         //Read in parameters
         var QueryString = getRequests();
+	    
         //Set reference lines
         var ratio = 4;
         var refline_len = ratio * 100;
+	    
         //Get face: 1 = #1(F); 2 = #2(M)
         var face = QueryString["face"];
         if (plotmode == 0) { mode = 0; } else {mode = 1;};
+	    
         // Get scale scores 1-7
         var sc = new Array();
         sc[1] = QueryString["sc1"];
@@ -289,17 +303,22 @@
         sc[5] = QueryString["sc5"];
         sc[6] = QueryString["sc6"];
         sc[7] = QueryString["sc7"];
+	    
         //Get mean of 7 scales
         var sc_mean_7 = parseFloat((parseInt(sc[1]) + parseInt(sc[2]) + parseInt(sc[3]) + parseInt(sc[4]) + parseInt(sc[5]) + parseInt(sc[6]) + parseInt(sc[7])) / 7);
-        //+++ Calculate Y-coordinate for Rows of faces +++
+        
+	//+++ Calculate Y-coordinate for Rows of faces +++
         var Row1_y = (aspect_ratio * 75);
         var Row2_y = (aspect_ratio * 75) + 224;
+	    
         //+++ Calculate Y-coordinate for bars and captions +++
         //Use offset based on preceding block with images (images are not stretched, here)
         var MainTrafficBars_y = Math.round(Row2_y + 258 +(40 * aspect_ratio), 1) 
         if (MainTrafficBars_y < 580) { MainTrafficBars_y = 580 }; // Set minimum 
+	    
         //+++ Call language module to populate scale labels +++
         set_label_lang();
+	    
         //Now draw faces and traffic bars. Display preloaded images
         //Loop 1 to 7 and get image name from index
         for (i = 1; i < 8; i++) {
@@ -317,10 +336,12 @@
             context.lineWidth = 4;
             context.setLineDash([3, 5]);
             context.beginPath();
+		
             // 290 length 
             context.moveTo(x_centre, MainTrafficBars_y - 30);
             context.lineTo(x_centre, (MainTrafficBars_y - 30) + (barinterval_y +50));
             context.stroke();
+		
             //+++ Traffic light bars +++
             x = 210; var y = (MainTrafficBars_y - 20) + barinterval_y; //*** Placement of traffic light bars 
             var x_centre = x + 250;
@@ -331,6 +352,7 @@
             context.drawImage(colour_bar, x, y - barlayer, 500, 26 + (2 *barlayer));
             context.fillStyle = '#404040';
             var score_adj = sc[i];
+		
             //Grey out ends according to adjusted scores
             var rectw = score_adj * 5;
             if (score_adj <= 50) {
@@ -465,16 +487,19 @@
             context.beginPath();
             context.fillStyle = "white";
             context.font = barchart_score_font;
+		
             //Display scale label
             var text = (scn + ": " + scr);
             context.fillText(scn, lx, bcy - barchart_y + (i * barchart_spacing_y)); 
             context.stroke();
+		
             //Display score
             var text = (scr);
             context.fillText(text, lx + 140, bcy - barchart_y + (i * barchart_spacing_y));
             context.stroke();
             context.beginPath();
             context.setLineDash([0]);
+		
             //Draw bars for scores
             context.rect(lx2, bcy - (barchart_y +10) + (i * barchart_spacing_y), scr * 2, 10); 
             context.fillStyle = style[i];
@@ -495,12 +520,14 @@
         context.font = DVAMS_score_text_font;
         context.fillText(text, DVAMS_score_text_x,DVAMS_score_text_y);
         context.stroke();
+	    
         //+++ Draw bell curve chart +++
         //We need to express the mean value on bell curve based on 
         //SD and mean for our sample: Default from validation study sample (n=46)
         //Set coordinates and length of curve display
         var bcx = 84
         var xlen = 280
+	
         //Display vertical marker for score
         context.strokeStyle = '#cccccc';
         context.lineWidth = 2;
@@ -509,6 +536,7 @@
         context.moveTo(bcx + (sc_mean_7 * (xlen / 100)), bcy);
         context.lineTo(bcx + (sc_mean_7 * (xlen / 100)), bcy - 144);
         context.stroke();
+	    
         //Set the distribution and calculate percentage below x (D-VAMS mean)
         var distribution = gaussian(dist_mean, dist_sd * dist_sd);
         var perc = distribution.cdf(sc_mean_7)*100;
@@ -528,8 +556,10 @@
             context.lineTo(bcx + (i * (xlen / 100)), bcy - (prob * 7000));
             context.stroke();
         }
+	    
         //End of bell curve code
         context.fillStyle = "white";
+	    
         //Display percentage info on bell curve
         context.font = percentile_value_font;
         var text = (perc.toFixed(1) + '%');
@@ -543,6 +573,7 @@
         context.fillText(text, bcx + 120, bcy + percentile_label_font_yoffset); 
         context.stroke();
     };
+	
     //Save XML to filename specified by user
     function savebutton_click() {
        
@@ -552,12 +583,15 @@
         if (fname == null || fname == "") {
             return;
         } 
+	
+	    
         //Then construct xml for querystring items
         var QueryString = getRequests();
         var XMLtext = String;
         var face = QueryString["face"];
-        if (face == 1) { var gender = '♀' } else { var gender = '♂' };
-        // Get scale scores 1-7
+        if (face == 1) { var gender = 'F' } else { var gender = 'M' };
+        
+	// Get scale scores 1-7
         var sc = new Array();
         sc[1] = QueryString["sc1"];
         sc[2] = QueryString["sc2"];
@@ -567,10 +601,14 @@
         sc[6] = QueryString["sc6"];
         sc[7] = QueryString["sc7"];
         var dt = QueryString["datetime"];
+	    
         //Work out mean
         var sc_mean_7 = (parseFloat((parseInt(sc[1]) + parseInt(sc[2]) + parseInt(sc[3]) + parseInt(sc[4]) + parseInt(sc[5]) + parseInt(sc[6]) + parseInt(sc[7])) / 7)).toFixed(1);
-        //Name file
+        
+	//Name file
         filename = fname + '.xml';
+	alert(filename);
+	    
         //Assemble XML string
         XMLtext = '<?xml version="1.0"?><dvams_result>';
         XMLtext = XMLtext + '<name>' + fname + '</name>';
@@ -581,7 +619,8 @@
         }
         XMLtext = XMLtext + '<datetime>' + dt + '</datetime>';
         XMLtext = XMLtext + '</dvams_result>';
-        //alert(XMLtext);
+        alert(XMLtext);
+	    
         //Create download file
         var element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(XMLtext));
@@ -591,6 +630,7 @@
         element.click();
         document.body.removeChild(element);
     };
+	
     function set_label_lang () {
         var QueryString = getRequests();
         var LangText = QueryString["lang"];
@@ -643,6 +683,7 @@
                 break;
             default: LangID = 1;
         };
+	    
         switch (LangID) {
             case 1: Scale1B = "Miserable"; Scale1T = "Satisfied";
                 Scale2B = "Sad"; Scale2T = "Happy";
