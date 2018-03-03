@@ -473,10 +473,10 @@
         context.fillStyle = "white";
         context.font = timestamp_text_font;
         var caption = 'Display';
-        if (face == 1) { var gender = '♀' } else { var gender = '♂' };
+        if (face == 1) { var gender = 'F' } else { var gender = 'M' };
             
         var now = new Date();
-        var text = caption + ': #' + gender + '/' + strDateTime;
+        var text = caption + ': ' + gender + ' ' + strDateTime;
         context.fillText(text, timestamp_text_x, timestamp_text_y);
 
         //Set y for bell curve and scores based on aspect ratio
