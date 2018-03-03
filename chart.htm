@@ -260,9 +260,16 @@
             var barchart_y = 144;
             var barchart_spacing_y = 28;
 
-            //Resize home menu button 
+            //Resize Home Menu and Save As buttons/images
+            window.document.getElementById("cmdSubmit").style.height = '104px';
+            window.document.getElementById("cmdSubmit").style.width = '152px';
+            window.document.getElementById("SaveAs").style.height = '104px';
+            window.document.getElementById("SaveAs").style.width = '152px';
+
             window.document.getElementById("HomeButton").style.height = '104px';
             window.document.getElementById("HomeButton").style.width = '152px';
+            window.document.getElementById("SaveImage").style.height = '104px';
+            window.document.getElementById("SaveImage").style.width = '152px';
    
         } else {
 
@@ -466,7 +473,7 @@
         context.fillStyle = "white";
         context.font = timestamp_text_font;
         var caption = 'Display';
-        if (face == 1) { var gender = 'F' } else { var gender = 'M' };
+        if (face == 1) { var gender = '♀' } else { var gender = '♂' };
             
         var now = new Date();
         var text = caption + ': #' + gender + '/' + strDateTime;
@@ -727,10 +734,10 @@
                 Scale6B = "En colère"; Scale6T = "Pacifique";
                 Scale7B = "Somnolent"; Scale7T = "Alerte";
                 break;
-            case 3: Scale1B = "Miserabele"; Scale1T = "Tevreden";
+            case 3: Scale1B = "Miserabel"; Scale1T = "Tevreden";
                 Scale2B = "Triest"; Scale2T = "Gelukkig";
                 Scale3B = "Overstuur"; Scale3T = "Rustig";
-                Scale4B = "Vervelen"; Scale4T = "Enthousiast";
+                Scale4B = "Verveeld"; Scale4T = "Enthousiast";
                 Scale5B = "Bang"; Scale5T = "Kalm";
                 Scale6B = "Boos"; Scale6T = "Rustig";
                 Scale7B = "Slaperig"; Scale7T = "Wakker";
@@ -874,22 +881,22 @@
 
         <button type="submit" id="cmdSubmit" name ="return" value="1"
             style ="border-style: none; border-color: inherit; border-width: medium; 
-            background-color:transparent; width: 114px; height: 96px; vertical-align: bottom;" 
+            background-color:transparent; width: 130px; height: 96px; vertical-align: bottom;" 
             title="Home Menu">
         <img id="HomeButton" src="Images/home_icon_gy2.jpg" alt="Main Menu"
-        style="width: 128px; height: 94px;"onclick="window.location='menu_home_dvams.htm'+ LangURL;">
+        style="width: 128px; height: 94px;"onclick="window.location='menu_home_dvams.htm'+ LangURL;"/>
         </button>
-                
-        <button type="button" id="btnFace" value="1"  style="border-style: none; border-color: inherit; border-width: medium; 
-            background-color:transparent; width: 114px; height: 96px;" title="Statistics" 
-                onclick="facebutton_click();" hidden="hidden" >
-        <img id="btnImageFace" src="Images/chart_on.jpg" alt="Main Menu"
-            style="width: 112px; height: 94px;">
+        
+        <button type="button" id="SaveAs" value="1"  
+            style="border-style: none; border-color: inherit; border-width: medium; 
+            background-color:transparent; width: 130px; height: 96px; vertical-align: bottom;" title="Save">
+        <img id="SaveImage" src="Images/save_icon.jpg" alt="Save"
+        style="width: 128px; height: 94px;" onclick="savebutton_click();"/>
         </button>
         
     </td>
     <td style="color: #CCCCCC; font-family: Arial, Helvetica, sans-serif; font-size: small; vertical-align: bottom; text-align: right; padding-bottom: 20px; padding-right: 32px;">    
-    Dynamic Visual Analogue Mood Scales (D-VAMS)/'Emotiscope' Copyright © 2013 Paul Barrows
+    Dynamic Visual Analogue Mood Scales (D-VAMS) Copyright © 2013 Paul Barrows
     <img id="ce_mark" src="Images/CE-MARK-White.png" style="width: 46px; margin-left: 12px; height: 34px;" title="Compliance Certificate">
     </td>
     </tr>
