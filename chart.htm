@@ -625,39 +625,62 @@
         context.stroke();
     };
 
-    function facebutton_click() {
+    //Save XML to filename specified by user
+    function savebutton_click() {
+       
+        //First create SaveAs dialog
+        //Get name
+        var fname = prompt("Save As:", "DVAMS_result");
+        if (fname == null || fname == "") {
+            return;
+        } 
 
-        //Get values
-        var butnFval = document.getElementById('btnFace').value;
+        //Then construct xml for querystring items
+        var QueryString = getRequests();
+        var XMLtext = String;
+        var face = QueryString["face"];
+        if (face == 1) { var gender = '♀' } else { var gender = '♂' };
 
-        //Switch value and image of button for redraw as required
-        if (butnFval == '0') { document.getElementById('btnFace').value = '1'; } else { document.getElementById('btnFace').value = '0'; };
-        if (butnFval == '0') { document.getElementById('btnFace').title = 'Statistics'; } else { document.getElementById('btnFace').title = 'Face Mode';         };
+        // Get scale scores 1-7
+        var sc = new Array();
+        sc[1] = QueryString["sc1"];
+        sc[2] = QueryString["sc2"];
+        sc[3] = QueryString["sc3"];
+        sc[4] = QueryString["sc4"];
+        sc[5] = QueryString["sc5"];
+        sc[6] = QueryString["sc6"];
+        sc[7] = QueryString["sc7"];
+        var dt = QueryString["datetime"];
 
-        //Get values
-        var butnFval = document.getElementById('btnFace').value;
+        //Work out mean
+        var sc_mean_7 = (parseFloat((parseInt(sc[1]) + parseInt(sc[2]) + parseInt(sc[3]) + parseInt(sc[4]) + parseInt(sc[5]) + parseInt(sc[6]) + parseInt(sc[7])) / 7)).toFixed(1);
 
-        //Draw page with current settings
-        draw_page(butnFval, 0);
+        //Name file
+        filename = fname + '.xml';
 
-    };
+        //Assemble XML string
+        XMLtext = '<?xml version="1.0"?><dvams_result>';
+        XMLtext = XMLtext + '<name>' + fname + '</name>';
+        XMLtext = XMLtext + '<dvams_mean>' + sc_mean_7 + '</dvams_mean>';
+        XMLtext = XMLtext + '<scale_gender>' + gender + '</scale_gender>';
 
-    function sc1_click() {
+        for (i = 1; i < 8; i++) {
+            XMLtext = XMLtext + '<scale' + i + '>' + sc[i] + '</scale' + i + '>';
+        }
+        XMLtext = XMLtext + '<datetime>' + dt + '</datetime>';
+        XMLtext = XMLtext + '</dvams_result>';
+        //alert(XMLtext);
 
-        //Get values
-        var butnFval = document.getElementById('btnFace').value;
+        //Create download file
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(XMLtext));
+        element.setAttribute('download', filename);
 
-        //Draw page with current settings
-        draw_page(butnFval, 0);
-    };
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
 
-    function sc2_click() {
-
-        //Get values - TODO: use sub to retrieve values
-        var butnFval = document.getElementById('btnFace').value;
-
-        //Draw page with current settings
-        draw_page(butnFval, 0);
     };
 
     function set_label_lang () {
