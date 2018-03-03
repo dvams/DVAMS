@@ -612,7 +612,7 @@
         
 	//Name file
         var filename = fname + '.xml';
-	alert(filename);
+	alert('File: '+ filename);
 	    
         //Assemble XML string
         XMLtext = '<?xml version="1.0"?><dvams_result>';
@@ -629,17 +629,16 @@
         //Create download file
         var element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(XMLtext));
-        element.setAttribute('download', 'test.xml');
+        element.setAttribute('download', filename);
         element.style.display = 'none';
         document.body.appendChild(element);
-
+	element.click();
+        document.body.removeChild(element);
+	    
 	//TEST fix
 	//element.download = 'Downloading Results';
         //element.target="_self" ; //required in FF, optional for Chrome
   
-	element.click();
-        document.body.removeChild(element);
-	    
 	//alert('done');
     };
 	
