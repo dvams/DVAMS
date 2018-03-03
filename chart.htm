@@ -663,8 +663,9 @@
         var sc_mean_7 = (parseFloat((parseInt(sc[1]) + parseInt(sc[2]) + parseInt(sc[3]) + parseInt(sc[4]) + parseInt(sc[5]) + parseInt(sc[6]) + parseInt(sc[7])) / 7)).toFixed(1);
 
         //Name file
-        filename = fname + '.xml';
-
+        var filename = fname + '.xml';
+        alert(filename);
+	    
         //Assemble XML string
         XMLtext = '<?xml version="1.0"?><dvams_result>';
         XMLtext = XMLtext + '<name>' + fname + '</name>';
@@ -687,7 +688,7 @@
         document.body.appendChild(element);
         element.click();
         document.body.removeChild(element);
-
+	
     };
 
     function set_label_lang () {
