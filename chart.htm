@@ -87,7 +87,6 @@
     var sResSuffix = "640x480";
     var strDateTime = QueryString["datetime"];
     var LangURL = '';
-    var XMLfname = '';
         
     //#1
     var iNum = parseInt(sc[1]);
@@ -634,14 +633,14 @@
        
         //First create SaveAs dialog
         //Get name
-        var XMLfname = prompt("Save As:", "DVAMS_result");
+        var fname = prompt("Save As:", "DVAMS_result");
 	//Use phonegap implementation
 	//navigator.notification.prompt('Save As', onPrompt, 'Registration', ['OK','Cancel'],'DVAMS_Result');
 	    
-        if (XMLfname == null || XMLfname == "") {
+        if (fname == null || fname == "") {
             return;
         } 
-	    alert(XMLfname);
+	alert(fname);
 	    
         //Then construct xml for querystring items
         var QueryString = getRequests();
@@ -664,11 +663,11 @@
         var sc_mean_7 = (parseFloat((parseInt(sc[1]) + parseInt(sc[2]) + parseInt(sc[3]) + parseInt(sc[4]) + parseInt(sc[5]) + parseInt(sc[6]) + parseInt(sc[7])) / 7)).toFixed(1);
 
         //Name file
-        filename = XMLfname + '.xml';
+        filename = fname + '.xml';
 
         //Assemble XML string
         XMLtext = '<?xml version="1.0"?><dvams_result>';
-        XMLtext = XMLtext + '<name>' + XMLfname + '</name>';
+        XMLtext = XMLtext + '<name>' + fname + '</name>';
         XMLtext = XMLtext + '<dvams_mean>' + sc_mean_7 + '</dvams_mean>';
         XMLtext = XMLtext + '<scale_gender>' + gender + '</scale_gender>';
 
