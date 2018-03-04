@@ -167,35 +167,6 @@
         //home_button.action = "menu_home_dvams.htm" + LangURL;
     }
     
-    //For Phonegap file plugin
-    function onDeviceReady() {
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-    }
-
-    function gotFS(fileSystem) {
-        var path = "readme.txt";
-        fileSystem.root.getFile(path, {create: true, exclusive: false}, gotFileEntry, fail);
-    }
-
-    function gotFileEntry(fileEntry) {
-        fileEntry.createWriter(gotFileWriter, fail);
-    }
-
-    function gotFileWriter(writer) {
-        writer.onwrite = function(evt) {
-            console.log("write success");
-        };
-        writer.write("some sample text");
-    }
-	
-    function fail(error)
-    {
-        alert(error.code);
-    }
-
-	
-    //END of file plugin
-	
     //Retrieve values from URL string
     function getRequests() {
         var s1 = location.search.substring(1, location.search.length).split('&'),
@@ -694,6 +665,31 @@
         //createDownloadLink("#export",str,"file.txt");
 	//createDownloadLink(filename, XMLtext);
 	    
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+
+
+        function gotFS(fileSystem) {
+	    var path = "readme.txt";
+	    fileSystem.root.getFile(path, {create: true, exclusive: false}, gotFileEntry, fail);
+        }
+
+        function gotFileEntry(fileEntry) {
+	    fileEntry.createWriter(gotFileWriter, fail);
+        }
+
+        function gotFileWriter(writer) {
+	    writer.onwrite = function(evt) {
+	        console.log("write success");
+	    };
+	    writer.write("some sample text");
+        }
+
+        function fail(error)
+        {
+	    alert(error.code);
+        }
+	
+        //END of file plugin	    
         var writer = new FileWriter("/write.txt");
         writer.write("TESTING" + "\n", false);              
 
