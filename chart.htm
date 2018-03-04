@@ -615,9 +615,8 @@
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 
 	function gotFS(fileSystem) {
-	    //var path = "readme.txt";
-	    //var path = 'Download/' + filename;
-	    var path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + filename;
+	    var path = 'Download/' + filename;
+	    //var path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + filename;
 	    alert (path);
 	    fileSystem.root.getFile(path, {create: true, exclusive: true}, gotFileEntry, fail);
 	}
@@ -643,16 +642,18 @@
 	
     //Save XML to filename specified by user
     function savebutton_click() {
-       
-        //First create SaveAs dialog
-        //Get name
-	var fname = prompt("Save As:", "DVAMS_result");
-        if (fname == null || fname == "") {
-            return;
-        } 	
 	    
         //Then construct xml for querystring items
         var QueryString = getRequests();
+	var dt = QueryString["datetime"];
+       
+        //First create SaveAs dialog
+        //Get name
+	var fname = prompt('Save As:', 'DVAMS_result' + dt);
+        if (fname == null || fname == "") {
+            return;
+        } 		    
+	    
         var XMLtext = String;
         var face = QueryString["face"];
         if (face == 1) { var gender = 'F' } else { var gender = 'M' };
@@ -666,7 +667,6 @@
         sc[5] = QueryString["sc5"];
         sc[6] = QueryString["sc6"];
         sc[7] = QueryString["sc7"];
-        var dt = QueryString["datetime"];
 	    
         //Work out mean
         var sc_mean_7 = (parseFloat((parseInt(sc[1]) + parseInt(sc[2]) + parseInt(sc[3]) + parseInt(sc[4]) + parseInt(sc[5]) + parseInt(sc[6]) + parseInt(sc[7])) / 7)).toFixed(1);
