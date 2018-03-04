@@ -616,8 +616,6 @@
 
 	function gotFS(fileSystem) {
 	    var path = 'Download/' + filename;
-	    //var path = Environment.getExternalStorageDirectory() + filename;
-	    //alert(path);
 	    fileSystem.root.getFile(path, {create: true, exclusive: true}, gotFileEntry, fail);
 	}
 
@@ -627,7 +625,7 @@
 
 	function gotFileWriter(writer) {
 	    writer.onwrite = function(evt) {
-		alert(filename + ' saved to Device Storage > Download folder');
+		alert(filename + ' saved to [Device storage > Download] folder');
 		//console.log("write success");
 	    };
 	    writer.write(XMLtext);
@@ -636,7 +634,7 @@
 	function fail(error)
 	{
 	if (error.code == 12) {
-	        alert(filename + ' already exists');
+	        alert(filename + ' already exists in [Device storage > Download] folder');
 	    } else {
 	        alert('Filesystem Error: ' + error.code);
 	    }
