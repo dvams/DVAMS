@@ -614,28 +614,26 @@
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 
 	function gotFS(fileSystem) {
-	    alert('in gotFS');
 	    //var path = "readme.txt";
 	    var path = 'Download/' + filename;
 	    fileSystem.root.getFile(path, {create: true, exclusive: false}, gotFileEntry, fail);
 	}
 
 	function gotFileEntry(fileEntry) {
-	    alert('in gotFileEntry');
 	    fileEntry.createWriter(gotFileWriter, fail);
 	}
 
 	function gotFileWriter(writer) {
 	    writer.onwrite = function(evt) {
-		alert('write success');
-		console.log("write success");
+		alert(filename + ' saved in Download folder');
+		//console.log("write success");
 	    };
 	    writer.write(XMLtext);
 	}
 
 	function fail(error)
 	{
-	    alert(error.code);
+	    alert('Filesystem Error: ' + error.code);
 	}
 
     }	
