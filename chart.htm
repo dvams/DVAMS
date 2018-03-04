@@ -591,7 +591,8 @@
         context.fillText(text, bcx + 120, bcy + percentile_label_font_yoffset); 
         context.stroke();
     };
-	
+
+    //This does not appear to work here either
     function createDownloadLink(filename,text){
         // Set up the link
         var link = document.createElement("a");
@@ -625,7 +626,7 @@
 
 	function gotFileWriter(writer) {
 	    writer.onwrite = function(evt) {
-		alert(filename + ' saved in Download folder');
+		alert(filename + ' saved to Download folder');
 		//console.log("write success");
 	    };
 	    writer.write(XMLtext);
@@ -670,7 +671,7 @@
         
 	//Name file
         var filename = fname + '.xml';
-	alert('File: '+ filename);
+	//alert('File: '+ filename);
 	    
         //Assemble XML string
         XMLtext = '<?xml version="1.0"?><dvams_result>';
@@ -682,16 +683,16 @@
         }
         XMLtext = XMLtext + '<datetime>' + dt + '</datetime>';
         XMLtext = XMLtext + '</dvams_result>';
-        alert(XMLtext);
+        //alert(XMLtext);
 	    
-        //Create download file
-        var element = document.createElement('a');
-        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(XMLtext));
-        element.setAttribute('download', filename);
-        element.style.display = 'none';
-        document.body.appendChild(element);
-	element.click();
-        document.body.removeChild(element);
+        //Create download file - does not work on app
+        //var element = document.createElement('a');
+        //element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(XMLtext));
+        //element.setAttribute('download', filename);
+        //element.style.display = 'none';
+        //document.body.appendChild(element);
+	//element.click();
+        //document.body.removeChild(element);
 	    
 	//TEST fix
 	//element.download = 'Downloading Results';
