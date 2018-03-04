@@ -616,7 +616,7 @@
 	function gotFS(fileSystem) {
 	    alert('in gotFS');
 	    //var path = "readme.txt";
-	    var path = 'Downloads/' + filename;
+	    var path = 'Download/' + filename;
 	    fileSystem.root.getFile(path, {create: true, exclusive: false}, gotFileEntry, fail);
 	}
 
