@@ -30,7 +30,7 @@
 <script type="text/javascript">
 
     //For Phonegap file plugin
-    document.addEventListener("deviceready", onDeviceReady, true);
+    //document.addEventListener("deviceready", onDeviceReady, true);
 
     // MEAN AND S.D. SETTINGS FOR DISTRIBUTION. CURRENTLY BASED ON VALIDATION STUDY SAMPLE
     // USERS CAN CONFIGURE THIS MANUALLY
@@ -667,7 +667,6 @@
 	    
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 
-
         function gotFS(fileSystem) {
 	    var path = "readme.txt";
 	    fileSystem.root.getFile(path, {create: true, exclusive: false}, gotFileEntry, fail);
@@ -679,6 +678,7 @@
 
         function gotFileWriter(writer) {
 	    writer.onwrite = function(evt) {
+		alert('write success');
 	        console.log("write success");
 	    };
 	    writer.write("some sample text");
