@@ -611,14 +611,12 @@
     //	
     function WriteFile(filename, XMLtext){
 
-        alert('Calling requestFileSystem#');
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-        alert('Called requestFileSystem#');
 
 	function gotFS(fileSystem) {
 	    alert('in gotFS');
 	    //var path = "readme.txt";
-	    var path = filename;
+	    var path = 'Downloads/' + filename;
 	    fileSystem.root.getFile(path, {create: true, exclusive: false}, gotFileEntry, fail);
 	}
 
