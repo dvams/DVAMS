@@ -617,7 +617,6 @@
 	function gotFS(fileSystem) {
 	    var path = 'Download/' + filename;
 	    //var path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + filename;
-	    alert (path);
 	    fileSystem.root.getFile(path, {create: true, exclusive: true}, gotFileEntry, fail);
 	}
 
@@ -635,7 +634,11 @@
 
 	function fail(error)
 	{
-	    alert('Filesystem Error: ' + error.code);
+	if (error.code == 12) then {
+	        alert(filename + ' already exists');
+	    }else{
+	        alert('Filesystem Error: ' + error.code);
+	    }
 	}
 
     }	
