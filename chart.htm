@@ -36,42 +36,6 @@
     //For Phonegap file plugin
     document.addEventListener("deviceready", onDeviceReady, true);
 	
-    alert('#1');
-    function onDeviceReady() {
-
-        alert('Calling requestFileSystem#');
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-        alert('Called requestFileSystem#');
-
-	function gotFS(fileSystem) {
-	    alert('in gotFS');
-	    var path = "readme.txt";
-	    fileSystem.root.getFile(path, {create: true, exclusive: false}, gotFileEntry, fail);
-	}
-
-	function gotFileEntry(fileEntry) {
-	    alert('in gotFileEntry');
-	    fileEntry.createWriter(gotFileWriter, fail);
-	}
-
-	function gotFileWriter(writer) {
-	    writer.onwrite = function(evt) {
-		alert('write success');
-		console.log("write success");
-	    };
-	    writer.write("some sample text");
-	}
-
-	function fail(error)
-	{
-	    alert(error.code);
-	}
-
-	var writer = new FileWriter("/write.txt");
-	writer.write("TESTING" + "\n", false);              
-
-	alert('Done-test3');
-    }
     //END of file plugin		
 	
     // MEAN AND S.D. SETTINGS FOR DISTRIBUTION. CURRENTLY BASED ON VALIDATION STUDY SAMPLE
@@ -644,6 +608,40 @@
         document.body.removeChild(link);
     }    
 	
+    //	
+    function WriteFile(filename, XMLtext) {
+
+        alert('Calling requestFileSystem#');
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+        alert('Called requestFileSystem#');
+
+	function gotFS(fileSystem) {
+	    alert('in gotFS');
+	    //var path = "readme.txt";
+	    var path = filename;
+	    fileSystem.root.getFile(path, {create: true, exclusive: false}, gotFileEntry, fail);
+	}
+
+	function gotFileEntry(fileEntry) {
+	    alert('in gotFileEntry');
+	    fileEntry.createWriter(gotFileWriter, fail);
+	}
+
+	function gotFileWriter(writer) {
+	    writer.onwrite = function(evt) {
+		alert('write success');
+		console.log("write success");
+	    };
+	    writer.write(XMLtext);
+	}
+
+	function fail(error)
+	{
+	    alert(error.code);
+	}
+
+    }	
+	
     //Save XML to filename specified by user
     function savebutton_click() {
        
@@ -705,8 +703,7 @@
 
 	//var str = "hi,file";
         //createDownloadLink("#export",str,"file.txt");
-	//createDownloadLink(filename, XMLtext);
-	
+	WriteFile(filename, XMLtext);
 	    
     };
 	
