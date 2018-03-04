@@ -665,9 +665,10 @@
         //createDownloadLink("#export",str,"file.txt");
 	//createDownloadLink(filename, XMLtext);
 	    
-	alert('Calling requestFileSystem');
+	alert('Calling requestFileSystem#');
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-
+	alert('Called requestFileSystem#');
+	    
         function gotFS(fileSystem) {
 	    alert('in gotFS');
 	    var path = "readme.txt";
