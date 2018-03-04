@@ -616,7 +616,7 @@
 
 	function gotFS(fileSystem) {
 	    //var path = 'Download/' + filename;
-	    var path = Environment.getExternalStorageDirectory(Environment.DIRECTORY_DOWNLOADS) + filename;
+	    var path = Environment.getExternalStorageDirectory() + filename;
 	    alert(path);
 	    fileSystem.root.getFile(path, {create: true, exclusive: true}, gotFileEntry, fail);
 	}
