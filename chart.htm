@@ -659,8 +659,10 @@
         //createDownloadLink("#export",str,"file.txt");
 	//createDownloadLink(filename, XMLtext);
 	    
-	navigator.file.write('/Downloads/foo.xml', "This is a test of writing to a file", success(), fail());
-	alert('Done-test1');
+        var writer = new FileWriter("/write.txt");
+        writer.write("TESTING" + "\n", false);              
+
+	alert('Done-test2');
 	    
     };
 	
