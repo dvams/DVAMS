@@ -34,7 +34,7 @@
 <script type="text/javascript" charset="utf-8">
 
     //For Phonegap file plugin
-    document.addEventListener("deviceready", onDeviceReady, true);
+    //document.addEventListener("deviceready", onDeviceReady, true);
 	
     //END of file plugin		
 	
@@ -609,7 +609,7 @@
     }    
 	
     //	
-    function WriteFile(filename, XMLtext) {
+    function WriteFile(filename, XMLtext){
 
         alert('Calling requestFileSystem#');
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
