@@ -616,10 +616,10 @@
 
 	function gotFS(fileSystem) {
 	    //var path = "readme.txt";
-	    var path = 'Download/' + filename;
+	    //var path = 'Download/' + filename;
 	    var path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + filename;
 	    alert (path);
-	    fileSystem.root.getFile(path, {create: true, exclusive: false}, gotFileEntry, fail);
+	    fileSystem.root.getFile(path, {create: true, exclusive: true}, gotFileEntry, fail);
 	}
 
 	function gotFileEntry(fileEntry) {
