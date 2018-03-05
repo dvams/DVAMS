@@ -450,7 +450,7 @@
         context.fillStyle = "white";
         context.font = timestamp_text_font;
         var caption = 'Display';
-        if (face == 1) { var gender = 'F' } else { var gender = 'M' };
+        if (face == 1) { var gender = '♀' } else { var gender = '♂' };
             
         var now = new Date();
         var text = caption + ': ' + gender + ' ' + strDateTime;
@@ -658,7 +658,7 @@
 	    
         var XMLtext = String;
         var face = QueryString["face"];
-        if (face == 1) { var gender = 'F' } else { var gender = 'M' };
+        if (face == 1) { var gender = '♀' } else { var gender = '♂' };
         
 	// Get scale scores 1-7
         var sc = new Array();
