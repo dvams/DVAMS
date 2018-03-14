@@ -216,8 +216,8 @@
         // Modify table dimensions and font size for typical phone aspect ratio (> 1.7)
         if (aspect_ratio >= 1.7) {
             //Change table height & canvas for tablet aspect ratio [1564 for 1.777 aspect, ]
-            //var table_height = (aspect_ratio * 824);
-            var table_height = (aspect_ratio * 900); // Now 
+            //Was 900
+            var table_height = (aspect_ratio * 926); // Now 
             if (table_height < MinTableHeight) { table_height = MinTableHeight }; //Minimum table height
             
             if (MainTrafficBars_y < 580) { MainTrafficBars_y = 580 };
