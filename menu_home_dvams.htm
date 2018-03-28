@@ -42,8 +42,8 @@
 	 var ratio = (screen.width / 940) / dpi_zoom;
 	 //var targdensdpi = (w * DPR * 0.4133 * dpi_zoom);
 	 var targdensdpi = ((screen.width / 600) * 248 * dpi_zoom);
-	 if (w == 480){targdensdpi=640};
-	 if (w == 720){targdensdpi=400};
+	 if (w == 480){targdensdpi=640 * dpi_zoom};
+	 if (w == 720){targdensdpi=416 * dpi_zoom};
 	    
 	 //alert ('Width: ' + screen.width);
 	 //alert ('targdensdpi: ' + targdensdpi);
