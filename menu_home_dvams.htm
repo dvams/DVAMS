@@ -17,7 +17,7 @@
 
         //Check storage for dpi_zoom
         if (typeof (Storage) !== "undefined") { dpi_zoom_current=localStorage.dpi_zoom };
-        alert('stored:' + dpi_zoom_current);
+        //alert('stored:' + dpi_zoom_current);
         if (typeof dpi_zoom_current === 'undefined') { dpi_zoom_current = 1 };
 
         //Check URL to see if dpi_zoom has been passed
@@ -44,8 +44,8 @@
 	 var targdensdpi = ((screen.width / 600) * 248 * dpi_zoom);
 	 if (w == 480){targdensdpi=100};  	    
 	    
-	 alert ('Width: ' + screen.width);
-	 alert ('targdensdpi: ' + targdensdpi);
+	 //alert ('Width: ' + screen.width);
+	 //alert ('targdensdpi: ' + targdensdpi);
 	 if (w >= 940) {mvp.setAttribute('content', 'width=device-width, initial-scale='+ ratio +', target-densitydpi=device-dpi')};
 	 if (w < 940) {mvp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi='+ targdensdpi)};
 	 //if (screen.width < 940){alert('screen width-' + screen.width + ' - dpidensity' + pxlratio)};   
@@ -177,7 +177,7 @@
             <div id="DVAMS_title" style="padding: 0px 0px 10px 0px; height:70px; font-size: 68px; color: #FDFDFD;  vertical-align:
             text-bottom; font-family: Arial, Helvetica, sans-serif; width: 690px;" >
             D-VAMS<label id="DVAMS_version" style="padding: 0px; height:26px; font-size: 24px; color: #FDFDFD; 
-            font-family: Arial, Helvetica, sans-serif; width: 64px;"> 3.2.8</label>
+            font-family: Arial, Helvetica, sans-serif; width: 64px;"> 3.2.9</label>
             <br /></div> 
 
             <div id="DVAMS_subtitle" style="padding: 0px 0px 6px 0px; height:42px; font-family: Arial, Helvetica, sans-serif; font-size: 36px; color: #FFFFFF; width: 690px; text-align: left;" >
