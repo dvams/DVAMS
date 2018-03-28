@@ -38,10 +38,12 @@
 	 var DPR = window.devicePixelRatio;
 	 //var w = Math.round(DPR * screen.width);
 	 var w =screen.width;
-	    
+    
 	 var ratio = (screen.width / 940) / dpi_zoom;
 	 //var targdensdpi = (w * DPR * 0.4133 * dpi_zoom);
 	 var targdensdpi = ((screen.width / 600) * 248 * dpi_zoom);
+	 if (w == 480){targdensdpi=100};  	    
+	    
 	 alert ('Width: ' + screen.width);
 	 alert ('targdensdpi: ' + targdensdpi);
 	 if (w >= 940) {mvp.setAttribute('content', 'width=device-width, initial-scale='+ ratio +', target-densitydpi=device-dpi')};
