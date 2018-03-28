@@ -38,15 +38,11 @@
 	 var DPR = window.devicePixelRatio;
 	 //var w = Math.round(DPR * screen.width);
 	 var w =screen.width;
-    
-	 var ratio = (screen.width / 940) / dpi_zoom;
-	 //var targdensdpi = (w * DPR * 0.4133 * dpi_zoom);
+  	 var ratio = (screen.width / 940) / dpi_zoom;
 	 var targdensdpi = ((screen.width / 600) * 248 * dpi_zoom);
 	 if (w == 480){targdensdpi=400 * dpi_zoom};
 	 if (w == 720){targdensdpi=400 * dpi_zoom};
 	    
-	 //alert ('Width: ' + screen.width);
-	 //alert ('targdensdpi: ' + targdensdpi);
 	 if (w >= 940) {mvp.setAttribute('content', 'width=device-width, initial-scale='+ ratio +', target-densitydpi=device-dpi')};
 	 if (w < 940) {mvp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi='+ targdensdpi)};
 	 //if (screen.width < 940){alert('screen width-' + screen.width + ' - dpidensity' + pxlratio)};   
