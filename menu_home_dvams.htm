@@ -24,14 +24,14 @@
         var QueryString = getRequests();
         var dpi_zoom = QueryString["dpi_zoom"];
         
-        //if dpi_zoom passed then save to storage
-        if (typeof dpi_zoom === 'undefined') {
-            dpi_zoom = dpi_zoom_current;
-        } else {
+        //if dpi_zoom passed then save to storage - REMOVE DUE TO BUG
+        //if (typeof dpi_zoom === 'undefined') {
+        //    dpi_zoom = dpi_zoom_current;
+        //} else {
             //Store dpi_zoom value if in URL
-            dpi_zoom = dpi_zoom * dpi_zoom_current;
-            if (typeof (Storage) !== "undefined") { localStorage.dpi_zoom = dpi_zoom };
-        };
+        //    dpi_zoom = dpi_zoom * dpi_zoom_current;
+        //    if (typeof (Storage) !== "undefined") { localStorage.dpi_zoom = dpi_zoom };
+        //};
         //alert('New zoom' + dpi_zoom);
 	    
          var mvp = document.getElementById('view');
