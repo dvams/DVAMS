@@ -15,10 +15,10 @@
             return r;
         };
 
-        //Check storage for dpi_zoom
-        if (typeof (Storage) !== "undefined") { dpi_zoom_current=localStorage.dpi_zoom };
-        //alert('stored:' + dpi_zoom_current);
-        if (typeof dpi_zoom_current === 'undefined') { dpi_zoom_current = 1 };
+	//Check storage for dpi_zoom - THIS CAN BREAK, DO NOT CHECK
+        //if (typeof (Storage) !== "undefined") { dpi_zoom_current=localStorage.dpi_zoom };
+        //if (typeof dpi_zoom_current === 'undefined') { dpi_zoom_current = 1 };   
+	dpi_zoom_current = 1;  
 
         //Check URL to see if dpi_zoom has been passed
         var QueryString = getRequests();
