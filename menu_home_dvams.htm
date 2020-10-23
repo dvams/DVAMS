@@ -2,50 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta id="view" name="viewport" content="width=device-width, target-densitydpi=device-dpi">
-    <script type="text/javascript">
-	
-	//This is to manage viewport size scaling and zooming for devices
-        function getRequests() {
-            var s1 = location.search.substring(1, location.search.length).split('&'),
-            r = {}, s2, i;
-            for (i = 0; i < s1.length; i += 1) {
-                s2 = s1[i].split('=');
-                r[decodeURIComponent(s2[0]).toLowerCase()] = decodeURIComponent(s2[1]);
-            }
-            return r;
-        };
-
-	//Check storage for dpi_zoom - THIS CAN BREAK, DO NOT CHECK
-        //if (typeof (Storage) !== "undefined") { dpi_zoom_current=localStorage.dpi_zoom };
-        //if (typeof dpi_zoom_current === 'undefined') { dpi_zoom_current = 1 };   
-	dpi_zoom_current = 1;  
-
-        //Check URL to see if dpi_zoom has been passed
-        var QueryString = getRequests();
-        var dpi_zoom = QueryString["dpi_zoom"];
-        
-        //if dpi_zoom passed then save to storage - REMOVE DUE TO BUG
-        //if (typeof dpi_zoom === 'undefined') {
-        //    dpi_zoom = dpi_zoom_current;
-        //} else {
-            //Store dpi_zoom value if in URL
-        //    dpi_zoom = dpi_zoom * dpi_zoom_current;
-        //    if (typeof (Storage) !== "undefined") { localStorage.dpi_zoom = dpi_zoom };
-        //};
-        //alert('New zoom' + dpi_zoom);
-	    
-         var mvp = document.getElementById('view');
-	 var DPR = window.devicePixelRatio;
-	 var w =screen.width;
-  	 var ratio = (screen.width / 940) / dpi_zoom;
-	 var targdensdpi = ((screen.width / 600) * 248 * dpi_zoom);
-	 if (w == 480){targdensdpi=400 * dpi_zoom};
-	 if (w == 720){targdensdpi=400 * dpi_zoom};
-	 if (w >= 940) {mvp.setAttribute('content', 'width=device-width, initial-scale='+ ratio +', target-densitydpi=device-dpi')};
-	 if (w < 940) {mvp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi='+ targdensdpi)};
-	 //if (screen.width < 940){alert('screen width-' + screen.width + ' - dpidensity' + pxlratio)};   
-    </script>
-
+    
     <title>DVAMS Scale Home</title>
     <style type="text/css">
         html { visibility:hidden; }
