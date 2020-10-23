@@ -2,23 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
     <meta id="view" name="viewport" content="width=device-width, initial-scale=1.0, target-densitydpi=device-dpi">
-    <script type="text/javascript">
-	
-	//Check storage for dpi_zoom - THIS BREAKS, DO NOT READ FROM STORAGE
-        //if (typeof (Storage) !== "undefined") { dpi_zoom_current=localStorage.dpi_zoom };
-        //if (typeof dpi_zoom_current === 'undefined') { dpi_zoom_current = 1 };
-	
-	dpi_zoom_current = 1;
-        var mvp = document.getElementById('view');
-	var DPR = window.devicePixelRatio;
-	var w =screen.width;
-  	var ratio = (screen.width / 940) / dpi_zoom;
-	var targdensdpi = ((screen.width / 600) * 248 * dpi_zoom);
-	if (w == 480){targdensdpi=400 * dpi_zoom};
-	if (w == 720){targdensdpi=400 * dpi_zoom};
-        if (w >= 940) {mvp.setAttribute('content', 'width=device-width, initial-scale='+ ratio +', target-densitydpi=device-dpi')};
-	if (w < 940) {mvp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi='+ targdensdpi)};
-    </script>
+
     <title>DVAMS Assessment Run</title>
         <style type="text/css">
         html { visibility:hidden; }
