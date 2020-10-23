@@ -2,21 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.28, target-densitydpi=device-dpi">
-    <script type="text/javascript">
-	    
-	//Check storage for dpi_zoom - THIS CAN BREAK, DO NOT CHECK
-        //if (typeof (Storage) !== "undefined") { dpi_zoom_current=localStorage.dpi_zoom };
-        //if (typeof dpi_zoom_current === 'undefined') { dpi_zoom_current = 1 };   
-	dpi_zoom_current = 1;  
-	    
-        var mvp = document.getElementById('view');
-	var DPR = window.devicePixelRatio;
-	var w = Math.round(DPR * screen.width);
-        var ratio = (screen.width / 940) / dpi_zoom_current;
-	var targdensdpi = (w * DPR * 0.4133 * dpi_zoom_current);
-        if (w >= 940) {mvp.setAttribute('content', 'width=device-width, initial-scale='+ ratio +', target-densitydpi=device-dpi')};
-	if (w < 940) {mvp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi='+ targdensdpi)};
-    </script>
     
     <title></title>
 <link rel="stylesheet" href="Styles/w3.css">    
